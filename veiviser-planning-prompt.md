@@ -36,7 +36,7 @@ Jeg vil bygge en Next.js-veiviser (wizard) som hjelper NAV-brukere å finne ut o
 - Koden skal være godt strukturert med tydelig separasjon mellom spørsmålslogikk/beslutningstre (data) og UI-komponenter
 
 ## Spørsmål jeg ønsker at du avklarer med meg i plan-fasen
-1. Forslag til spørsmål er definert i spørsmaål.md
+1. Forslag til spørsmål er definert i @spørsmål.md
 2. Hva er beslutningslogikken – hvilke svar leder til hvilken anbefaling?
 3. Foreslå en mappestruktur og komponentinndeling
 4. Hvordan bør beslutningstreet modelleres i TypeScript (f.eks. som en graf, array av steg, eller noe annet)?

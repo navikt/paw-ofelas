@@ -1,0 +1,25 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: paw-ofelas
+  namespace: paw
+  labels:
+    team: paw
+spec:
+  image: {{image}}
+  port: 3000
+  ingresses:
+    - https://paw-ofelas.nav.no
+  replicas:
+    min: 2
+    max: 4
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+  liveness:
+    path: /api/health
+  readiness:
+    path: /api/health
