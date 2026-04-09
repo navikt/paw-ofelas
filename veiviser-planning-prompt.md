@@ -26,6 +26,7 @@ Jeg vil bygge en Next.js-veiviser (wizard) som hjelper NAV-brukere å finne ut o
 - Basert på svarene følger den en beslutningstre-logikk for å lede brukeren til riktig utfall
 - På slutten vises en **tydelig anbefaling** med en knapp/lenke som peker videre til riktig handling
 - Brukeren skal kunne gå **tilbake** til forrige spørsmål og endre svar
+- Noen spørsmål er circuit-breakere, som tar bruker rett til anbefaling. Ellers ser vi på akkumulerte svar. Default bør være oppfølging.
 - State håndteres lokalt i React (f.eks. useState eller useReducer) – ingen persistering
 
 ## Ikke-funksjonelle krav
@@ -35,7 +36,7 @@ Jeg vil bygge en Next.js-veiviser (wizard) som hjelper NAV-brukere å finne ut o
 - Koden skal være godt strukturert med tydelig separasjon mellom spørsmålslogikk/beslutningstre (data) og UI-komponenter
 
 ## Spørsmål jeg ønsker at du avklarer med meg i plan-fasen
-1. Hvilke spørsmål bør veiviseren stille, og i hvilken rekkefølge?
+1. Forslag til spørsmål er definert i spørsmaål.md
 2. Hva er beslutningslogikken – hvilke svar leder til hvilken anbefaling?
 3. Foreslå en mappestruktur og komponentinndeling
 4. Hvordan bør beslutningstreet modelleres i TypeScript (f.eks. som en graf, array av steg, eller noe annet)?
