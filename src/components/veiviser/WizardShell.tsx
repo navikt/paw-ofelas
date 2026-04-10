@@ -5,7 +5,7 @@ import { Box, VStack } from "@navikt/ds-react";
 import { ProgressIndicator } from "./ProgressIndicator";
 import { QuestionStep } from "./QuestionStep";
 import { ResultStep } from "./ResultStep";
-import { canGoBack, goBack, initialState, isComplete, processAnswer } from "@/lib/veiviser/engine";
+import { canGoBack, initialState, isComplete, processAnswer } from "@/lib/veiviser/engine";
 import { questions } from "@/lib/veiviser/questions";
 import type { Answer, WizardState } from "@/lib/veiviser/types";
 
@@ -32,8 +32,15 @@ function reducer(state: ShellState, action: Action): ShellState {
 
     case "BACK": {
       if (!canGoBack(state)) return state;
-      const prevWizardState = goBack(state, questions);
-      return { ...prevWizardState, pendingAnswer: undefined };
+      if (state.result !== null) {
+        // Back from result screen: stay on the question that triggered result, just clear it
+        return {
+          ...state,
+          result: null,
+          pendingAnswer: state.answers[questions[state.currentIndex].id],
+        };
+      }
+      return { ...state, currentIndex: state.currentIndex - 1, pendingAnswer: undefined };
     }
 
     case "RESTART":
@@ -49,12 +56,13 @@ const initialShellState: ShellState = { ...initialState, pendingAnswer: undefine
 export function WizardShell() {
   const [state, dispatch] = useReducer(reducer, initialShellState);
   const currentQuestion = questions[state.currentIndex];
+  const selectedAnswer = state.pendingAnswer ?? state.answers[currentQuestion.id];
 
   const handleNext = useCallback(() => {
-    if (state.pendingAnswer) {
-      dispatch({ type: "ANSWER", answer: state.pendingAnswer });
+    if (selectedAnswer) {
+      dispatch({ type: "ANSWER", answer: selectedAnswer });
     }
-  }, [state.pendingAnswer]);
+  }, [selectedAnswer]);
 
   return (
     <Box
@@ -76,12 +84,13 @@ export function WizardShell() {
           />
         ) : (
           <QuestionStep
+            key={state.currentIndex}
             questionNumber={state.currentIndex + 1}
             totalQuestions={questions.length}
             category={currentQuestion.category}
             question={currentQuestion.question}
             helpText={currentQuestion.helpText}
-            selectedAnswer={state.pendingAnswer}
+            selectedAnswer={selectedAnswer}
             onSelect={(answer) => dispatch({ type: "SELECT", answer })}
             onNext={handleNext}
             onBack={canGoBack(state) ? () => dispatch({ type: "BACK" }) : undefined}

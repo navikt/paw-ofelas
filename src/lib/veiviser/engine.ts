@@ -28,8 +28,8 @@ export function processAnswer(
         result: question.yesOutcome,
       };
     }
-    // nei on circuit-breaker: skip, don't store, advance
-    return { ...state, currentIndex: state.currentIndex + 1 };
+    // nei on circuit-breaker: advance without triggering outcome, but store the answer
+    return { ...state, answers: { ...state.answers, [question.id]: answer }, currentIndex: state.currentIndex + 1 };
   }
 
   // Accumulated question
@@ -80,7 +80,7 @@ export function isComplete(state: WizardState): boolean {
 
 /** Returns true when the user can navigate back. */
 export function canGoBack(state: WizardState): boolean {
-  return state.currentIndex > 0 && state.result === null;
+  return state.result !== null || state.currentIndex > 0;
 }
 
 /**

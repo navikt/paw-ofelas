@@ -26,7 +26,7 @@ export const questions: Question[] = [
     category: "Pengestøtte",
     question: "Har du fått beskjed om å registrere deg som arbeidssøker?",
     helpText: "Noen tilfeller krever at du skal være registrert arbeidssøker.",
-    isCircuitBreaker: false,
+    isCircuitBreaker: true,
     yesOutcome: "arbeidssøker",
     noOutcome: "oppfølging",
   },

@@ -63,9 +63,9 @@ describe("processAnswer – circuit-breaker", () => {
     expect(next.currentIndex).toBe(1);
   });
 
-  it("nei på circuit-breaker bidrar ikke til score (svaret registreres ikke)", () => {
+  it("nei på circuit-breaker lagres i answers men bidrar ikke til score", () => {
     const next = processAnswer(questions, initialState, "nei");
-    expect(next.answers["cb-as"]).toBeUndefined();
+    expect(next.answers["cb-as"]).toBe("nei");
   });
 
   it("ja-svar lagres i answers", () => {
@@ -99,10 +99,10 @@ describe("processAnswer – akkumulert", () => {
 describe("processAnswer – tilbake etter circuit-breaker-nei", () => {
   const questions = [circuitBreakerArbeidssøker, accumulatedTowardOppfølging];
 
-  it("å gå tilbake fra spørsmål 1 til 0 fjerner ikke svar fra cb-spørsmål (cb hadde ikke svar)", () => {
+  it("å gå tilbake fra spørsmål 1 til 0 viser lagret nei-svar fra cb-spørsmål", () => {
     const afterNei = processAnswer(questions, initialState, "nei");
     expect(afterNei.currentIndex).toBe(1);
-    expect(afterNei.answers["cb-as"]).toBeUndefined();
+    expect(afterNei.answers["cb-as"]).toBe("nei");
   });
 });
 
@@ -167,8 +167,16 @@ describe("canGoBack", () => {
     expect(canGoBack({ ...initialState, currentIndex: 1 })).toBe(true);
   });
 
-  it("returnerer false når wizard er ferdig (result satt via circuit-breaker)", () => {
-    expect(canGoBack({ ...initialState, result: "arbeidssøker" })).toBe(false);
+  it("returnerer true på spørsmål > 0 selv om result er satt (kan gå tilbake og endre)", () => {
+    expect(canGoBack({ ...initialState, currentIndex: 1, result: "arbeidssøker" })).toBe(true);
+  });
+
+  it("returnerer true på spørsmål 0 når result er satt via circuit-breaker (kan endre svaret)", () => {
+    expect(canGoBack({ ...initialState, currentIndex: 0, result: "arbeidssøker" })).toBe(true);
+  });
+
+  it("returnerer false i startposisjon uten result", () => {
+    expect(canGoBack({ ...initialState, currentIndex: 0, result: null })).toBe(false);
   });
 });
 

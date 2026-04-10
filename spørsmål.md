@@ -10,7 +10,7 @@ Er du permittert?
 ja - anbefal arbeidssøker, nei - gå videre 
 
 Har du fått beskjed om å registrere deg som arbeidssøker?
-ja -arbeidssøker, nei - oppfølging
+ja - anbefal arbeidssøker, nei - gå videre
 Hjelpetekst: Noen tilfeller krever at du skal være registrert arbeidssøker 
 
 ## Forhold til jobb
