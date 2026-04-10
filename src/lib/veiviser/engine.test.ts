@@ -5,26 +5,20 @@ import type { Question } from "./types";
 
 const circuitBreakerArbeidssøker: Question = {
   id: "cb-as",
-  category: "Test",
-  question: "Circuit-breaker til arbeidssøker?",
   isCircuitBreaker: true,
   yesOutcome: "arbeidssøker",
-  noOutcome: "oppfølging", // irrelevant for circuit-breaker
+  noOutcome: "oppfølging",
 };
 
 const circuitBreakerOppfølging: Question = {
   id: "cb-op",
-  category: "Test",
-  question: "Circuit-breaker til oppfølging?",
   isCircuitBreaker: true,
   yesOutcome: "oppfølging",
-  noOutcome: "arbeidssøker", // irrelevant for circuit-breaker
+  noOutcome: "arbeidssøker",
 };
 
 const accumulatedTowardArbeidssøker: Question = {
   id: "acc-as",
-  category: "Test",
-  question: "Akkumulert mot arbeidssøker (ja=as, nei=op)?",
   isCircuitBreaker: false,
   yesOutcome: "arbeidssøker",
   noOutcome: "oppfølging",
@@ -32,8 +26,6 @@ const accumulatedTowardArbeidssøker: Question = {
 
 const accumulatedTowardOppfølging: Question = {
   id: "acc-op",
-  category: "Test",
-  question: "Akkumulert mot oppfølging (ja=op, nei=as)?",
   isCircuitBreaker: false,
   yesOutcome: "oppfølging",
   noOutcome: "arbeidssøker",

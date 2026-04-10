@@ -19,6 +19,7 @@ type Story = StoryObj<typeof ResultStep>;
 
 export const Arbeidssøker: Story = {
   args: {
+    sprak: "nb",
     outcome: "arbeidssøker",
     onRestart: () => {},
   },
@@ -26,6 +27,7 @@ export const Arbeidssøker: Story = {
 
 export const Oppfølging: Story = {
   args: {
+    sprak: "nb",
     outcome: "oppfølging",
     onRestart: () => {},
   },

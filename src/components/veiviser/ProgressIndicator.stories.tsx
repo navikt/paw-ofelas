@@ -18,13 +18,13 @@ export default meta;
 type Story = StoryObj<typeof ProgressIndicator>;
 
 export const Start: Story = {
-  args: { currentStep: 1, totalSteps: 10 },
+  args: { currentStep: 1, totalSteps: 10, sprak: "nb" },
 };
 
 export const Halfway: Story = {
-  args: { currentStep: 5, totalSteps: 10 },
+  args: { currentStep: 5, totalSteps: 10, sprak: "nb" },
 };
 
 export const NearEnd: Story = {
-  args: { currentStep: 9, totalSteps: 10 },
+  args: { currentStep: 9, totalSteps: 10, sprak: "nb" },
 };

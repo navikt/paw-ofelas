@@ -3,9 +3,6 @@ export type Answer = "ja" | "nei";
 
 export type Question = {
   id: string;
-  category: string;
-  question: string;
-  helpText?: string;
   /**
    * Circuit-breakers trigger an immediate recommendation when answered "ja".
    * "nei" always means: continue to the next question (no score contribution).

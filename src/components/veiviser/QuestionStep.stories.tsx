@@ -20,6 +20,7 @@ type Story = StoryObj<typeof QuestionStep>;
 
 export const Default: Story = {
   args: {
+    sprak: "nb",
     questionNumber: 1,
     totalQuestions: 10,
     category: "Pengestøtte",

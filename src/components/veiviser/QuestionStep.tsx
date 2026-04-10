@@ -1,8 +1,34 @@
 "use client";
 
+import { lagHentTekstForSprak, type Sprak } from "@navikt/arbeidssokerregisteret-utils";
 import { BodyLong, Button, Heading, HelpText, HStack, Radio, RadioGroup, VStack } from "@navikt/ds-react";
 
+const TEKSTER = {
+  nb: {
+    ja: "Ja",
+    nei: "Nei",
+    neste: "Neste",
+    tilbake: "← Tilbake",
+    merInformasjon: "Mer informasjon",
+  },
+  nn: {
+    ja: "Ja",
+    nei: "Nei",
+    neste: "Neste",
+    tilbake: "← Tilbake",
+    merInformasjon: "Meir informasjon",
+  },
+  en: {
+    ja: "Yes",
+    nei: "No",
+    neste: "Next",
+    tilbake: "← Back",
+    merInformasjon: "More information",
+  },
+};
+
 type Props = {
+  sprak: Sprak;
   questionNumber: number;
   totalQuestions: number;
   category: string;
@@ -15,6 +41,7 @@ type Props = {
 };
 
 export function QuestionStep({
+  sprak,
   questionNumber,
   totalQuestions,
   category,
@@ -25,6 +52,8 @@ export function QuestionStep({
   onNext,
   onBack,
 }: Props) {
+  const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
   return (
     <VStack gap="space-8">
       <VStack gap="space-2">
@@ -34,7 +63,7 @@ export function QuestionStep({
         <Heading size="medium" level="2">
           {question}
           {helpText && (
-            <HelpText title="Mer informasjon" style={{ marginLeft: "var(--a-spacing-2)" }}>
+            <HelpText title={tekst("merInformasjon")} style={{ marginLeft: "var(--a-spacing-2)" }}>
               {helpText}
             </HelpText>
           )}
@@ -47,14 +76,14 @@ export function QuestionStep({
         value={selectedAnswer ?? null}
         onChange={(val) => onSelect(val as "ja" | "nei")}
       >
-        <Radio value="ja">Ja</Radio>
-        <Radio value="nei">Nei</Radio>
+        <Radio value="ja">{tekst("ja")}</Radio>
+        <Radio value="nei">{tekst("nei")}</Radio>
       </RadioGroup>
 
       <HStack gap="space-4">
         {onBack && (
           <Button variant="tertiary" onClick={onBack}>
-            ← Tilbake
+            {tekst("tilbake")}
           </Button>
         )}
         <Button
@@ -62,7 +91,7 @@ export function QuestionStep({
           onClick={onNext}
           disabled={!selectedAnswer}
         >
-          Neste
+          {tekst("neste")}
         </Button>
       </HStack>
     </VStack>
