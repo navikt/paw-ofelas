@@ -5,9 +5,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NPM_CONFIG_CACHE=/tmp
 
-COPY  .next/standalone /app/
-COPY  .next/static /app/.next/static
-COPY  public /app/public/
+COPY .next/standalone /app/
+COPY public /app/public/
+COPY .next/static /app/.next/static
 
 EXPOSE 3000
 ENV PORT=3000
