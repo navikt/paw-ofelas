@@ -37,7 +37,7 @@ jobs:
           HUSKY: 0
 
       - name: Test
-        run: pnpm test:ci
+        run: pnpm test
 
       - name: Knip
         run: pnpm dlx knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
