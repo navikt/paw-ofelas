@@ -23,3 +23,12 @@ spec:
     path: /api/health
   readiness:
     path: /api/health
+  env:
+    - name: DECORATOR_ENV
+      value: prod
+  accessPolicy:
+    outbound:
+      rules:
+        - application: nav-dekoratoren
+          namespace: personbruker
+

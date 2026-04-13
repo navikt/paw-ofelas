@@ -1,4 +1,4 @@
-import { erStottetSprak, lagHentTekstForSprak, type Sprak } from "@navikt/arbeidssokerregisteret-utils";
+import { lagHentTekstForSprak } from "@navikt/arbeidssokerregisteret-utils";
 import { WizardShell } from "@/components/veiviser/WizardShell";
 import { Box, Heading, VStack } from "@navikt/ds-react";
 
@@ -8,14 +8,8 @@ const TEKSTER = {
   en: { overskrift: "What do you need help with?" },
 };
 
-type Props = {
-  searchParams: Promise<{ sprak?: string }>;
-};
-
-export default async function VeiviserPage({ searchParams }: Props) {
-  const { sprak: sprakParam } = await searchParams;
-  const sprak: Sprak = erStottetSprak(sprakParam) ? sprakParam : "nb";
-  const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+export default function VeiviserPage() {
+  const tekst = lagHentTekstForSprak(TEKSTER, "nb");
 
   return (
     <main>
@@ -24,7 +18,7 @@ export default async function VeiviserPage({ searchParams }: Props) {
           <Heading size="xlarge" level="1">
             {tekst("overskrift")}
           </Heading>
-          <WizardShell sprak={sprak} />
+          <WizardShell sprak="nb" />
         </VStack>
       </Box>
     </main>
