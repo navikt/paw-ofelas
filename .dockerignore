@@ -2,7 +2,6 @@
 .github
 .storybook
 node_modules
-.next
 e2e
 __mocks__
 *.md
