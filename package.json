@@ -11,7 +11,8 @@
     "test:watch": "jest --watch",
     "e2e": "playwright test",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook"
   },
   "dependencies": {
     "@navikt/aksel-icons": "8.9.1",
