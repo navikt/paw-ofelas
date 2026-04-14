@@ -5,6 +5,7 @@ import '@navikt/ds-css';
 import './globals.css';
 import { fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { LanguageHandler } from '@/components/LanguageHandler';
+import { WizardStateProvider } from '@/components/veiviser/WizardStateContext';
 import { type Language, LANGUAGE_HEADER } from '@/lib/language';
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default async function RootLayout({
             </head>
             <body>
                 <Decorator.Header />
-                {children}
+                <WizardStateProvider>{children}</WizardStateProvider>
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
                 <LanguageHandler />
