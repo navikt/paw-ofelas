@@ -1,4 +1,6 @@
+.nais/
 .next/
+.github
 node_modules/
 build/
 out/
