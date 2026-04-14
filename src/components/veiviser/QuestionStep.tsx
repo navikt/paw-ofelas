@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong, Button, Heading, HelpText, HStack, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { BodyLong, Button, Heading, HStack, InlineMessage, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 
 const TEKSTER = {
     nb: {
@@ -9,21 +9,18 @@ const TEKSTER = {
         nei: 'Nei',
         neste: 'Neste',
         tilbake: '← Tilbake',
-        merInformasjon: 'Mer informasjon',
     },
     nn: {
         ja: 'Ja',
         nei: 'Nei',
         neste: 'Neste',
         tilbake: '← Tilbake',
-        merInformasjon: 'Meir informasjon',
     },
     en: {
         ja: 'Yes',
         nei: 'No',
         neste: 'Next',
         tilbake: '← Back',
-        merInformasjon: 'More information',
     },
 };
 
@@ -51,12 +48,12 @@ export function QuestionStep({ sprak, category, question, helpText, selectedAnsw
                 </BodyLong>
                 <Heading size="medium" level="2">
                     {question}
-                    {helpText && (
-                        <HelpText title={tekst('merInformasjon')} style={{ marginLeft: 'var(--a-spacing-2)' }}>
-                            {helpText}
-                        </HelpText>
-                    )}
                 </Heading>
+                {helpText && (
+                    <InlineMessage status="info" size="small">
+                        {helpText}
+                    </InlineMessage>
+                )}
             </VStack>
 
             <RadioGroup
