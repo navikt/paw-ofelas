@@ -6,9 +6,9 @@ import { onLanguageSelect, setAvailableLanguages } from '@navikt/nav-dekoratoren
 import { type Language } from '@/lib/language';
 
 const LANGUAGE_URLS: Record<Language, string> = {
-    nb: '/veiviser',
-    nn: '/nn/veiviser',
-    en: '/en/veiviser',
+    nb: '/',
+    nn: '/nn',
+    en: '/en',
 };
 
 export function LanguageHandler() {

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Veiviser', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('/veiviser');
+        await page.goto('/');
     });
 
     test('viser første spørsmål ved oppstart', async ({ page }) => {
@@ -75,5 +75,34 @@ test.describe('Veiviser', () => {
 
         await page.getByRole('button', { name: /start på nytt/i }).click();
         await expect(page.getByText('Spørsmål 1 av 10')).toBeVisible();
+    });
+});
+
+test.describe('Språkstøtte', () => {
+    test('norsk bokmål er standard på /', async ({ page }) => {
+        await page.goto('/');
+        await expect(page.getByRole('heading', { name: /hva trenger du hjelp med/i })).toBeVisible();
+    });
+
+    test('/en viser engelsk overskrift', async ({ page }) => {
+        await page.goto('/en');
+        await expect(page.getByRole('heading', { name: /what do you need help with/i })).toBeVisible();
+    });
+
+    test('/nn viser nynorsk overskrift', async ({ page }) => {
+        await page.goto('/nn');
+        await expect(page.getByRole('heading', { name: /kva treng du hjelp med/i })).toBeVisible();
+    });
+
+    test('ugyldig språkkode redirecter til /', async ({ page }) => {
+        await page.goto('/de');
+        await expect(page).toHaveURL('/');
+        await expect(page.getByRole('heading', { name: /hva trenger du hjelp med/i })).toBeVisible();
+    });
+
+    test('nb-språkkode redirecter til /', async ({ page }) => {
+        await page.goto('/nb');
+        await expect(page).toHaveURL('/');
+        await expect(page.getByRole('heading', { name: /hva trenger du hjelp med/i })).toBeVisible();
     });
 });
