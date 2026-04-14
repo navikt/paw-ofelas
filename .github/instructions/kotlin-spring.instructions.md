@@ -1,5 +1,5 @@
 ---
-applyTo: "**/*.kt"
+applyTo: '**/*.kt'
 ---
 
 Spring Boot-mønstre for Nav-backends: controller, service, repository, validering og feilhåndtering.
@@ -93,12 +93,12 @@ Use `application.yml` / `application-{profile}.yml` for Spring configuration:
 
 ```yaml
 spring:
-  datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-  flyway:
-    enabled: true
+    datasource:
+        url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+    flyway:
+        enabled: true
 ```
 
 ## Structured Logging
@@ -205,6 +205,7 @@ class ResourceRepositorySliceTest {
     }
 }
 ```
+
 - Use `@MockkBean` for mocking Spring beans (requires `com.ninja-squad:springmockk` — verify it is in `build.gradle.kts` before using)
 
 ```kotlin
@@ -228,15 +229,18 @@ class ResourceServiceTest {
 ## Boundaries
 
 ### ✅ Always
+
 - Use constructor injection (not field injection)
 - Annotate transactional boundaries explicitly
 - Follow existing repository pattern in the codebase — don't mix styles
 
 ### ⚠️ Ask First
+
 - Introducing new Spring modules or starters
 - Changing transaction isolation levels
 
 ### 🚫 Never
+
 - Use field injection (`@Autowired` on fields)
 - Mix Spring Data JPA and JDBC in the same repository layer
 - Put business logic in controllers

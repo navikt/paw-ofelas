@@ -2,25 +2,25 @@
 name: nais-agent
 description: Ekspert på Nais-deployment, GCP-ressurser, Kafka-topics og plattform-feilsøking
 tools:
-  - execute
-  - read
-  - edit
-  - search
-  - web
-  - todo
-  - ms-vscode.vscode-websearchforcopilot/websearch
-  - io.github.navikt/github-mcp/get_file_contents
-  - io.github.navikt/github-mcp/search_code
-  - io.github.navikt/github-mcp/search_repositories
-  - io.github.navikt/github-mcp/list_commits
-  - io.github.navikt/github-mcp/issue_read
-  - io.github.navikt/github-mcp/list_issues
-  - io.github.navikt/github-mcp/search_issues
-  - io.github.navikt/github-mcp/pull_request_read
-  - io.github.navikt/github-mcp/search_pull_requests
-  - io.github.navikt/github-mcp/get_latest_release
-  - io.github.navikt/github-mcp/list_releases
-  - io.github.navikt/github-mcp/list_tags
+    - execute
+    - read
+    - edit
+    - search
+    - web
+    - todo
+    - ms-vscode.vscode-websearchforcopilot/websearch
+    - io.github.navikt/github-mcp/get_file_contents
+    - io.github.navikt/github-mcp/search_code
+    - io.github.navikt/github-mcp/search_repositories
+    - io.github.navikt/github-mcp/list_commits
+    - io.github.navikt/github-mcp/issue_read
+    - io.github.navikt/github-mcp/list_issues
+    - io.github.navikt/github-mcp/search_issues
+    - io.github.navikt/github-mcp/pull_request_read
+    - io.github.navikt/github-mcp/search_pull_requests
+    - io.github.navikt/github-mcp/get_latest_release
+    - io.github.navikt/github-mcp/list_releases
+    - io.github.navikt/github-mcp/list_tags
 ---
 
 # Nais Platform Agent
@@ -55,12 +55,12 @@ kubectl rollout restart deployment/<app-name> -n <namespace>
 
 ## Related Agents
 
-| Agent | Use For |
-|-------|---------|
-| `@auth-agent` | Azure AD, TokenX, ID-porten configuration |
-| `@observability-agent` | Prometheus, Grafana, alerting setup |
-| `@kafka-agent` | Kafka topic configuration and Rapids & Rivers |
-| `@security-champion-agent` | Network policies, secrets management |
+| Agent                      | Use For                                       |
+| -------------------------- | --------------------------------------------- |
+| `@auth-agent`              | Azure AD, TokenX, ID-porten configuration     |
+| `@observability-agent`     | Prometheus, Grafana, alerting setup           |
+| `@kafka-agent`             | Kafka topic configuration and Rapids & Rivers |
+| `@security-champion-agent` | Network policies, secrets management          |
 
 ## Nais Manifest Structure
 
@@ -70,34 +70,34 @@ Every Nais application requires:
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: app-name
-  namespace: team-namespace
-  labels:
-    team: team-namespace
+    name: app-name
+    namespace: team-namespace
+    labels:
+        team: team-namespace
 spec:
-  image: { { image } } # Replaced by CI/CD
-  port: 8080
+    image: { { image } } # Replaced by CI/CD
+    port: 8080
 
-  # Observability (required)
-  prometheus:
-    enabled: true
-    path: /metrics
+    # Observability (required)
+    prometheus:
+        enabled: true
+        path: /metrics
 
-  # Health checks (required)
-  liveness:
-    path: /isalive
-    initialDelay: 5
-  readiness:
-    path: /isready
-    initialDelay: 5
+    # Health checks (required)
+    liveness:
+        path: /isalive
+        initialDelay: 5
+    readiness:
+        path: /isready
+        initialDelay: 5
 
-  # Resources (required)
-  resources:
-    requests:
-      cpu: 50m
-      memory: 256Mi
-    limits:
-      memory: 512Mi
+    # Resources (required)
+    resources:
+        requests:
+            cpu: 50m
+            memory: 256Mi
+        limits:
+            memory: 512Mi
 ```
 
 ## Common Tasks
@@ -106,11 +106,11 @@ spec:
 
 ```yaml
 gcp:
-  sqlInstances:
-    - type: POSTGRES_15
-      databases:
-        - name: myapp-db
-          envVarPrefix: DB
+    sqlInstances:
+        - type: POSTGRES_15
+          databases:
+              - name: myapp-db
+                envVarPrefix: DB
 ```
 
 Application receives environment variables:
@@ -125,7 +125,7 @@ Application receives environment variables:
 
 ```yaml
 kafka:
-  pool: nav-dev # or nav-prod
+    pool: nav-dev # or nav-prod
 ```
 
 Application receives Kafka credentials automatically.
@@ -134,9 +134,9 @@ Application receives Kafka credentials automatically.
 
 ```yaml
 azure:
-  application:
-    enabled: true
-    tenant: nav.no
+    application:
+        enabled: true
+        tenant: nav.no
 ```
 
 Provides Azure AD authentication for user-facing applications.
@@ -145,25 +145,25 @@ Provides Azure AD authentication for user-facing applications.
 
 ```yaml
 tokenx:
-  enabled: true
+    enabled: true
 
 accessPolicy:
-  inbound:
-    rules:
-      - application: calling-app
-        namespace: calling-namespace
-  outbound:
-    rules:
-      - application: downstream-app
-        namespace: downstream-namespace
+    inbound:
+        rules:
+            - application: calling-app
+              namespace: calling-namespace
+    outbound:
+        rules:
+            - application: downstream-app
+              namespace: downstream-namespace
 ```
 
 ### 5. Ingress Configuration
 
 ```yaml
 ingresses:
-  - https://myapp.intern.dev.nav.no # Internal dev
-  - https://myapp.dev.nav.no # External dev
+    - https://myapp.intern.dev.nav.no # Internal dev
+    - https://myapp.dev.nav.no # External dev
 ```
 
 ## Observability Stack
@@ -217,9 +217,9 @@ get("/metrics") {
 
 ```yaml
 replicas:
-  min: 2
-  max: 4
-  cpuThresholdPercentage: 80
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 80
 ```
 
 ## Resource Recommendations

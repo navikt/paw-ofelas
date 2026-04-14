@@ -1,5 +1,5 @@
 ---
-applyTo: "src/**/*.{tsx,jsx}"
+applyTo: 'src/**/*.{tsx,jsx}'
 ---
 
 # Accessibility (UU) Standards
@@ -191,14 +191,14 @@ npx lighthouse http://localhost:3000 --only-categories=accessibility --output=js
 ```
 
 ```tsx
-import { axe, toHaveNoViolations } from "jest-axe";
+import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
 
-it("should have no accessibility violations", async () => {
-  const { container } = render(<MyComponent />);
-  const results = await axe(container);
-  expect(results).toHaveNoViolations();
+it('should have no accessibility violations', async () => {
+    const { container } = render(<MyComponent />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
 });
 ```
 

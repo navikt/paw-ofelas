@@ -1,5 +1,5 @@
 ---
-applyTo: "**/db/migration/**/*.sql"
+applyTo: '**/db/migration/**/*.sql'
 ---
 
 # Database Migration Standards (Flyway)

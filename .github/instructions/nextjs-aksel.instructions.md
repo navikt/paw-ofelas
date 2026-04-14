@@ -1,5 +1,5 @@
 ---
-applyTo: "src/**/*.{tsx,ts}"
+applyTo: 'src/**/*.{tsx,ts}'
 ---
 
 # Next.js med Aksel Design System
@@ -148,7 +148,7 @@ import { Heading, BodyShort, Label } from "@navikt/ds-react";
 Bruk alltid norsk locale for tallformatering:
 
 ```typescript
-import { formatNumber } from "@/lib/format";
+import { formatNumber } from '@/lib/format';
 
 // ✅ Correct
 const formatted = formatNumber(151354); // "151 354"
@@ -160,37 +160,37 @@ const formatted = num.toLocaleString(); // Uses browser locale
 ## API Routes (App Router)
 
 ```typescript
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 // GET endpoint with error handling
 export async function GET() {
-  const { data, error } = await fetchData();
+    const { data, error } = await fetchData();
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+    if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 
-  return NextResponse.json(data);
+    return NextResponse.json(data);
 }
 
 // POST endpoint
 export async function POST(request: Request) {
-  const body = await request.json();
+    const body = await request.json();
 
-  // Validation
-  if (!body.requiredField) {
-    return NextResponse.json({ error: "requiredField is missing" }, { status: 400 });
-  }
+    // Validation
+    if (!body.requiredField) {
+        return NextResponse.json({ error: 'requiredField is missing' }, { status: 400 });
+    }
 
-  const result = await processData(body);
-  return NextResponse.json(result, { status: 201 });
+    const result = await processData(body);
+    return NextResponse.json(result, { status: 201 });
 }
 ```
 
 ## Authentication
 
 ```typescript
-import { getUser } from "@/lib/auth";
+import { getUser } from '@/lib/auth';
 
 // Redirect if not authenticated
 const user = await getUser();
@@ -198,23 +198,23 @@ const user = await getUser();
 // Return null if not authenticated
 const user = await getUser(false);
 if (!user) {
-  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 }
 ```
 
 ## Testing
 
 ```typescript
-import { formatNumber } from "./format";
+import { formatNumber } from './format';
 
-describe("formatNumber", () => {
-  it("should format numbers with Norwegian locale", () => {
-    expect(formatNumber(151354)).toBe("151 354");
-  });
+describe('formatNumber', () => {
+    it('should format numbers with Norwegian locale', () => {
+        expect(formatNumber(151354)).toBe('151 354');
+    });
 
-  it("should handle decimal numbers", () => {
-    expect(formatNumber(1234.56)).toBe("1 234,56");
-  });
+    it('should handle decimal numbers', () => {
+        expect(formatNumber(1234.56)).toBe('1 234,56');
+    });
 });
 ```
 
@@ -223,31 +223,31 @@ describe("formatNumber", () => {
 ```tsx
 // Server Component (default in App Router)
 export default async function Page() {
-  const data = await fetchData(); // Can use async/await
+    const data = await fetchData(); // Can use async/await
 
-  return (
-    <Box padding="space-24">
-      <Heading size="large" level="1">
-        {data.title}
-      </Heading>
-      <BodyShort>{data.description}</BodyShort>
-    </Box>
-  );
+    return (
+        <Box padding="space-24">
+            <Heading size="large" level="1">
+                {data.title}
+            </Heading>
+            <BodyShort>{data.description}</BodyShort>
+        </Box>
+    );
 }
 ```
 
 ## Client Components
 
 ```tsx
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@navikt/ds-react";
+import { useState } from 'react';
+import { Button } from '@navikt/ds-react';
 
 export function InteractiveComponent() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  return <Button onClick={() => setCount(count + 1)}>Count: {count}</Button>;
+    return <Button onClick={() => setCount(count + 1)}>Count: {count}</Button>;
 }
 ```
 
@@ -255,60 +255,56 @@ export function InteractiveComponent() {
 
 ```tsx
 // src/app/oversikt/loading.tsx — shown during server component loading
-import { Loader, Box } from "@navikt/ds-react";
+import { Loader, Box } from '@navikt/ds-react';
 
 export default function Loading() {
-  return (
-    <Box padding="space-24" className="flex justify-center">
-      <Loader size="xlarge" title="Laster data..." />
-    </Box>
-  );
+    return (
+        <Box padding="space-24" className="flex justify-center">
+            <Loader size="xlarge" title="Laster data..." />
+        </Box>
+    );
 }
 
 // src/app/oversikt/error.tsx — shown on uncaught errors
-"use client";
+('use client');
 
-import { Alert, Button, VStack } from "@navikt/ds-react";
+import { Alert, Button, VStack } from '@navikt/ds-react';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  return (
-    <VStack gap="4">
-      <Alert variant="error">
-        Noe gikk galt. Prøv igjen senere.
-      </Alert>
-      <Button variant="secondary" onClick={reset}>Prøv igjen</Button>
-    </VStack>
-  );
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+    return (
+        <VStack gap="4">
+            <Alert variant="error">Noe gikk galt. Prøv igjen senere.</Alert>
+            <Button variant="secondary" onClick={reset}>
+                Prøv igjen
+            </Button>
+        </VStack>
+    );
 }
 ```
 
 ## Streaming with Suspense
 
 ```tsx
-import { Suspense } from "react";
-import { Skeleton } from "@navikt/ds-react";
+import { Suspense } from 'react';
+import { Skeleton } from '@navikt/ds-react';
 
 export default function Page() {
-  return (
-    <VStack gap="8">
-      <Heading size="large" level="1">Oversikt</Heading>
-      <Suspense fallback={<Skeleton variant="rounded" height={200} />}>
-        <SlowDataComponent />
-      </Suspense>
-    </VStack>
-  );
+    return (
+        <VStack gap="8">
+            <Heading size="large" level="1">
+                Oversikt
+            </Heading>
+            <Suspense fallback={<Skeleton variant="rounded" height={200} />}>
+                <SlowDataComponent />
+            </Suspense>
+        </VStack>
+    );
 }
 
 // This component can load independently
 async function SlowDataComponent() {
-  const data = await fetchSlowData(); // streams in when ready
-  return <DataTable data={data} />;
+    const data = await fetchSlowData(); // streams in when ready
+    return <DataTable data={data} />;
 }
 ```
 
@@ -316,41 +312,43 @@ async function SlowDataComponent() {
 
 ```tsx
 // src/app/vedtak/actions.ts
-"use server";
+'use server';
 
-import { revalidatePath } from "next/cache";
-import { getUser } from "@/lib/auth";
+import { revalidatePath } from 'next/cache';
+import { getUser } from '@/lib/auth';
 
 export async function createVedtak(formData: FormData) {
-  const user = await getUser();
+    const user = await getUser();
 
-  const tittel = formData.get("tittel") as string;
-  if (!tittel) {
-    return { error: "Tittel er påkrevd" };
-  }
+    const tittel = formData.get('tittel') as string;
+    if (!tittel) {
+        return { error: 'Tittel er påkrevd' };
+    }
 
-  await saveToDatabase({ tittel, opprettetAv: user.name });
-  revalidatePath("/vedtak");
-  return { success: true };
+    await saveToDatabase({ tittel, opprettetAv: user.name });
+    revalidatePath('/vedtak');
+    return { success: true };
 }
 ```
 
 ```tsx
 // src/app/vedtak/page.tsx
-"use client";
+'use client';
 
-import { useActionState } from "react";
-import { createVedtak } from "./actions";
+import { useActionState } from 'react';
+import { createVedtak } from './actions';
 
 export default function VedtakForm() {
-  const [state, action, isPending] = useActionState(createVedtak, null);
+    const [state, action, isPending] = useActionState(createVedtak, null);
 
-  return (
-    <form action={action}>
-      <TextField name="tittel" label="Tittel" error={state?.error} />
-      <Button type="submit" loading={isPending}>Opprett</Button>
-    </form>
-  );
+    return (
+        <form action={action}>
+            <TextField name="tittel" label="Tittel" error={state?.error} />
+            <Button type="submit" loading={isPending}>
+                Opprett
+            </Button>
+        </form>
+    );
 }
 ```
 

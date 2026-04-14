@@ -1,5 +1,5 @@
 ---
-applyTo: "**/*.test.{ts,tsx,kt,kts}"
+applyTo: '**/*.test.{ts,tsx,kt,kts}'
 ---
 
 # Testing Standards
@@ -183,37 +183,37 @@ class AuthenticationTest {
 ### Test Structure
 
 ```typescript
-import { formatNumber } from "./format";
+import { formatNumber } from './format';
 
-describe("formatNumber", () => {
-  it("should format numbers with Norwegian locale", () => {
-    expect(formatNumber(151354)).toBe("151 354");
-  });
+describe('formatNumber', () => {
+    it('should format numbers with Norwegian locale', () => {
+        expect(formatNumber(151354)).toBe('151 354');
+    });
 
-  it("should handle decimal numbers", () => {
-    expect(formatNumber(1234.56)).toBe("1 234,56");
-  });
+    it('should handle decimal numbers', () => {
+        expect(formatNumber(1234.56)).toBe('1 234,56');
+    });
 
-  it("should handle negative numbers", () => {
-    expect(formatNumber(-1000)).toBe("-1 000");
-  });
+    it('should handle negative numbers', () => {
+        expect(formatNumber(-1000)).toBe('-1 000');
+    });
 });
 ```
 
 ### Testing Async Functions
 
 ```typescript
-describe("fetchData", () => {
-  it("should fetch data successfully", async () => {
-    const result = await fetchData("test-id");
+describe('fetchData', () => {
+    it('should fetch data successfully', async () => {
+        const result = await fetchData('test-id');
 
-    expect(result).toBeDefined();
-    expect(result.id).toBe("test-id");
-  });
+        expect(result).toBeDefined();
+        expect(result.id).toBe('test-id');
+    });
 
-  it("should handle errors", async () => {
-    await expect(fetchData("invalid")).rejects.toThrow("Not found");
-  });
+    it('should handle errors', async () => {
+        await expect(fetchData('invalid')).rejects.toThrow('Not found');
+    });
 });
 ```
 
@@ -221,28 +221,28 @@ describe("fetchData", () => {
 
 ```typescript
 // Mock external module
-jest.mock("./cached-bigquery", () => ({
-  getCachedBigQueryUsage: jest.fn(),
+jest.mock('./cached-bigquery', () => ({
+    getCachedBigQueryUsage: jest.fn(),
 }));
 
-import { getCachedBigQueryUsage } from "./cached-bigquery";
+import { getCachedBigQueryUsage } from './cached-bigquery';
 
-describe("API route", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("should return usage data", async () => {
-    (getCachedBigQueryUsage as jest.Mock).mockResolvedValue({
-      usage: [{ date: "2025-01-01", total_active_users: 100 }],
-      error: null,
+describe('API route', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    const response = await GET();
-    const data = await response.json();
+    it('should return usage data', async () => {
+        (getCachedBigQueryUsage as jest.Mock).mockResolvedValue({
+            usage: [{ date: '2025-01-01', total_active_users: 100 }],
+            error: null,
+        });
 
-    expect(data.usage).toHaveLength(1);
-  });
+        const response = await GET();
+        const data = await response.json();
+
+        expect(data.usage).toHaveLength(1);
+    });
 });
 ```
 
@@ -306,14 +306,14 @@ pnpm test --coverage
 
 Choose test type based on what you're verifying:
 
-| What to test | Test type | Tools |
-|---|---|---|
-| Pure functions, utils | Unit test | Kotest / Jest |
-| Controller + validation | Slice test | `@WebMvcTest` + MockkBean |
-| Repository + SQL | Slice test | `@DataJpaTest` + Testcontainers |
-| Full API flow | Integration test | `@SpringBootTest` + Testcontainers |
-| User workflows | E2E test | Playwright |
-| Accessibility | E2E test | Playwright + axe-core |
+| What to test            | Test type        | Tools                              |
+| ----------------------- | ---------------- | ---------------------------------- |
+| Pure functions, utils   | Unit test        | Kotest / Jest                      |
+| Controller + validation | Slice test       | `@WebMvcTest` + MockkBean          |
+| Repository + SQL        | Slice test       | `@DataJpaTest` + Testcontainers    |
+| Full API flow           | Integration test | `@SpringBootTest` + Testcontainers |
+| User workflows          | E2E test         | Playwright                         |
+| Accessibility           | E2E test         | Playwright + axe-core              |
 
 ### When to use what
 
@@ -325,37 +325,37 @@ Choose test type based on what you're verifying:
 ## Playwright E2E Tests
 
 ```typescript
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-test.describe("Oversikt", () => {
-  test("should display vedtak list", async ({ page }) => {
-    await page.goto("/oversikt");
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("table")).toBeVisible();
-  });
+test.describe('Oversikt', () => {
+    test('should display vedtak list', async ({ page }) => {
+        await page.goto('/oversikt');
+        await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+        await expect(page.getByRole('table')).toBeVisible();
+    });
 
-  test("should filter by status", async ({ page }) => {
-    await page.goto("/oversikt");
-    await page.getByRole("combobox", { name: /status/i }).selectOption("aktiv");
-    await expect(page.getByRole("row")).toHaveCount(await page.getByRole("row").count());
-  });
+    test('should filter by status', async ({ page }) => {
+        await page.goto('/oversikt');
+        await page.getByRole('combobox', { name: /status/i }).selectOption('aktiv');
+        await expect(page.getByRole('row')).toHaveCount(await page.getByRole('row').count());
+    });
 });
 ```
 
 ### Accessibility in E2E
 
 ```typescript
-import AxeBuilder from "@axe-core/playwright";
+import AxeBuilder from '@axe-core/playwright';
 
-test("should have no a11y violations", async ({ page }) => {
-  await page.goto("/oversikt");
-  const results = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa"])
-    .analyze();
-  expect(results.violations).toEqual([]);
+test('should have no a11y violations', async ({ page }) => {
+    await page.goto('/oversikt');
+    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
+    expect(results.violations).toEqual([]);
 });
 ```
+
 `testValidation`
+
 ```
 
 ## Boundaries
@@ -382,3 +382,4 @@ test("should have no a11y violations", async ({ page }) => {
 - Test implementation details
 - Share mutable state between tests
 - Commit without running tests
+```

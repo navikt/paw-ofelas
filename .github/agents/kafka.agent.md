@@ -2,22 +2,22 @@
 name: kafka-agent
 description: Ekspert på Rapids & Rivers eventdrevet arkitektur, Kafka-mønstre og event schema-design
 tools:
-  - execute
-  - read
-  - edit
-  - search
-  - web
-  - todo
-  - ms-vscode.vscode-websearchforcopilot/websearch
-  - io.github.navikt/github-mcp/get_file_contents
-  - io.github.navikt/github-mcp/search_code
-  - io.github.navikt/github-mcp/search_repositories
-  - io.github.navikt/github-mcp/list_commits
-  - io.github.navikt/github-mcp/issue_read
-  - io.github.navikt/github-mcp/list_issues
-  - io.github.navikt/github-mcp/search_issues
-  - io.github.navikt/github-mcp/pull_request_read
-  - io.github.navikt/github-mcp/search_pull_requests
+    - execute
+    - read
+    - edit
+    - search
+    - web
+    - todo
+    - ms-vscode.vscode-websearchforcopilot/websearch
+    - io.github.navikt/github-mcp/get_file_contents
+    - io.github.navikt/github-mcp/search_code
+    - io.github.navikt/github-mcp/search_repositories
+    - io.github.navikt/github-mcp/list_commits
+    - io.github.navikt/github-mcp/issue_read
+    - io.github.navikt/github-mcp/list_issues
+    - io.github.navikt/github-mcp/search_issues
+    - io.github.navikt/github-mcp/pull_request_read
+    - io.github.navikt/github-mcp/search_pull_requests
 ---
 
 # Kafka Events Agent
@@ -73,10 +73,10 @@ Rapids & Rivers is Nav's opinionated framework for building event-driven systems
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: my-app
+    name: my-app
 spec:
-  kafka:
-    pool: nav-dev # or nav-prod
+    kafka:
+        pool: nav-dev # or nav-prod
 ```
 
 This automatically:

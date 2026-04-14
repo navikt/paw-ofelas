@@ -1,5 +1,5 @@
 ---
-applyTo: "**/*.kt"
+applyTo: '**/*.kt'
 ---
 
 Ktor- og Rapids & Rivers-mønstre for Nav-backends: ApplicationBuilder, sealed config, Kotliquery og feilhåndtering.

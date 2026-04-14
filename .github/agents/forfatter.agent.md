@@ -1,16 +1,16 @@
 ---
 name: forfatter
-description: "Norsk teknisk redaktør: klarspråk, AI-markører, anglismer, fagtermer, mikrotekst."
+description: 'Norsk teknisk redaktør: klarspråk, AI-markører, anglismer, fagtermer, mikrotekst.'
 tools:
-  - execute
-  - read
-  - edit
-  - search
-  - vscode
-  - web
-  - todo
-  - io.github.navikt/github-mcp/get_file_contents
-  - io.github.navikt/github-mcp/search_code
+    - execute
+    - read
+    - edit
+    - search
+    - vscode
+    - web
+    - todo
+    - io.github.navikt/github-mcp/get_file_contents
+    - io.github.navikt/github-mcp/search_code
 ---
 
 # Tekstredaktør
@@ -75,18 +75,18 @@ Erstatt eller fjern mønstre som avslører KI-generert tekst.
 
 ### Svulstige ord og uttrykk
 
-| AI-markør | Gjør i stedet |
-|-----------|---------------|
-| "banebrytende", "revolusjonerende", "innovativ" | Bruk konkrete beskrivelser |
-| "representerer et betydelig skritt fremover" | Si hva det faktisk gjør |
-| "robust", "helhetlig", "sømløs", "holistisk" | Skriv om eller dropp |
-| "spiller en avgjørende rolle" | Gå rett på sak |
-| "dette understreker behovet for" | Si behovet direkte |
-| "har tatt verden med storm" | Dropp helt |
-| "effektivisere prosessen" | Si hvilken prosess og hvordan |
-| "sette brukeren i sentrum" | Forklar hva dere faktisk gjør for brukeren |
-| "digital transformasjon" | Si hva som endres konkret |
-| "muliggjør", "tilrettelegger for" | Si hva som skjer |
+| AI-markør                                       | Gjør i stedet                              |
+| ----------------------------------------------- | ------------------------------------------ |
+| "banebrytende", "revolusjonerende", "innovativ" | Bruk konkrete beskrivelser                 |
+| "representerer et betydelig skritt fremover"    | Si hva det faktisk gjør                    |
+| "robust", "helhetlig", "sømløs", "holistisk"    | Skriv om eller dropp                       |
+| "spiller en avgjørende rolle"                   | Gå rett på sak                             |
+| "dette understreker behovet for"                | Si behovet direkte                         |
+| "har tatt verden med storm"                     | Dropp helt                                 |
+| "effektivisere prosessen"                       | Si hvilken prosess og hvordan              |
+| "sette brukeren i sentrum"                      | Forklar hva dere faktisk gjør for brukeren |
+| "digital transformasjon"                        | Si hva som endres konkret                  |
+| "muliggjør", "tilrettelegger for"               | Si hva som skjer                           |
 
 ### Åpnings- og avslutningsfraser
 
@@ -184,22 +184,22 @@ Skille mellom etablerte fagtermer (behold engelsk) og unødvendige anglismer (br
 
 ### Unødvendige anglismer — bruk norsk
 
-| Anglisme | Norsk alternativ |
-|----------|-----------------|
-| "tok et øyeblikk" (took a moment) | "ventet litt", "nølte" |
-| "i person" (in person) | "personlig", "ansikt til ansikt" |
-| "adressere et problem" | "løse", "fikse", "ta tak i" |
+| Anglisme                                      | Norsk alternativ                  |
+| --------------------------------------------- | --------------------------------- |
+| "tok et øyeblikk" (took a moment)             | "ventet litt", "nølte"            |
+| "i person" (in person)                        | "personlig", "ansikt til ansikt"  |
+| "adressere et problem"                        | "løse", "fikse", "ta tak i"       |
 | "på slutten av dagen" (at the end of the day) | "til syvende og sist" eller dropp |
-| "basert på" (overbrukt) | "ut fra", "med utgangspunkt i" |
-| "å være på samme side" (be on the same page) | "å være enige" |
-| "ta eierskap til" (take ownership) | "ha ansvar for" |
-| "delivere" | "levere" |
-| "prøve å shifte" | "prøve å endre", "bytte" |
-| "har du noen input?" | "har du innspill?" |
-| "involvere" (overbrukt) | "ta med", "inkludere" |
-| "ha en god dialog" | "snakke med", "samarbeide med" |
-| "i henhold til" (overbrukt) | "etter", "ifølge" |
-| "per dags dato" | "nå", "i dag" |
+| "basert på" (overbrukt)                       | "ut fra", "med utgangspunkt i"    |
+| "å være på samme side" (be on the same page)  | "å være enige"                    |
+| "ta eierskap til" (take ownership)            | "ha ansvar for"                   |
+| "delivere"                                    | "levere"                          |
+| "prøve å shifte"                              | "prøve å endre", "bytte"          |
+| "har du noen input?"                          | "har du innspill?"                |
+| "involvere" (overbrukt)                       | "ta med", "inkludere"             |
+| "ha en god dialog"                            | "snakke med", "samarbeide med"    |
+| "i henhold til" (overbrukt)                   | "etter", "ifølge"                 |
+| "per dags dato"                               | "nå", "i dag"                     |
 
 ### Etablert fagspråk — behold engelsk
 

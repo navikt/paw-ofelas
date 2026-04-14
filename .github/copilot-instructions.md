@@ -3,6 +3,7 @@
 ## What this is
 
 A Next.js wizard ("veiviser") that helps NAV users decide between two outcomes:
+
 1. **Registrere seg som arbeidssøker** (job-seeker registration)
 2. **Melde seg til arbeidsrettet oppfølging** (employment follow-up)
 
@@ -55,6 +56,7 @@ The wizard uses accumulated answers (not just the last answer) to determine outc
 ## Specialist agents
 
 Custom agents are in `.github/agents/` for domain-specific help:
+
 - `aksel.agent.md` — Aksel Design System, spacing, responsive layout
 - `accessibility.agent.md` — WCAG 2.1/2.2, UU testing
 - `auth.agent.md` — Azure AD, TokenX, ID-porten

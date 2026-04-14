@@ -183,26 +183,26 @@ export function FilterSection() {
 ## Spacing Tokens Reference
 
 ```typescript
-"space-0"; // 0px
-"space-1"; // 4px
-"space-2"; // 8px
-"space-3"; // 12px
-"space-4"; // 16px  ← Form field gaps
-"space-5"; // 20px
-"space-6"; // 24px  ← Card padding (mobile)
-"space-8"; // 32px  ← Card padding (desktop), section gaps
-"space-10"; // 40px  ← Page padding (desktop)
-"space-12"; // 48px  ← Page padding block (desktop)
+'space-0'; // 0px
+'space-1'; // 4px
+'space-2'; // 8px
+'space-3'; // 12px
+'space-4'; // 16px  ← Form field gaps
+'space-5'; // 20px
+'space-6'; // 24px  ← Card padding (mobile)
+'space-8'; // 32px  ← Card padding (desktop), section gaps
+'space-10'; // 40px  ← Page padding (desktop)
+'space-12'; // 48px  ← Page padding block (desktop)
 ```
 
 ## Responsive Breakpoints
 
 ```typescript
-xs: "0px"; // Mobile (default)
-sm: "480px"; // Large mobile
-md: "768px"; // Tablet
-lg: "1024px"; // Desktop
-xl: "1280px"; // Large desktop
+xs: '0px'; // Mobile (default)
+sm: '480px'; // Large mobile
+md: '768px'; // Tablet
+lg: '1024px'; // Desktop
+xl: '1280px'; // Large desktop
 ```
 
 ## Common Patterns

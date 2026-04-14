@@ -2,22 +2,22 @@
 name: auth-agent
 description: Ekspert på Azure AD, TokenX, ID-porten, Maskinporten og JWT-validering for Nav-applikasjoner
 tools:
-  - execute
-  - read
-  - edit
-  - search
-  - web
-  - todo
-  - ms-vscode.vscode-websearchforcopilot/websearch
-  - io.github.navikt/github-mcp/get_file_contents
-  - io.github.navikt/github-mcp/search_code
-  - io.github.navikt/github-mcp/search_repositories
-  - io.github.navikt/github-mcp/list_commits
-  - io.github.navikt/github-mcp/issue_read
-  - io.github.navikt/github-mcp/list_issues
-  - io.github.navikt/github-mcp/search_issues
-  - io.github.navikt/github-mcp/pull_request_read
-  - io.github.navikt/github-mcp/search_pull_requests
+    - execute
+    - read
+    - edit
+    - search
+    - web
+    - todo
+    - ms-vscode.vscode-websearchforcopilot/websearch
+    - io.github.navikt/github-mcp/get_file_contents
+    - io.github.navikt/github-mcp/search_code
+    - io.github.navikt/github-mcp/search_repositories
+    - io.github.navikt/github-mcp/list_commits
+    - io.github.navikt/github-mcp/issue_read
+    - io.github.navikt/github-mcp/list_issues
+    - io.github.navikt/github-mcp/search_issues
+    - io.github.navikt/github-mcp/pull_request_read
+    - io.github.navikt/github-mcp/search_pull_requests
 ---
 
 # Authentication Agent
@@ -62,9 +62,9 @@ curl -s "$AZURE_OPENID_CONFIG_JWKS_URI" | jq '.keys | length'
 
 ```yaml
 azure:
-  application:
-    enabled: true
-    tenant: nav.no
+    application:
+        enabled: true
+        tenant: nav.no
 ```
 
 **Kotlin/Ktor Implementation**:
@@ -111,17 +111,17 @@ routing {
 
 ```yaml
 tokenx:
-  enabled: true
+    enabled: true
 
 accessPolicy:
-  inbound:
-    rules:
-      - application: calling-service
-        namespace: team-calling
-  outbound:
-    rules:
-      - application: downstream-service
-        namespace: team-downstream
+    inbound:
+        rules:
+            - application: calling-service
+              namespace: team-calling
+    outbound:
+        rules:
+            - application: downstream-service
+              namespace: team-downstream
 ```
 
 **Token Exchange**:
@@ -163,10 +163,10 @@ suspend fun exchangeToken(token: String, targetApp: String): String {
 
 ```yaml
 idporten:
-  enabled: true
-  sidecar:
     enabled: true
-    level: Level4 # or Level3
+    sidecar:
+        enabled: true
+        level: Level4 # or Level3
 ```
 
 **Usage**:
@@ -183,10 +183,10 @@ idporten:
 
 ```yaml
 maskinporten:
-  enabled: true
-  scopes:
-    consumes:
-      - name: "nav:example/scope"
+    enabled: true
+    scopes:
+        consumes:
+            - name: 'nav:example/scope'
 ```
 
 ## JWT Validation Pattern
@@ -321,10 +321,10 @@ class AuthenticationTest {
 ## Security Best Practices
 
 1. **Always validate JWT**:
-   - Issuer
-   - Audience
-   - Expiration
-   - Signature
+    - Issuer
+    - Audience
+    - Expiration
+    - Signature
 
 2. **Use HTTPS only** for token transmission
 

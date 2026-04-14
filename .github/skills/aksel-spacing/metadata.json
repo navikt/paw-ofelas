@@ -1,7 +1,5 @@
 {
-  "domain": "frontend",
-  "tags": ["aksel", "design-system", "spacing", "responsive"],
-  "examples": [
-    "Lag en responsiv to-kolonne layout med Aksel-spacing"
-  ]
+    "domain": "frontend",
+    "tags": ["aksel", "design-system", "spacing", "responsive"],
+    "examples": ["Lag en responsiv to-kolonne layout med Aksel-spacing"]
 }

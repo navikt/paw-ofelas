@@ -1,6 +1,6 @@
 ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+    - sharp
+    - unrs-resolver
 onlyBuiltDependencies:
-  - core-js-pure
-  - esbuild
+    - core-js-pure
+    - esbuild

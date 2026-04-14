@@ -1,34 +1,33 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: paw-ofelas
-  namespace: paw
-  labels:
-    team: paw
+    name: paw-ofelas
+    namespace: paw
+    labels:
+        team: paw
 spec:
-  image: {{image}}
-  port: 3000
-  ingresses:
-    - https://www.nav.no/arbeid/veiviser
-  replicas:
-    min: 2
-    max: 4
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      memory: 512Mi
-  liveness:
-    path: /api/health
-  readiness:
-    path: /api/health
-  env:
-    - name: DECORATOR_ENV
-      value: prod
-  accessPolicy:
-    outbound:
-      rules:
-        - application: nav-dekoratoren
-          namespace: personbruker
-
+    image: { { image } }
+    port: 3000
+    ingresses:
+        - https://www.nav.no/arbeid/veiviser
+    replicas:
+        min: 2
+        max: 4
+    resources:
+        requests:
+            cpu: 100m
+            memory: 256Mi
+        limits:
+            memory: 512Mi
+    liveness:
+        path: /api/health
+    readiness:
+        path: /api/health
+    env:
+        - name: DECORATOR_ENV
+          value: prod
+    accessPolicy:
+        outbound:
+            rules:
+                - application: nav-dekoratoren
+                  namespace: personbruker
