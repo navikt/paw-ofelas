@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { ResultStep } from "@/components/veiviser/ResultStep";
 
 const meta: Meta<typeof ResultStep> = {

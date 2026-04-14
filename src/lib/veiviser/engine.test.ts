@@ -10,13 +10,6 @@ const circuitBreakerArbeidssøker: Question = {
   noOutcome: "oppfølging",
 };
 
-const circuitBreakerOppfølging: Question = {
-  id: "cb-op",
-  isCircuitBreaker: true,
-  yesOutcome: "oppfølging",
-  noOutcome: "arbeidssøker",
-};
-
 const accumulatedTowardArbeidssøker: Question = {
   id: "acc-as",
   isCircuitBreaker: false,

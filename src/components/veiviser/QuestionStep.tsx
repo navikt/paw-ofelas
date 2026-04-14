@@ -42,8 +42,6 @@ type Props = {
 
 export function QuestionStep({
   sprak,
-  questionNumber,
-  totalQuestions,
   category,
   question,
   helpText,

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { QuestionStep } from "@/components/veiviser/QuestionStep";
 import { useState } from "react";
 
