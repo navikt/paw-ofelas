@@ -20,9 +20,9 @@ spec:
         limits:
             memory: 512Mi
     liveness:
-        path: /api/health
+        path: /arbeid/veiviser/api/health
     readiness:
-        path: /api/health
+        path: /arbeid/veiviser/api/health
     env:
         - name: DECORATOR_ENV
           value: prod

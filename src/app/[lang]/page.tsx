@@ -18,7 +18,7 @@ export default async function LangVeiviserPage({ params }: Props) {
     const { lang } = await params;
 
     if (!isValidLanguage(lang) || lang === 'nb') {
-        redirect('/veiviser');
+        redirect('/');
     }
 
     const sprak: Language = lang;
