@@ -6,9 +6,10 @@ import { Box, VStack } from '@navikt/ds-react';
 import { ProgressIndicator } from './ProgressIndicator';
 import { QuestionStep } from './QuestionStep';
 import { ResultStep } from './ResultStep';
-import { canGoBack, isComplete } from '@/lib/veiviser/engine';
+import { canGoBack, isComplete, processAnswer } from '@/lib/veiviser/engine';
 import { questions } from '@/lib/veiviser/questions';
 import { useWizardState } from './WizardStateContext';
+import { logEvent } from '@/lib/analytics';
 
 type QuestionTekst = { category: string; question: string; helpText?: string };
 
@@ -131,9 +132,20 @@ export function WizardShell({ sprak }: Props) {
 
     const handleNext = useCallback(() => {
         if (selectedAnswer) {
+            const stepNumber = state.currentIndex + 1;
+            logEvent('skjema steg fullført', { skjemanavn: 'paw-ofelas', skjemaId: 'paw-ofelas', steg: stepNumber });
+
+            const nextState = processAnswer(questions, state, selectedAnswer);
+            if (nextState.result !== null) {
+                logEvent('veiviser resultat vist', {
+                    antallSpørsmål: Object.keys(nextState.answers).length,
+                    anbefaling: nextState.result,
+                });
+            }
+
             dispatch({ type: 'ANSWER', answer: selectedAnswer });
         }
-    }, [selectedAnswer, dispatch]);
+    }, [selectedAnswer, dispatch, state]);
 
     return (
         <Box
@@ -154,7 +166,14 @@ export function WizardShell({ sprak }: Props) {
                 )}
 
                 {isComplete(state) && state.result ? (
-                    <ResultStep sprak={sprak} outcome={state.result} onRestart={() => dispatch({ type: 'RESTART' })} />
+                    <ResultStep
+                        sprak={sprak}
+                        outcome={state.result}
+                        onRestart={() => {
+                            logEvent('skjema startet', { skjemanavn: 'paw-ofelas', skjemaId: 'paw-ofelas' });
+                            dispatch({ type: 'RESTART' });
+                        }}
+                    />
                 ) : (
                     <QuestionStep
                         key={state.currentIndex}
@@ -167,7 +186,14 @@ export function WizardShell({ sprak }: Props) {
                         selectedAnswer={selectedAnswer}
                         onSelect={(answer) => dispatch({ type: 'SELECT', answer })}
                         onNext={handleNext}
-                        onBack={canGoBack(state) ? () => dispatch({ type: 'BACK' }) : undefined}
+                        onBack={
+                            canGoBack(state)
+                                ? () => {
+                                      logEvent('veiviser tilbakeknapp', { fraMål: state.currentIndex + 1 });
+                                      dispatch({ type: 'BACK' });
+                                  }
+                                : undefined
+                        }
                     />
                 )}
             </VStack>

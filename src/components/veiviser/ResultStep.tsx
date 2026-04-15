@@ -3,6 +3,7 @@
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, BodyLong, Button, Heading, VStack } from '@navikt/ds-react';
 import type { Outcome } from '@/lib/veiviser/types';
+import { logEvent } from '@/lib/analytics';
 
 const TEKSTER = {
     nb: {
@@ -67,7 +68,13 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
             </Alert>
 
             <VStack gap="space-4">
-                <Button as="a" href={CTA_HREF[outcome]} variant="primary" size="medium">
+                <Button
+                    as="a"
+                    href={CTA_HREF[outcome]}
+                    variant="primary"
+                    size="medium"
+                    onClick={() => logEvent('navigere', { lenketekst: ctaLabel, destinasjon: CTA_HREF[outcome] })}
+                >
                     {ctaLabel}
                 </Button>
                 <Button variant="tertiary" onClick={onRestart}>
