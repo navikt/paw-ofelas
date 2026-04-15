@@ -14,7 +14,7 @@ export default defineConfig({
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: {
         command: 'pnpm dev',
-        url: 'http://localhost:3000',
+        url: 'http://localhost:3000/arbeid/veiviser',
         reuseExistingServer: !process.env.CI,
     },
 });
