@@ -8,19 +8,19 @@ const TEKSTER = {
         ja: 'Ja',
         nei: 'Nei',
         neste: 'Neste',
-        tilbake: '← Tilbake',
+        tilbake: 'Tilbake',
     },
     nn: {
         ja: 'Ja',
         nei: 'Nei',
         neste: 'Neste',
-        tilbake: '← Tilbake',
+        tilbake: 'Tilbake',
     },
     en: {
         ja: 'Yes',
         nei: 'No',
         neste: 'Next',
-        tilbake: '← Back',
+        tilbake: 'Back',
     },
 };
 

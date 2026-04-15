@@ -29,12 +29,13 @@ export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
     const label = tekst('sporsmalAvTotal')(currentStep, totalSteps);
 
     return (
-        <div aria-label={label}>
-            <Label size="small" as="span">
+        <div>
+            <Label size="small" as="span" aria-live="polite" aria-atomic="true">
                 {label}
             </Label>
             <div
                 role="progressbar"
+                aria-label={label}
                 aria-valuenow={currentStep}
                 aria-valuemin={1}
                 aria-valuemax={totalSteps}

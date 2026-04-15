@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { Box, VStack } from '@navikt/ds-react';
 import { ProgressIndicator } from './ProgressIndicator';
@@ -130,6 +130,17 @@ export function WizardShell({ sprak }: Props) {
 
     const questionTekst = lagHentTekstForSprak(TEKSTER, sprak)(currentQuestion.id) as QuestionTekst;
 
+    const focusTargetRef = useRef<HTMLDivElement>(null);
+    const isFirstRender = useRef(true);
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        focusTargetRef.current?.focus();
+    }, [state.currentIndex, state.result]);
+
     const handleNext = useCallback(() => {
         if (selectedAnswer) {
             const stepNumber = state.currentIndex + 1;
@@ -157,6 +168,7 @@ export function WizardShell({ sprak }: Props) {
             }}
         >
             <VStack gap="space-12">
+                <div ref={focusTargetRef} tabIndex={-1} style={{ outline: 'none' }} />
                 {!isComplete(state) && (
                     <ProgressIndicator
                         currentStep={state.currentIndex + 1}

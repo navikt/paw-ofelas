@@ -59,7 +59,7 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
     const ctaLabel = tekst(`${outcome}Cta`);
 
     return (
-        <VStack gap="space-16">
+        <VStack gap="space-16" role="status">
             <Alert variant="success" fullWidth>
                 <Heading size="medium" level="2" spacing>
                     {heading}
