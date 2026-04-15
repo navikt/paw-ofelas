@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong, Button, Heading, HStack, InlineMessage, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, Button, Heading, HStack, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 
 const TEKSTER = {
     nb: {
@@ -46,13 +46,13 @@ export function QuestionStep({ sprak, category, question, helpText, selectedAnsw
                 <BodyLong size="small" style={{ color: 'var(--a-text-subtle)' }}>
                     {category}
                 </BodyLong>
-                <Heading size="medium" level="2">
+                <Heading size="large" level="2">
                     {question}
                 </Heading>
                 {helpText && (
-                    <InlineMessage status="info" size="small">
-                        {helpText}
-                    </InlineMessage>
+                    <Box background="info-soft" borderRadius="8" padding="space-12">
+                        <BodyShort size="small">{helpText}</BodyShort>
+                    </Box>
                 )}
             </VStack>
 

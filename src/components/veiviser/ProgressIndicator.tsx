@@ -39,9 +39,9 @@ export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
                 aria-valuemin={1}
                 aria-valuemax={totalSteps}
                 style={{
-                    height: '4px',
-                    background: 'var(--a-surface-neutral)',
-                    borderRadius: '2px',
+                    height: '6px',
+                    background: 'var(--a-gray-400)',
+                    borderRadius: '3px',
                     marginTop: 'var(--a-spacing-2)',
                 }}
             >
@@ -49,8 +49,8 @@ export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
                     style={{
                         height: '100%',
                         width: `${(currentStep / totalSteps) * 100}%`,
-                        background: 'var(--a-blue-600)',
-                        borderRadius: '2px',
+                        background: 'var(--a-blue-700)',
+                        borderRadius: '3px',
                         transition: 'width 0.2s ease',
                     }}
                 />

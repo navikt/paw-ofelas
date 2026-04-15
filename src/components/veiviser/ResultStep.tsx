@@ -11,7 +11,7 @@ const TEKSTER = {
         arbeidssøkerDescription:
             'Basert på svarene dine anbefaler vi at du registrerer deg som arbeidssøker hos NAV. Dette gir deg tilgang til relevante tjenester og ytelser.',
         arbeidssøkerCta: 'Registrer deg som arbeidssøker',
-        oppfølgingHeading: 'Du bør melde deg til arbeidsrettet oppfølging',
+        oppfølgingHeading: 'Du bør be om arbeidsrettet oppfølging',
         oppfølgingDescription:
             'Basert på svarene dine anbefaler vi at du tar kontakt med NAV for arbeidsrettet oppfølging. Vi kan hjelpe deg med veiledning og tiltak tilpasset din situasjon.',
         oppfølgingCta: 'Ta kontakt med NAV',
@@ -22,7 +22,7 @@ const TEKSTER = {
         arbeidssøkerDescription:
             'Basert på svara dine tilrår vi at du registrerer deg som arbeidssøkjar hos NAV. Dette gir deg tilgang til relevante tenester og ytingar.',
         arbeidssøkerCta: 'Registrer deg som arbeidssøkjar',
-        oppfølgingHeading: 'Du bør melde deg til arbeidsretta oppfølging',
+        oppfølgingHeading: 'Du bør be om arbeidsretta oppfølging',
         oppfølgingDescription:
             'Basert på svara dine tilrår vi at du tek kontakt med NAV for arbeidsretta oppfølging. Vi kan hjelpe deg med rettleiing og tiltak tilpassa din situasjon.',
         oppfølgingCta: 'Ta kontakt med NAV',
@@ -33,7 +33,7 @@ const TEKSTER = {
         arbeidssøkerDescription:
             'Based on your answers, we recommend that you register as a job seeker with NAV. This gives you access to relevant services and benefits.',
         arbeidssøkerCta: 'Register as a job seeker',
-        oppfølgingHeading: 'You should sign up for employment follow-up',
+        oppfølgingHeading: 'You should request employment follow-up',
         oppfølgingDescription:
             'Based on your answers, we recommend that you contact NAV for employment follow-up. We can help you with guidance and measures tailored to your situation.',
         oppfølgingCta: 'Contact NAV',
@@ -59,7 +59,7 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
     const ctaLabel = tekst(`${outcome}Cta`);
 
     return (
-        <VStack gap="space-8">
+        <VStack gap="space-16">
             <Alert variant="success" fullWidth>
                 <Heading size="medium" level="2" spacing>
                     {heading}
@@ -67,7 +67,7 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
                 <BodyLong>{description}</BodyLong>
             </Alert>
 
-            <VStack gap="space-4">
+            <VStack gap="space-8">
                 <Button
                     as="a"
                     href={CTA_HREF[outcome]}

@@ -14,7 +14,7 @@ export default function VeiviserPage() {
     return (
         <main>
             <Box paddingBlock={{ xs: 'space-16', md: 'space-24' }} paddingInline={{ xs: 'space-16', md: 'space-40' }}>
-                <VStack gap="space-8" style={{ maxWidth: '640px', margin: '0 auto' }}>
+                <VStack gap="space-12" style={{ maxWidth: '640px', margin: '0 auto' }}>
                     <Heading size="xlarge" level="1">
                         {tekst('overskrift')}
                     </Heading>

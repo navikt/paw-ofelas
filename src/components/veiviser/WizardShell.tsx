@@ -156,7 +156,7 @@ export function WizardShell({ sprak }: Props) {
                 borderRadius: 'var(--a-border-radius-xlarge)',
             }}
         >
-            <VStack gap="space-8">
+            <VStack gap="space-12">
                 {!isComplete(state) && (
                     <ProgressIndicator
                         currentStep={state.currentIndex + 1}
