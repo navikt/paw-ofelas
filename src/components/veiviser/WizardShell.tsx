@@ -167,7 +167,7 @@ export function WizardShell({ sprak }: Props) {
                 borderRadius: 'var(--a-border-radius-xlarge)',
             }}
         >
-            <VStack gap="space-12">
+            <VStack gap="space-24">
                 <div ref={focusTargetRef} tabIndex={-1} style={{ outline: 'none' }} />
                 {!isComplete(state) && (
                     <ProgressIndicator

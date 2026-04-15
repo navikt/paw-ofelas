@@ -14,7 +14,7 @@ const TEKSTER = {
         oppfølgingHeading: 'Du bør be om arbeidsrettet oppfølging',
         oppfølgingDescription:
             'Basert på svarene dine anbefaler vi at du tar kontakt med NAV for arbeidsrettet oppfølging. Vi kan hjelpe deg med veiledning og tiltak tilpasset din situasjon.',
-        oppfølgingCta: 'Ta kontakt med NAV',
+        oppfølgingCta: 'Jeg ønsker arbeidsrettet oppfølging fra Nav',
         startPåNytt: 'Start på nytt',
     },
     nn: {
@@ -25,7 +25,7 @@ const TEKSTER = {
         oppfølgingHeading: 'Du bør be om arbeidsretta oppfølging',
         oppfølgingDescription:
             'Basert på svara dine tilrår vi at du tek kontakt med NAV for arbeidsretta oppfølging. Vi kan hjelpe deg med rettleiing og tiltak tilpassa din situasjon.',
-        oppfølgingCta: 'Ta kontakt med NAV',
+        oppfølgingCta: 'Eg ønsker arbeidsretta oppfølging frå Nav',
         startPåNytt: 'Start på nytt',
     },
     en: {
@@ -36,7 +36,7 @@ const TEKSTER = {
         oppfølgingHeading: 'You should request employment follow-up',
         oppfølgingDescription:
             'Based on your answers, we recommend that you contact NAV for employment follow-up. We can help you with guidance and measures tailored to your situation.',
-        oppfølgingCta: 'Contact NAV',
+        oppfølgingCta: 'I want employment follow-up from Nav',
         startPåNytt: 'Start over',
     },
 };
@@ -59,7 +59,7 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
     const ctaLabel = tekst(`${outcome}Cta`);
 
     return (
-        <VStack gap="space-16" role="status">
+        <VStack gap="space-24" role="status">
             <Alert variant="success" fullWidth>
                 <Heading size="medium" level="2" spacing>
                     {heading}

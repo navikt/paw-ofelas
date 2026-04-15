@@ -46,7 +46,7 @@ export function QuestionStep({ sprak, category, question, helpText, selectedAnsw
                 <BodyLong size="small" style={{ color: 'var(--a-text-subtle)' }}>
                     {category}
                 </BodyLong>
-                <Heading size="large" level="2">
+                <Heading size="medium" level="2">
                     {question}
                 </Heading>
                 {helpText && (
