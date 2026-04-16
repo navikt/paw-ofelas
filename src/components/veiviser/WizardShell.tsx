@@ -103,4 +103,3 @@ export function WizardShell({ sprak }: Props) {
         </Box>
     );
 }
-

@@ -160,4 +160,3 @@ describe('canGoBack', () => {
         expect(canGoBack({ ...initialState, currentIndex: 0, result: null })).toBe(false);
     });
 });
-
