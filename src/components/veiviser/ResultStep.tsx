@@ -16,6 +16,7 @@ const TEKSTER = {
             'Basert på svarene dine anbefaler vi at du ber om arbeidsrettet oppfølging. Da kan du få veiledning og hjelp som er tilpasset din situasjon',
         oppfølgingCta: 'Jeg ønsker arbeidsrettet oppfølging fra Nav',
         startPåNytt: 'Start på nytt',
+        tilbake: 'Tilbake',
     },
     nn: {
         arbeidssøkerHeading: 'Du bør registrere deg som arbeidssøkjar',
@@ -27,6 +28,7 @@ const TEKSTER = {
             'Basert på svara dine tilrår vi at du ber om arbeidsretta oppfølging. Då kan du få rettleiing og hjelp som er tilpassa din situasjon',
         oppfølgingCta: 'Eg ønsker arbeidsretta oppfølging frå Nav',
         startPåNytt: 'Start på nytt',
+        tilbake: 'Tilbake',
     },
     en: {
         arbeidssøkerHeading: 'You should register as a job seeker',
@@ -38,6 +40,7 @@ const TEKSTER = {
             'Based on your answers, we recommend that you request employment follow-up. You can then receive guidance and help tailored to your situation',
         oppfølgingCta: 'I want employment follow-up from Nav',
         startPåNytt: 'Start over',
+        tilbake: 'Back',
     },
 };
 
@@ -50,9 +53,10 @@ type Props = {
     sprak: Sprak;
     outcome: Outcome;
     onRestart: () => void;
+    onBack?: () => void;
 };
 
-export function ResultStep({ sprak, outcome, onRestart }: Props) {
+export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const heading = tekst(`${outcome}Heading`);
     const description = tekst(`${outcome}Description`);
@@ -77,6 +81,11 @@ export function ResultStep({ sprak, outcome, onRestart }: Props) {
                 >
                     {ctaLabel}
                 </Button>
+                {onBack && (
+                    <Button variant="tertiary" onClick={onBack}>
+                        {tekst('tilbake')}
+                    </Button>
+                )}
                 <Button variant="tertiary" onClick={onRestart}>
                     {tekst('startPåNytt')}
                 </Button>

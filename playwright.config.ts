@@ -16,5 +16,6 @@ export default defineConfig({
         command: 'pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
         reuseExistingServer: !process.env.CI,
+        stdout: 'ignore',
     },
 });

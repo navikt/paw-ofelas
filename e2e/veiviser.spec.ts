@@ -22,7 +22,7 @@ test.describe('Veiviser', () => {
         await page.getByRole('button', { name: 'Neste' }).click();
 
         await expect(page.getByText(/registrere deg som arbeidssøker/i)).toBeVisible();
-        await expect(page.getByRole('link', { name: /registrer deg som arbeidssøker/i })).toBeVisible();
+        await expect(page.getByRole('button', { name: /registrer deg som arbeidssøker/i })).toBeVisible();
     });
 
     test('circuit-breaker: ja på Q4 (etter nei på Q1-Q3) gir oppfølging-anbefaling', async ({ page }) => {
@@ -32,7 +32,7 @@ test.describe('Veiviser', () => {
         await page.getByRole('radio', { name: 'Ja' }).click();
         await page.getByRole('button', { name: 'Neste' }).click();
 
-        await expect(page.getByText(/arbeidsrettet oppfølging/i)).toBeVisible();
+        await expect(page.getByRole('heading', { name: /arbeidsrettet oppfølging/i })).toBeVisible();
     });
 
     test('nei gjennom alle circuit-breakere viser neste spørsmål', async ({ page }) => {
@@ -100,7 +100,7 @@ test.describe('Veiviser', () => {
         // Q6–Q10: ja (alle → oppfølging poeng)
         await answerNQuestions(page, 'Ja', 5);
 
-        await expect(page.getByText(/arbeidsrettet oppfølging/i)).toBeVisible();
+        await expect(page.getByRole('heading', { name: /arbeidsrettet oppfølging/i })).toBeVisible();
     });
 
     test('start på nytt-knapp tilbakestiller veiviseren', async ({ page }) => {

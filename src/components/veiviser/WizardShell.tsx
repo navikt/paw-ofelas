@@ -74,6 +74,7 @@ export function WizardShell({ sprak }: Props) {
                     <ResultStep
                         sprak={sprak}
                         outcome={state.result}
+                        onBack={() => dispatch({ type: 'BACK' })}
                         onRestart={() => {
                             logEvent('skjema startet', { skjemanavn: 'paw-ofelas', skjemaId: 'paw-ofelas' });
                             dispatch({ type: 'RESTART' });
