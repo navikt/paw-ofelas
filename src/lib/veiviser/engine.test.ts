@@ -10,6 +10,13 @@ const circuitBreakerArbeidssøker: Question = {
     noOutcome: 'oppfølging',
 };
 
+const circuitBreakerOppfølging: Question = {
+    id: 'cb-op',
+    isCircuitBreaker: true,
+    yesOutcome: 'oppfølging',
+    noOutcome: 'arbeidssøker',
+};
+
 const accumulatedTowardArbeidssøker: Question = {
     id: 'acc-as',
     isCircuitBreaker: false,
@@ -56,6 +63,25 @@ describe('processAnswer – circuit-breaker', () => {
     it('ja-svar lagres i answers', () => {
         const next = processAnswer(questions, initialState, 'ja');
         expect(next.answers['cb-as']).toBe('ja');
+    });
+});
+
+// --- processAnswer: circuit-breaker med oppfølging-utfall ---
+
+describe('processAnswer – circuit-breaker med oppfølging-utfall (Q4/Q5-lignende)', () => {
+    const questions = [circuitBreakerOppfølging];
+
+    it('ja på circuit-breaker med oppfølging-utfall setter result til oppfølging', () => {
+        const next = processAnswer(questions, initialState, 'ja');
+        expect(next.result).toBe('oppfølging');
+        expect(next.answers['cb-op']).toBe('ja');
+    });
+
+    it('nei på circuit-breaker med oppfølging-utfall fortsetter uten å sette result', () => {
+        const next = processAnswer(questions, initialState, 'nei');
+        expect(next.result).toBeNull();
+        expect(next.currentIndex).toBe(1);
+        expect(next.answers['cb-op']).toBe('nei');
     });
 });
 

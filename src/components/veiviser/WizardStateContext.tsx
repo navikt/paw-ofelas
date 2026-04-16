@@ -70,4 +70,4 @@ export function useWizardState(): WizardStateContextValue {
     return ctx;
 }
 
-export { type Action };
+export { type Action, reducer };

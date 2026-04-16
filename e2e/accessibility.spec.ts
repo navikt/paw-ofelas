@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { answerNQuestions } from './helpers';
 
 /**
  * Disse testene bruker eksplisitte basePath-prefiks (/arbeid/veiviser)
@@ -52,21 +53,9 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await page.goto(BASE);
         await page.waitForSelector('[role="progressbar"]');
 
-        // Q1–Q5: nei (circuit-breakers)
-        for (let i = 0; i < 5; i++) {
-            await page.getByRole('radio', { name: 'Nei' }).click();
-            await page.getByRole('button', { name: 'Neste' }).click();
-            await page.waitForSelector('[role="progressbar"]');
-        }
-
-        // Q6–Q10: ja (gir oppfølging)
-        for (let i = 0; i < 5; i++) {
-            await page.getByRole('radio', { name: 'Ja' }).click();
-            await page.getByRole('button', { name: 'Neste' }).click();
-            if (i < 4) {
-                await page.waitForSelector('[role="progressbar"]');
-            }
-        }
+        // Q1–Q5: nei (circuit-breakers), Q6–Q10: ja (gir oppfølging)
+        await answerNQuestions(page, 'Nei', 5);
+        await answerNQuestions(page, 'Ja', 5);
 
         await page.waitForSelector('[role="status"]');
 
@@ -79,12 +68,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await page.waitForSelector('[role="progressbar"]');
 
         // Q1: nei → Q2: nei → Q3 har hjelpetekst
-        await page.getByRole('radio', { name: 'Nei' }).click();
-        await page.getByRole('button', { name: 'Neste' }).click();
-        await page.waitForSelector('text=Spørsmål 2 av 10');
-
-        await page.getByRole('radio', { name: 'Nei' }).click();
-        await page.getByRole('button', { name: 'Neste' }).click();
+        await answerNQuestions(page, 'Nei', 2);
         await page.waitForSelector('text=Spørsmål 3 av 10');
 
         const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
