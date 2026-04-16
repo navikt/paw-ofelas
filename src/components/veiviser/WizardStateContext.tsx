@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import { canGoBack, initialState, processAnswer } from '@/lib/veiviser/engine';
 import { questions } from '@/lib/veiviser/questions';
 import type { Answer, WizardState } from '@/lib/veiviser/types';
@@ -29,12 +29,15 @@ function reducer(state: ShellState, action: Action): ShellState {
         case 'BACK': {
             if (!canGoBack(state)) return state;
             if (state.result !== null) {
+                // Going back from result: clear result and restore the answer as pending so the radio shows the previous selection.
                 return {
                     ...state,
                     result: null,
                     pendingAnswer: state.answers[questions[state.currentIndex].id],
                 };
             }
+            // Going back from a question: keep the existing answer in state so it is shown as pre-filled.
+            // The user can change or confirm it when they click Next.
             return { ...state, currentIndex: state.currentIndex - 1, pendingAnswer: undefined };
         }
 

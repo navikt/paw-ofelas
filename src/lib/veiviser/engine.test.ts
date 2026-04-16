@@ -161,22 +161,3 @@ describe('canGoBack', () => {
     });
 });
 
-// --- Tilbake-navigasjon: goBack ---
-
-describe('goBack', () => {
-    // We test goBack via a separate import
-    it('reduserer currentIndex med 1', async () => {
-        const { goBack } = await import('./engine');
-        const state = { currentIndex: 2, answers: { 'acc-as': 'ja' as const, 'acc-op': 'nei' as const }, result: null };
-        const prev = goBack(state);
-        expect(prev.currentIndex).toBe(1);
-    });
-
-    it('fjerner svar for spørsmålet man går tilbake fra', async () => {
-        const { goBack } = await import('./engine');
-        const questions = [accumulatedTowardArbeidssøker, accumulatedTowardOppfølging];
-        const state = { currentIndex: 1, answers: { 'acc-as': 'ja' as const }, result: null };
-        const prev = goBack(state, questions);
-        expect(prev.answers['acc-as']).toBeUndefined();
-    });
-});

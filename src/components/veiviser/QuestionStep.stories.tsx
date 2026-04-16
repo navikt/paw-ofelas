@@ -21,8 +21,6 @@ type Story = StoryObj<typeof QuestionStep>;
 export const Default: Story = {
     args: {
         sprak: 'nb',
-        questionNumber: 1,
-        totalQuestions: 10,
         category: 'Pengestøtte',
         question: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
         helpText:
@@ -43,7 +41,6 @@ export const WithAnswer: Story = {
 export const WithBack: Story = {
     args: {
         ...Default.args,
-        questionNumber: 3,
         selectedAnswer: 'nei',
         onBack: () => {},
     },
@@ -51,8 +48,6 @@ export const WithBack: Story = {
 
 export const WithoutHelpText: Story = {
     args: {
-        questionNumber: 2,
-        totalQuestions: 10,
         category: 'Pengestøtte',
         question: 'Er du permittert?',
         selectedAnswer: undefined,

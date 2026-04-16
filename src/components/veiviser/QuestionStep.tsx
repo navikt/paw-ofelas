@@ -26,8 +26,6 @@ const TEKSTER = {
 
 type Props = {
     sprak: Sprak;
-    questionNumber: number;
-    totalQuestions: number;
     category: string;
     question: string;
     helpText?: string;

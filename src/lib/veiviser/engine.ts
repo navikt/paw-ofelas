@@ -75,20 +75,3 @@ export function isComplete(state: WizardState): boolean {
 export function canGoBack(state: WizardState): boolean {
     return state.result !== null || state.currentIndex > 0;
 }
-
-/**
- * Go back to the previous question.
- * If the previous question is an accumulated question, removes its stored answer.
- * If the previous question was a circuit-breaker (which stores no answer on "nei"), nothing to remove.
- */
-export function goBack(state: WizardState, questions?: Question[]): WizardState {
-    const prevIndex = state.currentIndex - 1;
-    const updatedAnswers = { ...state.answers };
-
-    if (questions) {
-        const prevQuestion = questions[prevIndex];
-        delete updatedAnswers[prevQuestion.id];
-    }
-
-    return { ...state, currentIndex: prevIndex, answers: updatedAnswers };
-}
