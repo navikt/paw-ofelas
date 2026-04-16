@@ -9,33 +9,33 @@ const TEKSTER = {
     nb: {
         arbeidssøkerHeading: 'Du bør registrere deg som arbeidssøker',
         arbeidssøkerDescription:
-            'Basert på svarene dine anbefaler vi at du registrerer deg som arbeidssøker hos NAV. Dette gir deg tilgang til relevante tjenester og ytelser.',
+            'Basert på svarene dine anbefaler vi at du registrerer deg som arbeidssøker hos Nav. Dette gir deg tilgang til relevante tjenester og ytelser.',
         arbeidssøkerCta: 'Registrer deg som arbeidssøker',
         oppfølgingHeading: 'Du bør be om arbeidsrettet oppfølging',
         oppfølgingDescription:
-            'Basert på svarene dine anbefaler vi at du tar kontakt med NAV for arbeidsrettet oppfølging. Vi kan hjelpe deg med veiledning og tiltak tilpasset din situasjon.',
+            'Basert på svarene dine anbefaler vi at du ber om arbeidsrettet oppfølging. Da kan du få veiledning og hjelp som er tilpasset din situasjon',
         oppfølgingCta: 'Jeg ønsker arbeidsrettet oppfølging fra Nav',
         startPåNytt: 'Start på nytt',
     },
     nn: {
         arbeidssøkerHeading: 'Du bør registrere deg som arbeidssøkjar',
         arbeidssøkerDescription:
-            'Basert på svara dine tilrår vi at du registrerer deg som arbeidssøkjar hos NAV. Dette gir deg tilgang til relevante tenester og ytingar.',
+            'Basert på svara dine tilrår vi at du registrerer deg som arbeidssøkjar hos Nav. Dette gir deg tilgang til relevante tenester og ytingar.',
         arbeidssøkerCta: 'Registrer deg som arbeidssøkjar',
         oppfølgingHeading: 'Du bør be om arbeidsretta oppfølging',
         oppfølgingDescription:
-            'Basert på svara dine tilrår vi at du tek kontakt med NAV for arbeidsretta oppfølging. Vi kan hjelpe deg med rettleiing og tiltak tilpassa din situasjon.',
+            'Basert på svara dine tilrår vi at du ber om arbeidsretta oppfølging. Då kan du få rettleiing og hjelp som er tilpassa din situasjon',
         oppfølgingCta: 'Eg ønsker arbeidsretta oppfølging frå Nav',
         startPåNytt: 'Start på nytt',
     },
     en: {
         arbeidssøkerHeading: 'You should register as a job seeker',
         arbeidssøkerDescription:
-            'Based on your answers, we recommend that you register as a job seeker with NAV. This gives you access to relevant services and benefits.',
+            'Based on your answers, we recommend that you register as a job seeker with Nav. This gives you access to relevant services and benefits.',
         arbeidssøkerCta: 'Register as a job seeker',
         oppfølgingHeading: 'You should request employment follow-up',
         oppfølgingDescription:
-            'Based on your answers, we recommend that you contact NAV for employment follow-up. We can help you with guidance and measures tailored to your situation.',
+            'Based on your answers, we recommend that you request employment follow-up. You can then receive guidance and help tailored to your situation',
         oppfølgingCta: 'I want employment follow-up from Nav',
         startPåNytt: 'Start over',
     },
