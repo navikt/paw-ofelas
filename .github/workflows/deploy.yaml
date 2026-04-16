@@ -119,6 +119,15 @@ jobs:
                   NODE_AUTH_TOKEN: ${{secrets.READER_TOKEN}}
                   HUSKY: 0
 
+            - name: Cache Playwright browsers
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
+
+            - name: Install Playwright browsers
+              run: pnpm exec playwright install --with-deps chromium
+
             - name: Build storybook
               run: pnpm build-storybook
 
