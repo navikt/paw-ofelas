@@ -73,6 +73,14 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
                   HUSKY: 0
 
+            - name: Cache Next.js build
+              uses: actions/cache@v4
+              with:
+                  path: .next/cache
+                  key: nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('src/**/*.{ts,tsx}') }}
+                  restore-keys: |
+                      nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+
             - name: Build
               run: pnpm build
               env:
@@ -141,6 +149,12 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{secrets.READER_TOKEN}}
                   HUSKY: 0
+
+            - name: Cache Playwright browsers
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
 
             - name: Install Playwright browsers
               run: pnpm exec playwright install --with-deps chromium
