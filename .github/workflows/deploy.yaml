@@ -103,9 +103,7 @@ jobs:
               run: pnpm build-storybook
 
             - name: Run test-storybook
-              run: pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-                  "pnpm dlx http-server public/storybook --port 6006 --silent" \
-                  "pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm test-storybook"
+              run: pnpm test-storybook
 
             - name: Push docker image to GAR
               uses: nais/docker-build-push@v0

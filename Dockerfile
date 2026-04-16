@@ -6,7 +6,6 @@ ENV NODE_ENV=production
 ENV NPM_CONFIG_CACHE=/tmp
 
 COPY .next/standalone /app/
-COPY public /app/public/
 COPY .next/static /app/.next/static
 
 EXPOSE 3000
