@@ -9,7 +9,8 @@ updates:
       time: "06:00"
       timezone: Europe/Oslo
     cooldown:
-      minimum-age: 7 days
+      default-days: 7
+      semver-major-days: 14
     open-pull-requests-limit: 10
     groups:
       production-dependencies:
@@ -25,7 +26,7 @@ updates:
       time: "06:00"
       timezone: Europe/Oslo
     cooldown:
-      minimum-age: 7 days
+      default-days: 7
     open-pull-requests-limit: 5
     groups:
       github-actions:
