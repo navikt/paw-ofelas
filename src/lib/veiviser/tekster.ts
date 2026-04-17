@@ -21,7 +21,7 @@ export const SPØRSMÅL_TEKSTER = {
             question: 'Er du usikker på om du kan jobbe akkurat nå?',
             helpText: 'For eksempel etter sykdom, permisjon eller lang tid utenfor arbeidslivet.',
         },
-        q7: { category: 'Forhold til jobb', question: 'Trenger du tett veiledning før du kan søke eller ta en jobb?' },
+        q7: { category: 'Forhold til jobb', question: 'Trenger du oppfølging før du kan søke eller ta en jobb?' },
         q8: {
             category: 'Kurs/utdanning/tiltak',
             question: 'Trenger du kurs, tiltak eller omskolering for å komme i jobb?',
@@ -53,7 +53,7 @@ export const SPØRSMÅL_TEKSTER = {
             question: 'Er du usikker på om du kan jobbe akkurat no?',
             helpText: 'Til dømes etter sjukdom, permisjon eller lang tid utanfor arbeidslivet.',
         },
-        q7: { category: 'Tilhøve til jobb', question: 'Treng du tett rettleiing før du kan søkje eller ta ein jobb?' },
+        q7: { category: 'Tilhøve til jobb', question: 'Treng du oppfølging før du kan søkje eller ta ein jobb?' },
         q8: {
             category: 'Kurs/utdanning/tiltak',
             question: 'Treng du kurs, tiltak eller omskolering for å komme i jobb?',
@@ -88,7 +88,7 @@ export const SPØRSMÅL_TEKSTER = {
         },
         q7: {
             category: 'Relationship to work',
-            question: 'Do you need close guidance before you can apply for or take a job?',
+            question: 'Do you need follow-up before you can apply for or take a job?',
         },
         q8: {
             category: 'Courses/education/measures',
