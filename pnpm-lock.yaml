@@ -696,9 +696,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tokens@8.9.1':
     resolution: {integrity: sha512-a1njXFPstX2w2/rlhnlyuUyIDJlSm8SOej7RrMl7FjNL3p0bktwzyt7ylsJU1y0vH8MnEnq7QGXWf6goIkgkWw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.9.1/961db4bb606a0858e6cd01292adff493f474b5da}
@@ -709,9 +706,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@next/env@16.0.0':
     resolution: {integrity: sha512-s5j2iFGp38QsG1LWRQaE2iUY3h1jc014/melHFfLdrsMJPqxqDQwWNwyQTcNoUSGZlCVZuM7t7JDMmSyRilsnA==}
@@ -4123,12 +4117,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@navikt/aksel-icons': 8.9.1
       '@navikt/ds-tokens': 8.9.1
+      '@types/react': 19.2.14
       date-fns: 4.1.0
       react: 19.2.5
       react-day-picker: 9.7.0(react@19.2.5)
       react-dom: 19.2.5(react@19.2.5)
-    optionalDependencies:
-      '@types/react': 19.2.14
 
   '@navikt/ds-tokens@8.9.1': {}
 
@@ -4137,7 +4130,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.0.1(@types/react@19.2.14)(react@19.2.5)
       js-cookie: 3.0.5
-    optionalDependencies:
       react: 19.2.5
 
   '@next/env@16.0.0': {}
