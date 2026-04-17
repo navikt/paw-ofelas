@@ -15,7 +15,7 @@ Veiviser som hjelper innbyggere avgjøre om de bør registrere seg som arbeidss�
 ## Lenker
 
 - Dev: [https://www.ansatt.dev.nav.no/arbeid/veiviser](https://www.ansatt.dev.nav.no/arbeid/veiviser)
-- Prod: [https://www.nav.no/arbeid/veiviser](https://www.nav.no/arbeid/veiviser) *(ikke deployet ennå)*
+- Prod: [https://www.nav.no/arbeid/veiviser](https://www.nav.no/arbeid/veiviser) _(ikke deployet ennå)_
 
 ## Utvikling
 
@@ -40,7 +40,7 @@ pnpm dev
 
 ## Testing
 
-Kjør enhetstester med [Jest](https://jestjs.io/):
+Kjør enhetstester med [Vitest](https://vitest.dev/):
 
 ```sh
 pnpm test
@@ -76,7 +76,7 @@ git checkout -b dev/<navn-på-branch>
 
 - [Next.js](https://nextjs.org/)
 - [Aksel (NAV Designsystem)](https://aksel.nav.no/)
-- [Jest](https://jestjs.io/)
+- [Vitest](https://vitest.dev/)
 - [Playwright](https://playwright.dev/)
 - [Storybook](https://storybook.js.org/)
 - [ESLint](https://eslint.org/) / [Prettier](https://prettier.io/)
