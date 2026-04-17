@@ -1,20 +1,17 @@
 'use client';
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { Label } from '@navikt/ds-react';
 
 const TEKSTER = {
     nb: {
         sporsmalAvTotal: (current: number, total: number) => `Spørsmål ${current} av ${total}`,
-        gjenstaar: (remaining: number) => `${remaining} spørsmål gjenstår`,
     },
     nn: {
         sporsmalAvTotal: (current: number, total: number) => `Spørsmål ${current} av ${total}`,
-        gjenstaar: (remaining: number) => `${remaining} spørsmål att`,
     },
     en: {
         sporsmalAvTotal: (current: number, total: number) => `Question ${current} of ${total}`,
-        gjenstaar: (remaining: number) => `${remaining} questions remaining`,
     },
 };
 
@@ -56,9 +53,6 @@ export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
                     }}
                 />
             </div>
-            <BodyShort size="small" style={{ color: 'var(--a-text-subtle)', marginTop: 'var(--a-spacing-1)' }}>
-                {tekst('gjenstaar')(totalSteps - currentStep)}
-            </BodyShort>
         </div>
     );
 }
