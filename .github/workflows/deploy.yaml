@@ -16,15 +16,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
             - name: Set up pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
               with:
                   version: 10
 
             - name: Set up node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
               with:
                   node-version: '24.15.0'
                   cache: 'pnpm'
@@ -53,15 +53,15 @@ jobs:
             image: ${{steps.docker-build-push.outputs.image}}
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
             - name: Set up pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
               with:
                   version: 10
 
             - name: Set up node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
               with:
                   node-version: '24.15.0'
                   cache: 'pnpm'
@@ -74,7 +74,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Next.js build
-              uses: actions/cache@v4
+              uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
               with:
                   path: .next/cache
                   key: nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('src/**/*.{ts,tsx}') }}
@@ -87,7 +87,7 @@ jobs:
                   HUSKY: 0
 
             - name: Push docker image to GAR
-              uses: nais/docker-build-push@v0
+              uses: nais/docker-build-push@cd5ec5663feb0e05c3fa374d1fb442605b046c6b # v0
               id: docker-build-push
               with:
                   team: paw
@@ -99,15 +99,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
             - name: Set up pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
               with:
                   version: 10
 
             - name: Set up node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
               with:
                   node-version: '24.15.0'
                   cache: 'pnpm'
@@ -120,7 +120,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Playwright browsers
-              uses: actions/cache@v4
+              uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
               with:
                   path: ~/.cache/ms-playwright
                   key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
@@ -139,15 +139,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
             - name: Set up pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
               with:
                   version: 10
 
             - name: Set up node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
               with:
                   node-version: '24.15.0'
                   cache: 'pnpm'
@@ -160,7 +160,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Playwright browsers
-              uses: actions/cache@v4
+              uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
               with:
                   path: ~/.cache/ms-playwright
                   key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
@@ -172,7 +172,7 @@ jobs:
               run: pnpm e2e
 
             - name: Upload Playwright report
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
               if: failure()
               with:
                   name: playwright-report
@@ -189,9 +189,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
             - name: Deploy
-              uses: nais/deploy/actions/deploy@v2
+              uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
               env:
                   CLUSTER: dev-gcp
                   RESOURCE: .nais/nais-dev.yaml
@@ -208,9 +208,9 @@ jobs:
 #    runs-on: ubuntu-latest
 #    steps:
 #      - name: Checkout
-#        uses: actions/checkout@v4
+#        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 #      - name: Deploy
-#        uses: nais/deploy/actions/deploy@v2
+#        uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
 #        env:
 #          CLUSTER: prod-gcp
 #          RESOURCE: .nais/nais-prod.yaml
