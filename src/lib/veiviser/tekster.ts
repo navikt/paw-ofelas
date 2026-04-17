@@ -18,7 +18,7 @@ export const SPØRSMÅL_TEKSTER = {
         q5: { category: 'Forhold til jobb', question: 'Er du sykmeldt og har du en jobb du skal tilbake til?' },
         q6: {
             category: 'Forhold til jobb',
-            question: 'Er du i en avklaringsfase i forhold til arbeid?',
+            question: 'Er du usikker på om du kan jobbe akkurat nå?',
             helpText: 'For eksempel etter sykdom, permisjon eller lang tid utenfor arbeidslivet.',
         },
         q7: { category: 'Forhold til jobb', question: 'Trenger du tett veiledning før du kan søke eller ta en jobb?' },
@@ -50,7 +50,7 @@ export const SPØRSMÅL_TEKSTER = {
         q5: { category: 'Tilhøve til jobb', question: 'Er du sjukmeld og har du ein jobb du skal tilbake til?' },
         q6: {
             category: 'Tilhøve til jobb',
-            question: 'Er du i ei avklaringsfase i høve til arbeid?',
+            question: 'Er du usikker på om du kan jobbe akkurat no?',
             helpText: 'Til dømes etter sjukdom, permisjon eller lang tid utanfor arbeidslivet.',
         },
         q7: { category: 'Tilhøve til jobb', question: 'Treng du tett rettleiing før du kan søkje eller ta ein jobb?' },
@@ -83,7 +83,7 @@ export const SPØRSMÅL_TEKSTER = {
         q5: { category: 'Relationship to work', question: 'Are you on sick leave and do you have a job to return to?' },
         q6: {
             category: 'Relationship to work',
-            question: 'Are you in a clarification phase in relation to work?',
+            question: 'Are you unsure whether you can work right now?',
             helpText: 'For example after illness, leave of absence or a long period outside the workforce.',
         },
         q7: {

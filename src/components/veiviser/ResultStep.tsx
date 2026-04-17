@@ -46,7 +46,7 @@ const TEKSTER = {
 
 const CTA_HREF: Record<Outcome, string> = {
     arbeidssøker: 'https://www.nav.no/arbeid/registrering',
-    oppfølging: 'https://www.nav.no/utkast/registrer-arbeidsrettet-oppfolging',
+    oppfølging: 'https://www.nav.no/utkast/arbeidsrettet-oppfolging',
 };
 
 type Props = {
