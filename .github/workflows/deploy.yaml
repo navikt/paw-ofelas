@@ -201,21 +201,21 @@ jobs:
                   VAR: image=${{needs.build.outputs.image}}
                   PRINT_PAYLOAD: true
 
-#  deploy-prod:
-#    name: Deploy to prod
-#    permissions:
-#      contents: 'read'
-#      id-token: 'write'
-#    needs: [test, build, storybook, e2e]
-#    if: github.ref == 'refs/heads/main'
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-#      - name: Deploy
-#        uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
-#        env:
-#          CLUSTER: prod-gcp
-#          RESOURCE: .nais/nais-prod.yaml
-#          VAR: image=${{ needs.build.outputs.image }}
-#          PRINT_PAYLOAD: true
+    deploy-prod:
+      name: Deploy to prod
+      permissions:
+        contents: 'read'
+        id-token: 'write'
+      needs: [test, build, storybook, e2e]
+      if: github.ref == 'refs/heads/main'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        - name: Deploy
+          uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
+          env:
+            CLUSTER: prod-gcp
+            RESOURCE: .nais/nais-prod.yaml
+            VAR: image=${{ needs.build.outputs.image }}
+            PRINT_PAYLOAD: true
