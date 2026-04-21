@@ -36,7 +36,8 @@ export function WizardShell({ sprak }: Props) {
 
     useEffect(() => {
         if (state.result !== null) {
-            logEvent('veiviser resultat vist', {
+            logEvent('paw-ofelas.aktivitet', {
+                aktivitet: 'resultat vist',
                 antallSpørsmål: Object.keys(state.answers).length,
                 anbefaling: state.result,
             });
@@ -46,7 +47,7 @@ export function WizardShell({ sprak }: Props) {
     const handleNext = useCallback(() => {
         if (selectedAnswer) {
             const stepNumber = state.currentIndex + 1;
-            logEvent('skjema steg fullført', { skjemanavn: 'paw-ofelas', skjemaId: 'paw-ofelas', steg: stepNumber });
+            logEvent('paw-ofelas.aktivitet', { aktivitet: 'steg fullført', steg: stepNumber });
             dispatch({ type: 'ANSWER', answer: selectedAnswer });
         }
     }, [selectedAnswer, dispatch, state.currentIndex]);
@@ -76,7 +77,7 @@ export function WizardShell({ sprak }: Props) {
                         outcome={state.result}
                         onBack={() => dispatch({ type: 'BACK' })}
                         onRestart={() => {
-                            logEvent('skjema startet', { skjemanavn: 'paw-ofelas', skjemaId: 'paw-ofelas' });
+                            logEvent('paw-ofelas.aktivitet', { aktivitet: 'startet på nytt' });
                             dispatch({ type: 'RESTART' });
                         }}
                     />
@@ -93,7 +94,10 @@ export function WizardShell({ sprak }: Props) {
                         onBack={
                             canGoBack(state)
                                 ? () => {
-                                      logEvent('veiviser tilbakeknapp', { fraMål: state.currentIndex + 1 });
+                                      logEvent('paw-ofelas.aktivitet', {
+                                          aktivitet: 'navigerte tilbake',
+                                          steg: state.currentIndex + 1,
+                                      });
                                       dispatch({ type: 'BACK' });
                                   }
                                 : undefined

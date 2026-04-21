@@ -2,24 +2,22 @@ import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler/csr';
 import type { AnalyticsEvent } from '@navikt/nav-dekoratoren-moduler/csr';
 import type { Outcome } from './veiviser/types';
 
-type VeiviserResultatVist = AnalyticsEvent<
-    'veiviser resultat vist',
-    {
-        /** Antall spørsmål brukeren besvarte før resultatet ble vist */
-        antallSpørsmål: number;
-        /** Anbefalingen som ble gitt */
-        anbefaling: Outcome;
-    }
->;
+type Aktivitet = 'startet på nytt' | 'steg fullført' | 'navigerte tilbake' | 'resultat vist' | 'navigerte til cta';
 
-type VeiviserTilbakeknapp = AnalyticsEvent<
-    'veiviser tilbakeknapp',
-    {
-        /** Spørsmålsnummeret brukeren navigerte tilbake fra (1-basert) */
-        fraMål: number;
-    }
->;
+type PawOfelasAktivitetData = {
+    aktivitet: Aktivitet;
+    steg?: number;
+    antallSpørsmål?: number;
+    anbefaling?: Outcome;
+    lenketekst?: string;
+    destinasjon?: string;
+};
 
-type CustomEvents = VeiviserResultatVist | VeiviserTilbakeknapp;
+type PawOfelasAktivitet = AnalyticsEvent<'paw-ofelas.aktivitet', PawOfelasAktivitetData>;
 
-export const logEvent = getAnalyticsInstance<CustomEvents>('paw-ofelas');
+type CustomEvents = PawOfelasAktivitet;
+
+const _logEvent = getAnalyticsInstance<CustomEvents>('paw-ofelas');
+
+export const logEvent = (eventName: 'paw-ofelas.aktivitet', eventData: PawOfelasAktivitetData) =>
+    _logEvent(eventName, eventData);

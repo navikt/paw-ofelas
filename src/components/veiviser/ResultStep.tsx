@@ -77,7 +77,13 @@ export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
                     href={CTA_HREF[outcome]}
                     variant="primary"
                     size="medium"
-                    onClick={() => logEvent('navigere', { lenketekst: ctaLabel, destinasjon: CTA_HREF[outcome] })}
+                    onClick={() =>
+                        logEvent('paw-ofelas.aktivitet', {
+                            aktivitet: 'navigerte til cta',
+                            lenketekst: ctaLabel,
+                            destinasjon: CTA_HREF[outcome],
+                        })
+                    }
                 >
                     {ctaLabel}
                 </Button>
