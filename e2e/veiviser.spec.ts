@@ -122,12 +122,12 @@ test.describe('Språkstøtte', () => {
 
     test('/en viser engelsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/en');
-        await expect(page.getByRole('heading', { name: /what do you need help with/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /what should i choose/i })).toBeVisible();
     });
 
     test('/nn viser nynorsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/nn');
-        await expect(page.getByRole('heading', { name: /kva treng du hjelp med/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /kva bør eg velje/i })).toBeVisible();
     });
 
     test('ugyldig språkkode redirecter til /', async ({ page }) => {
