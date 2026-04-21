@@ -1,11 +1,20 @@
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { Box, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 import { WizardShell } from './WizardShell';
 
 const TEKSTER = {
-    nb: { overskrift: 'Hva trenger du hjelp med?' },
-    nn: { overskrift: 'Kva treng du hjelp med?' },
-    en: { overskrift: 'What do you need help with?' },
+    nb: {
+        overskrift: 'Hva bør jeg velge?',
+        undertittel: 'Registrere meg som arbeidssøker eller be om arbeidsrettet oppfølging?',
+    },
+    nn: {
+        overskrift: 'Kva bør eg velje?',
+        undertittel: 'Registrere meg som arbeidssøkar eller be om arbeidsretta oppfølging?',
+    },
+    en: {
+        overskrift: 'What should I choose?',
+        undertittel: 'Register as a job seeker or request employment follow-up?',
+    },
 };
 
 type Props = {
@@ -22,6 +31,7 @@ export function VeiviserPage({ sprak }: Props) {
                     <Heading size="xlarge" level="1">
                         {tekst('overskrift')}
                     </Heading>
+                    <BodyLong size="large">{tekst('undertittel')}</BodyLong>
                     <WizardShell sprak={sprak} />
                 </VStack>
             </Box>
