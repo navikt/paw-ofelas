@@ -13,7 +13,7 @@ export default defineConfig({
     },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: {
-        command: process.env.CI ? 'pnpm start' : 'pnpm dev',
+        command: 'pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
         reuseExistingServer: !process.env.CI,
         stdout: 'ignore',
