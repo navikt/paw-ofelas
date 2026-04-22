@@ -8,7 +8,11 @@ export const SPØRSMÅL_TEKSTER = {
             helpText:
                 'Dagpenger, friskmeldt til arbeidsformidling og enkelte andre ytelser krever at du er registrert arbeidssøker.',
         },
-        q2: { category: 'Pengestøtte', question: 'Er du permittert?' },
+        q2: {
+            category: 'Pengestøtte',
+            question: 'Er du permittert?',
+            helpText: 'Dersom du er permittert skal du ha mottatt et permitteringsvarsel fra arbeidsgiver.',
+        },
         q3: {
             category: 'Pengestøtte',
             question: 'Har du fått beskjed om å registrere deg som arbeidssøker?',
@@ -40,7 +44,11 @@ export const SPØRSMÅL_TEKSTER = {
             helpText:
                 'Dagpengar, friskmeldt til arbeidsformidling og enkelte andre ytingar krev at du er registrert arbeidssøkjar.',
         },
-        q2: { category: 'Pengestøtte', question: 'Er du permittert?' },
+        q2: {
+            category: 'Pengestøtte',
+            question: 'Er du permittert?',
+            helpText: 'Dersom du er permittert, skal du ha mottatt eit permitteringsvarsel frå arbeidsgivaren din.',
+        },
         q3: {
             category: 'Pengestøtte',
             question: 'Har du fått beskjed om å registrere deg som arbeidssøkjar?',
@@ -73,7 +81,12 @@ export const SPØRSMÅL_TEKSTER = {
             helpText:
                 'Unemployment benefits, rehabilitation work placement and certain other benefits require you to be registered as a job seeker.',
         },
-        q2: { category: 'Financial support', question: 'Are you temporarily laid off?' },
+        q2: {
+            category: 'Financial support',
+            question: 'Are you temporarily laid off?',
+            helpText:
+                'If you are temporarily laid off, you should have received a notice of temporary lay-off from your employer.',
+        },
         q3: {
             category: 'Financial support',
             question: 'Have you been told to register as a job seeker?',
