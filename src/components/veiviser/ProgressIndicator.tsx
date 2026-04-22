@@ -27,11 +27,13 @@ export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
 
     return (
         <div>
-            <Label size="small" as="span" aria-live="polite" aria-atomic="true">
+            <Label size="small" as="span">
                 {label}
             </Label>
             <div
                 role="progressbar"
+                aria-live="polite"
+                aria-atomic="true"
                 aria-label={label}
                 aria-valuenow={currentStep}
                 aria-valuemin={1}

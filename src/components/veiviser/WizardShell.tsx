@@ -62,7 +62,7 @@ export function WizardShell({ sprak }: Props) {
             }}
         >
             <VStack gap="space-24">
-                <div ref={focusTargetRef} tabIndex={-1} style={{ outline: 'none' }} />
+                <div ref={focusTargetRef} tabIndex={-1} className="navds-sr-only" />
                 {!isComplete(state) && (
                     <ProgressIndicator
                         currentStep={state.currentIndex + 1}
