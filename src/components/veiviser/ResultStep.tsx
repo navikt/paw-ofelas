@@ -1,7 +1,8 @@
 'use client';
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, BodyLong, Button, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import type { Outcome } from '@/lib/veiviser/types';
 import { logEvent } from '@/lib/analytics';
 
@@ -64,12 +65,21 @@ export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
 
     return (
         <VStack gap="space-24" role="status">
-            <Alert variant="success" fullWidth>
-                <Heading size="medium" level="2" spacing>
-                    {heading}
-                </Heading>
-                <BodyLong>{description}</BodyLong>
-            </Alert>
+            <Box background="success-soft" borderRadius="12" padding="space-16">
+                <HStack gap="space-8" wrap={false}>
+                    <CheckmarkCircleFillIcon
+                        aria-hidden
+                        fontSize="1.5rem"
+                        style={{ color: 'var(--a-icon-success)', flexShrink: 0, marginTop: '0.125rem' }}
+                    />
+                    <VStack>
+                        <Heading size="medium" level="2" spacing>
+                            {heading}
+                        </Heading>
+                        <BodyLong>{description}</BodyLong>
+                    </VStack>
+                </HStack>
+            </Box>
 
             <VStack gap="space-8">
                 <Button
