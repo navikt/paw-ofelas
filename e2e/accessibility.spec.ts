@@ -105,11 +105,10 @@ test.describe('Fokus og tastaturnavigasjon', () => {
         await page.goto(BASE);
         await page.waitForSelector('[role="progressbar"]');
 
-        // Tab til Nei-radio, velg, tab til Neste og trykk
-        await page.keyboard.press('Tab');
-        await page.keyboard.press('Tab');
+        // Focus direkte på radioknappen for å unngå å tabbe gjennom dekoratørens navigasjon
+        await page.getByRole('radio', { name: 'Nei' }).focus();
         await page.keyboard.press('Space'); // velger Nei
-        await page.keyboard.press('Tab');
+        await page.keyboard.press('Tab'); // Tab til Neste-knapp
         await page.keyboard.press('Enter'); // Neste
 
         await expect(page.getByText('Spørsmål 2 av 10')).toBeVisible();
