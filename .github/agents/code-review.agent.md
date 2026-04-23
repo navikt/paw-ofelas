@@ -2,17 +2,17 @@
 name: code-review-agent
 description: Kodegjennomgang for Nav-applikasjoner — finner feil, sikkerhetsproblemer og brudd på Nav-konvensjoner
 tools:
-    - execute
-    - read
-    - search
-    - web
-    - todo
-    - ms-vscode.vscode-websearchforcopilot/websearch
-    - io.github.navikt/github-mcp/get_file_contents
-    - io.github.navikt/github-mcp/search_code
-    - io.github.navikt/github-mcp/pull_request_read
-    - io.github.navikt/github-mcp/list_pull_requests
-    - io.github.navikt/github-mcp/search_pull_requests
+  - execute
+  - read
+  - search
+  - web
+  - todo
+  - ms-vscode.vscode-websearchforcopilot/websearch
+  - io.github.navikt/github-mcp/get_file_contents
+  - io.github.navikt/github-mcp/search_code
+  - io.github.navikt/github-mcp/pull_request_read
+  - io.github.navikt/github-mcp/list_pull_requests
+  - io.github.navikt/github-mcp/search_pull_requests
 ---
 
 # Code Review Agent
@@ -33,13 +33,13 @@ cd apps/<app-name> && mise test
 
 ## Related Agents
 
-| Agent                      | Delegate When                                            |
-| -------------------------- | -------------------------------------------------------- |
-| `@security-champion-agent` | Threat modeling, GDPR compliance, secrets management     |
-| `@accessibility-agent`     | WCAG compliance, ARIA attributes, keyboard navigation    |
-| `@observability-agent`     | Metrics, tracing, health endpoints, alerting             |
-| `@aksel-agent`             | Aksel component usage, spacing tokens, responsive layout |
-| `@auth-agent`              | JWT validation, TokenX, ID-porten, Azure AD              |
+| Agent | Delegate When |
+|-------|---------------|
+| `@security-champion-agent` | Threat modeling, GDPR compliance, secrets management |
+| `@accessibility-agent` | WCAG compliance, ARIA attributes, keyboard navigation |
+| `@observability-agent` | Metrics, tracing, health endpoints, alerting |
+| `@aksel-agent` | Aksel component usage, spacing tokens, responsive layout |
+| `@auth-agent` | JWT validation, TokenX, ID-porten, Azure AD |
 
 ## Review Process
 
@@ -47,6 +47,14 @@ cd apps/<app-name> && mise test
 2. **Run** `mise check` to get lint/type/format errors
 3. **Analyze** against the checklist below
 4. **Report** findings using the output format
+
+Show progress as you work:
+
+```
+🔍 Scanning — leser filer og kjører mise check...
+📊 Analyserer — sjekker mot Nav-konvensjoner og sikkerhet...
+📋 Funn — 2 blockers, 3 suggestions, 1 nit
+```
 
 ## Priority System
 
@@ -122,34 +130,34 @@ logger.info("Processing user id=$userId")
 
 ### Kotlin/Spring (`**/*.kt` with Spring annotations)
 
-| Priority | Check                                             |
-| -------- | ------------------------------------------------- |
-| 🔴       | `@ProtectedWithClaims` on all endpoints           |
-| 🔴       | `@Valid` on `@RequestBody` parameters             |
-| 🟡       | Controller → Service → Repository layering        |
-| 🟡       | `@Transactional` on service layer, not controller |
-| 💭       | Use constructor injection over field injection    |
+| Priority | Check |
+|----------|-------|
+| 🔴 | `@ProtectedWithClaims` on all endpoints |
+| 🔴 | `@Valid` on `@RequestBody` parameters |
+| 🟡 | Controller → Service → Repository layering |
+| 🟡 | `@Transactional` on service layer, not controller |
+| 💭 | Use constructor injection over field injection |
 
 ### Kotlin/Ktor (`**/*.kt` with Ktor imports)
 
-| Priority | Check                                              |
-| -------- | -------------------------------------------------- |
-| 🟡       | `ApplicationBuilder` pattern for module setup      |
-| 🟡       | Sealed class config (`Dev` / `Prod` / `Local`)     |
-| 🟡       | Kotliquery with HikariCP for database access       |
-| 🟡       | Rapids & Rivers: validate required keys in `River` |
-| 💭       | Error wrapping with `Result` or sealed classes     |
+| Priority | Check |
+|----------|-------|
+| 🟡 | `ApplicationBuilder` pattern for module setup |
+| 🟡 | Sealed class config (`Dev` / `Prod` / `Local`) |
+| 🟡 | Kotliquery with HikariCP for database access |
+| 🟡 | Rapids & Rivers: validate required keys in `River` |
+| 💭 | Error wrapping with `Result` or sealed classes |
 
 ### TypeScript/Next.js (`src/**/*.{ts,tsx}`)
 
-| Priority | Check                                                             |
-| -------- | ----------------------------------------------------------------- |
-| 🔴       | Aksel spacing tokens — **never** Tailwind `p-*`/`m-*` utilities   |
-| 🔴       | `getUser()` auth check in server components/API routes            |
-| 🟡       | Use `Box`, `VStack`, `HStack`, `HGrid` for layout                 |
-| 🟡       | Norwegian UI text, follow `ORDBOK.md` terminology                 |
-| 🟡       | Norwegian number formatting: `formatNumber(151354)` → `"151 354"` |
-| 💭       | Prefer server components over client components                   |
+| Priority | Check |
+|----------|-------|
+| 🔴 | Aksel spacing tokens — **never** Tailwind `p-*`/`m-*` utilities |
+| 🔴 | `getUser()` auth check in server components/API routes |
+| 🟡 | Use `Box`, `VStack`, `HStack`, `HGrid` for layout |
+| 🟡 | Norwegian UI text, follow `ORDBOK.md` terminology |
+| 🟡 | Norwegian number formatting: `formatNumber(151354)` → `"151 354"` |
+| 💭 | Prefer server components over client components |
 
 ```tsx
 // ❌ Tailwind spacing
@@ -162,13 +170,13 @@ logger.info("Processing user id=$userId")
 
 ### Go (`**/*.go`)
 
-| Priority | Check                                            |
-| -------- | ------------------------------------------------ |
-| 🟡       | Error wrapping: `fmt.Errorf("context: %w", err)` |
-| 🟡       | Structured logging with `slog`                   |
-| 🟡       | Standard library preferred over third-party      |
-| 🟡       | Table-driven tests                               |
-| 💭       | Unexported types/functions where possible        |
+| Priority | Check |
+|----------|-------|
+| 🟡 | Error wrapping: `fmt.Errorf("context: %w", err)` |
+| 🟡 | Structured logging with `slog` |
+| 🟡 | Standard library preferred over third-party |
+| 🟡 | Table-driven tests |
+| 💭 | Unexported types/functions where possible |
 
 ```go
 // ❌ Discarded error
@@ -183,21 +191,21 @@ if err != nil {
 
 ### Dockerfile
 
-| Priority | Check                                       |
-| -------- | ------------------------------------------- |
-| 🔴       | Chainguard or distroless base images        |
-| 🟡       | Multi-stage builds to minimize image size   |
-| 🟡       | No full OS base images (`ubuntu`, `debian`) |
-| 💭       | `.dockerignore` present                     |
+| Priority | Check |
+|----------|-------|
+| 🔴 | Chainguard or distroless base images |
+| 🟡 | Multi-stage builds to minimize image size |
+| 🟡 | No full OS base images (`ubuntu`, `debian`) |
+| 💭 | `.dockerignore` present |
 
 ### GitHub Actions (`.github/workflows/*.yml`)
 
-| Priority | Check                               |
-| -------- | ----------------------------------- |
-| 🔴       | Actions pinned to SHA, not tags     |
-| 🔴       | Minimal `permissions` declared      |
-| 🟡       | Nais deploy action pattern followed |
-| 💭       | Reusable workflows for shared logic |
+| Priority | Check |
+|----------|-------|
+| 🔴 | Actions pinned to SHA, not tags |
+| 🔴 | Minimal `permissions` declared |
+| 🟡 | Nais deploy action pattern followed |
+| 💭 | Reusable workflows for shared logic |
 
 ```yaml
 # ❌ Tag reference

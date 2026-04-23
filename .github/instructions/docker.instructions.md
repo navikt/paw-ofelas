@@ -1,5 +1,5 @@
 ---
-applyTo: '**/Dockerfile'
+applyTo: "**/Dockerfile"
 ---
 
 # Dockerfile Standards
@@ -231,17 +231,17 @@ Use `nais/docker-build-push` in GitHub Actions — it handles authentication to 
 
 ```yaml
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            id-token: write
-        steps:
-            - uses: actions/checkout@v6
-            - uses: nais/docker-build-push@v0
-              id: docker-push
-              with:
-                  team: <myteam>
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: <myteam>
 ```
 
 ## Boundaries
