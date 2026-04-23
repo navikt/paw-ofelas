@@ -11,7 +11,7 @@ spec:
     ingresses:
         - https://www.ansatt.dev.nav.no/arbeid/veiviser
     replicas:
-        min: 1
+        min: 2
         max: 2
     resources:
         requests:

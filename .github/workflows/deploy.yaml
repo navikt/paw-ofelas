@@ -17,6 +17,7 @@ jobs:
     test:
         name: Run tests
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - name: Checkout code
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -48,6 +49,7 @@ jobs:
     build:
         name: Build and Publish Docker image
         runs-on: ubuntu-latest
+        timeout-minutes: 20
         permissions:
             contents: 'read'
             packages: 'write'
@@ -100,6 +102,7 @@ jobs:
     storybook:
         name: Storybook tests
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - name: Checkout code
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -140,6 +143,7 @@ jobs:
     e2e:
         name: Playwright E2E tests
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - name: Checkout code
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -190,6 +194,7 @@ jobs:
         needs: [test, build, storybook, e2e]
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
         runs-on: ubuntu-latest
+        timeout-minutes: 10
         steps:
             - name: Checkout
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -202,20 +207,20 @@ jobs:
                   PRINT_PAYLOAD: true
 
     deploy-prod:
-      name: Deploy to prod
-      permissions:
-        contents: 'read'
-        id-token: 'write'
-      needs: [test, build, storybook, e2e]
-      if: github.ref == 'refs/heads/main'
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        - name: Deploy
-          uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
-          env:
-            CLUSTER: prod-gcp
-            RESOURCE: .nais/nais-prod.yaml
-            VAR: image=${{ needs.build.outputs.image }}
-            PRINT_PAYLOAD: true
+        name: Deploy to prod
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        needs: [deploy-dev]
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - name: Checkout
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+            - name: Deploy
+              uses: nais/deploy/actions/deploy@fa754451577294aae42872a69b888b3470478ec1 # v2
+              env:
+                  CLUSTER: prod-gcp
+                  RESOURCE: .nais/nais-prod.yaml
+                  VAR: image=${{needs.build.outputs.image}}
