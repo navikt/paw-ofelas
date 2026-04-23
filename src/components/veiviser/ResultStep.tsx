@@ -87,6 +87,7 @@ export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
                     href={CTA_HREF[outcome]}
                     variant="primary"
                     size="medium"
+                    data-testid={`cta-${outcome}`}
                     onClick={() =>
                         logEvent('paw-ofelas.aktivitet', {
                             aktivitet: 'navigerte til cta',

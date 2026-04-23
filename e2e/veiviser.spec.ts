@@ -22,7 +22,7 @@ test.describe('Veiviser', () => {
         await page.getByRole('button', { name: 'Neste' }).click();
 
         await expect(page.getByText(/registrere deg som arbeidssøker/i)).toBeVisible();
-        await expect(page.getByRole('button', { name: /registrer deg som arbeidssøker/i })).toBeVisible();
+        await expect(page.getByTestId('cta-arbeidssøker')).toBeVisible();
     });
 
     test('circuit-breaker: ja på Q4 (etter nei på Q1-Q3) gir oppfølging-anbefaling', async ({ page }) => {
