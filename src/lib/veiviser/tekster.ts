@@ -6,7 +6,7 @@ export const SPØRSMÅL_TEKSTER = {
             category: 'Pengestøtte',
             question: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
             helpText:
-                'Dagpenger, friskmeldt til arbeidsformidling og enkelte andre ytelser krever at du er registrert arbeidssøker.',
+                'Dagpenger, friskmeldt til arbeidsformidling og enkelte andre former for pengestøtte krever at du er registrert arbeidssøker.',
         },
         q2: {
             category: 'Pengestøtte',
@@ -42,7 +42,7 @@ export const SPØRSMÅL_TEKSTER = {
             category: 'Pengestøtte',
             question: 'Mottar du eller skal du søkje om pengestøtte som krev at du er registrert som arbeidssøkjar?',
             helpText:
-                'Dagpengar, friskmeldt til arbeidsformidling og enkelte andre ytingar krev at du er registrert arbeidssøkjar.',
+                'Dagpengar, friskmeldt til arbeidsformidling og enkelte andre former for pengestøtte krev at du er registrert arbeidssøkjar.',
         },
         q2: {
             category: 'Pengestøtte',
@@ -79,7 +79,7 @@ export const SPØRSMÅL_TEKSTER = {
             question:
                 'Are you receiving or applying for financial support that requires you to be registered as a job seeker?',
             helpText:
-                'Unemployment benefits, rehabilitation work placement and certain other benefits require you to be registered as a job seeker.',
+                'Unemployment benefits, rehabilitation work placement and certain other forms of financial support require you to be registered as a job seeker.',
         },
         q2: {
             category: 'Financial support',
