@@ -211,7 +211,7 @@ jobs:
         permissions:
             contents: 'read'
             id-token: 'write'
-        needs: [deploy-dev]
+        needs: [build, deploy-dev]
         if: github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
         timeout-minutes: 10
