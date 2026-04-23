@@ -11,7 +11,7 @@ const TEKSTER = {
         arbeidssøkerHeading: 'Du bør registrere deg som arbeidssøker',
         arbeidssøkerDescription:
             'Basert på svarene dine anbefaler vi at du registrerer deg som arbeidssøker hos Nav. Dette gir deg tilgang til relevante tjenester og ytelser.',
-        arbeidssøkerCta: 'Registrer deg som arbeidssøker',
+        arbeidssøkerCta: 'Jeg vil registrere meg som arbeidssøker',
         oppfølgingHeading: 'Du bør be om arbeidsrettet oppfølging',
         oppfølgingDescription:
             'Basert på svarene dine anbefaler vi at du ber om arbeidsrettet oppfølging. Da kan du få veiledning og hjelp som er tilpasset din situasjon',
@@ -23,7 +23,7 @@ const TEKSTER = {
         arbeidssøkerHeading: 'Du bør registrere deg som arbeidssøkjar',
         arbeidssøkerDescription:
             'Basert på svara dine tilrår vi at du registrerer deg som arbeidssøkjar hos Nav. Dette gir deg tilgang til relevante tenester og ytingar.',
-        arbeidssøkerCta: 'Registrer deg som arbeidssøkjar',
+        arbeidssøkerCta: 'Eg vil registrere meg som arbeidssøkjar',
         oppfølgingHeading: 'Du bør be om arbeidsretta oppfølging',
         oppfølgingDescription:
             'Basert på svara dine tilrår vi at du ber om arbeidsretta oppfølging. Då kan du få rettleiing og hjelp som er tilpassa din situasjon',
@@ -35,7 +35,7 @@ const TEKSTER = {
         arbeidssøkerHeading: 'You should register as a job seeker',
         arbeidssøkerDescription:
             'Based on your answers, we recommend that you register as a job seeker with Nav. This gives you access to relevant services and benefits.',
-        arbeidssøkerCta: 'Register as a job seeker',
+        arbeidssøkerCta: 'I want to register as a job seeker',
         oppfølgingHeading: 'You should request employment follow-up',
         oppfølgingDescription:
             'Based on your answers, we recommend that you request employment follow-up. You can then receive guidance and help tailored to your situation',
