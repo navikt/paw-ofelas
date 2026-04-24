@@ -9,7 +9,6 @@ import { WizardStateProvider } from '@/components/veiviser/WizardStateContext';
 import { type Language, LANGUAGE_HEADER } from '@/lib/language';
 
 export const metadata: Metadata = {
-    title: 'Veiviser – Nav',
     description: 'Finn ut om du bør registrere deg som arbeidssøker eller melde deg til arbeidsrettet oppfølging.',
 };
 
