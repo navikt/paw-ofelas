@@ -15,7 +15,7 @@ Veiviser som hjelper innbyggere avgjøre om de bør registrere seg som arbeidss�
 ## Lenker
 
 - Dev: [https://www.ansatt.dev.nav.no/arbeid/veiviser](https://www.ansatt.dev.nav.no/arbeid/veiviser)
-- Prod: [https://www.nav.no/arbeid/veiviser](https://www.nav.no/arbeid/veiviser) _(ikke deployet ennå)_
+- Prod: [https://www.nav.no/arbeid/veiviser](https://www.nav.no/arbeid/veiviser)
 
 ## Utvikling
 
