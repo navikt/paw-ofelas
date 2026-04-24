@@ -34,7 +34,8 @@ export const SPØRSMÅL_TEKSTER = {
         q10: {
             category: 'Hindringer',
             question: 'Har du utfordringer som påvirker om du kan jobbe eller søke jobb?',
-            helpText: 'Helse, språk, livssituasjon, familiesituasjon, transportmuligheter osv.',
+            helpText:
+                'Dette kan være utfordringer knyttet til helse, språk, livssituasjon, familiesituasjon, transportmuligheter osv.',
         },
     } satisfies Record<string, QuestionTekst>,
     nn: {
@@ -70,7 +71,8 @@ export const SPØRSMÅL_TEKSTER = {
         q10: {
             category: 'Hindringar',
             question: 'Har du utfordringar som påverkar om du kan arbeide eller søkje jobb?',
-            helpText: 'Helse, språk, livssituasjon, familiesituasjon, transportmoglegheiter osv.',
+            helpText:
+                'Dette kan vere utfordringar knytte til helse, språk, livssituasjon, familiesituasjon, transportmoglegheiter osv.',
         },
     } satisfies Record<string, QuestionTekst>,
     en: {
@@ -114,7 +116,8 @@ export const SPØRSMÅL_TEKSTER = {
         q10: {
             category: 'Obstacles',
             question: 'Do you have challenges that affect whether you can work or look for work?',
-            helpText: 'Health, language, life situation, family situation, transportation options, etc.',
+            helpText:
+                'These could be challenges related to health, language, life situation, family situation, transportation options, etc.',
         },
     } satisfies Record<string, QuestionTekst>,
 };
