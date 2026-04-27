@@ -4,15 +4,15 @@ import { WizardShell } from './WizardShell';
 
 const TEKSTER = {
     nb: {
-        overskrift: 'Hva bør jeg velge?',
-        undertittel: 'Registrere meg som arbeidssøker eller be om arbeidsrettet oppfølging?',
+        overskrift: 'Hva bør du velge?',
+        undertittel: 'Registrere deg som arbeidssøker eller be om arbeidsrettet oppfølging?',
     },
     nn: {
-        overskrift: 'Kva bør eg velje?',
-        undertittel: 'Registrere meg som arbeidssøkar eller be om arbeidsretta oppfølging?',
+        overskrift: 'Kva bør du velje?',
+        undertittel: 'Registrere deg som arbeidssøkar eller be om arbeidsretta oppfølging?',
     },
     en: {
-        overskrift: 'What should I choose?',
+        overskrift: 'What should you choose?',
         undertittel: 'Register as a job seeker or request employment follow-up?',
     },
 };

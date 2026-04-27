@@ -8,9 +8,9 @@ type Props = {
 };
 
 const pageTitles: Record<Language, string> = {
-    nb: 'Veiviser – Bør jeg registrere meg som arbeidssøker eller be om arbeidsrettet oppfølging?',
-    nn: 'Veiviser – Bør eg registrere meg som arbeidssøkjar eller be om arbeidsretta oppfølging?',
-    en: 'Wizard – Should I register as a job seeker or request employment follow-up?',
+    nb: 'Veiviser – Bør du registrere deg som arbeidssøker eller be om arbeidsrettet oppfølging?',
+    nn: 'Veiviser – Bør du registrere deg som arbeidssøkjar eller be om arbeidsretta oppfølging?',
+    en: 'Wizard – Should you register as a job seeker or request employment follow-up?',
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

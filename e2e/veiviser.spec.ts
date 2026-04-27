@@ -7,7 +7,7 @@ test.describe('Veiviser', () => {
     });
 
     test('viser første spørsmål ved oppstart', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: /hva bør jeg velge/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /hva bør du velge/i })).toBeVisible();
         await expect(page.getByText('Spørsmål 1 av 10')).toBeVisible();
         await expect(page.getByRole('radio', { name: 'Ja' })).toBeVisible();
         await expect(page.getByRole('radio', { name: 'Nei' })).toBeVisible();
@@ -117,28 +117,28 @@ test.describe('Veiviser', () => {
 test.describe('Språkstøtte', () => {
     test('norsk bokmål er standard på /', async ({ page }) => {
         await page.goto('');
-        await expect(page.getByRole('heading', { name: /hva bør jeg velge/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /hva bør du velge/i })).toBeVisible();
     });
 
     test('/en viser engelsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/en');
-        await expect(page.getByRole('heading', { name: /what should i choose/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /what should you choose/i })).toBeVisible();
     });
 
     test('/nn viser nynorsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/nn');
-        await expect(page.getByRole('heading', { name: /kva bør eg velje/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /kva bør du velje/i })).toBeVisible();
     });
 
     test('ugyldig språkkode redirecter til /', async ({ page }) => {
         await page.goto('/arbeid/veiviser/de');
         await expect(page).toHaveURL(/\/arbeid\/veiviser\/?$/);
-        await expect(page.getByRole('heading', { name: /hva bør jeg velge/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /hva bør du velge/i })).toBeVisible();
     });
 
     test('nb-språkkode redirecter til /', async ({ page }) => {
         await page.goto('/arbeid/veiviser/nb');
         await expect(page).toHaveURL(/\/arbeid\/veiviser\/?$/);
-        await expect(page.getByRole('heading', { name: /hva bør jeg velge/i })).toBeVisible();
+        await expect(page.getByRole('heading', { name: /hva bør du velge/i })).toBeVisible();
     });
 });
