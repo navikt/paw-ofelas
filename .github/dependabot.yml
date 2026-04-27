@@ -18,10 +18,46 @@ updates:
       - dependency-name: eslint
         update-types: ["version-update:semver-major"]
     groups:
-      production-dependencies:
-        dependency-type: production
-      development-dependencies:
-        dependency-type: development
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "eslint-plugin-storybook"
+      aksel:
+        patterns:
+          - "@navikt/aksel-icons"
+          - "@navikt/ds-css"
+          - "@navikt/ds-react"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      playwright:
+        patterns:
+          - "playwright"
+          - "@playwright/test"
+          - "@axe-core/playwright"
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+      testing-library:
+        patterns:
+          - "@testing-library/*"
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-config-prettier"
 
   - package-ecosystem: github-actions
     directory: /
