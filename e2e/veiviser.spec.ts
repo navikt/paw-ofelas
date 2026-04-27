@@ -21,7 +21,7 @@ test.describe('Veiviser', () => {
         await page.getByRole('radio', { name: 'Ja' }).click();
         await page.getByRole('button', { name: 'Neste' }).click();
 
-        await expect(page.getByText(/registrere deg som arbeidssøker/i)).toBeVisible();
+        await expect(page.getByRole('heading', { name: /registrere deg som arbeidssøker/i })).toBeVisible();
         await expect(page.getByTestId('cta-arbeidssøker')).toBeVisible();
     });
 
@@ -75,7 +75,7 @@ test.describe('Veiviser', () => {
         // Gå til result via circuit-breaker Q1 ja → arbeidssøker
         await page.getByRole('radio', { name: 'Ja' }).click();
         await page.getByRole('button', { name: 'Neste' }).click();
-        await expect(page.getByText(/registrere deg som arbeidssøker/i)).toBeVisible();
+        await expect(page.getByRole('heading', { name: /registrere deg som arbeidssøker/i })).toBeVisible();
 
         // Gå tilbake til Q1
         await page.getByRole('button', { name: /tilbake/i }).click();
@@ -107,7 +107,7 @@ test.describe('Veiviser', () => {
         // Gå til result via circuit-breaker
         await page.getByRole('radio', { name: 'Ja' }).click();
         await page.getByRole('button', { name: 'Neste' }).click();
-        await expect(page.getByText(/registrere deg som arbeidssøker/i)).toBeVisible();
+        await expect(page.getByRole('heading', { name: /registrere deg som arbeidssøker/i })).toBeVisible();
 
         await page.getByRole('button', { name: /start på nytt/i }).click();
         await expect(page.getByText('Spørsmål 1 av 10')).toBeVisible();
