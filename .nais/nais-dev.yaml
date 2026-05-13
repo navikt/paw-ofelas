@@ -11,14 +11,14 @@ spec:
     ingresses:
         - https://www.ansatt.dev.nav.no/arbeid/veiviser
     replicas:
-        min: 2
-        max: 2
+        min: 1
+        max: 1
     resources:
         requests:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 128Mi
         limits:
-            memory: 512Mi
+            memory: 128Mi
     liveness:
         path: /arbeid/veiviser/api/health
     readiness:
