@@ -23,7 +23,7 @@
         "@navikt/arbeidssokerregisteret-utils": "2.1.0",
         "@navikt/ds-css": "8.10.5",
         "@navikt/ds-react": "8.10.5",
-        "@navikt/nav-dekoratoren-moduler": "3.7.1",
+        "@navikt/nav-dekoratoren-moduler": "4.1.1",
         "next": "16.2.6",
         "react": "19.2.6",
         "react-dom": "19.2.6"
