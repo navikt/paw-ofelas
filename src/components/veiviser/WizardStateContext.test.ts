@@ -1,6 +1,6 @@
-import { reducer, type ShellState } from './WizardStateContext';
 import { initialState } from '@/lib/veiviser/engine';
 import { questions } from '@/lib/veiviser/questions';
+import { reducer, type ShellState } from './WizardStateContext';
 
 const initial: ShellState = { ...initialState, pendingAnswer: undefined };
 

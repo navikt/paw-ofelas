@@ -6,7 +6,7 @@ import './globals.css';
 import { fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { LanguageHandler } from '@/components/LanguageHandler';
 import { WizardStateProvider } from '@/components/veiviser/WizardStateContext';
-import { type Language, LANGUAGE_HEADER } from '@/lib/language';
+import { LANGUAGE_HEADER, type Language } from '@/lib/language';
 
 export const metadata: Metadata = {
     description: 'Finn ut om du bør registrere deg som arbeidssøker eller be om arbeidsrettet oppfølging.',

@@ -1,10 +1,10 @@
 'use client';
 
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
-import type { Outcome } from '@/lib/veiviser/types';
 import { logEvent } from '@/lib/analytics';
+import type { Outcome } from '@/lib/veiviser/types';
 
 const TEKSTER = {
     nb: {

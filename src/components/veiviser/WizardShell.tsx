@@ -1,16 +1,16 @@
 'use client';
 
-import { useCallback, useEffect, useRef } from 'react';
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { Box, VStack } from '@navikt/ds-react';
+import { useCallback, useEffect, useRef } from 'react';
+import { logEvent } from '@/lib/analytics';
+import { canGoBack, isComplete } from '@/lib/veiviser/engine';
+import { questions } from '@/lib/veiviser/questions';
+import { type QuestionTekst, SPØRSMÅL_TEKSTER } from '@/lib/veiviser/tekster';
 import { ProgressIndicator } from './ProgressIndicator';
 import { QuestionStep } from './QuestionStep';
 import { ResultStep } from './ResultStep';
-import { canGoBack, isComplete } from '@/lib/veiviser/engine';
-import { questions } from '@/lib/veiviser/questions';
-import { SPØRSMÅL_TEKSTER, type QuestionTekst } from '@/lib/veiviser/tekster';
 import { useWizardState } from './WizardStateContext';
-import { logEvent } from '@/lib/analytics';
 
 type Props = {
     sprak: Sprak;
@@ -26,6 +26,7 @@ export function WizardShell({ sprak }: Props) {
     const focusTargetRef = useRef<HTMLDivElement>(null);
     const isFirstRender = useRef(true);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: deps er bevisste triggere for fokushåndtering
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
@@ -34,6 +35,7 @@ export function WizardShell({ sprak }: Props) {
         focusTargetRef.current?.focus();
     }, [state.currentIndex, state.result]);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: kun reager på endring i result, ikke answers
     useEffect(() => {
         if (state.result !== null) {
             logEvent('paw-ofelas.aktivitet', {
@@ -42,7 +44,7 @@ export function WizardShell({ sprak }: Props) {
                 anbefaling: state.result,
             });
         }
-    }, [state.result]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [state.result]);
 
     const handleNext = useCallback(() => {
         if (selectedAnswer) {

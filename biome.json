@@ -1,0 +1,52 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single"
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "correctness": {
+                "useJsxKeyInIterable": "error",
+                "noChildrenProp": "error",
+                "useHookAtTopLevel": "error",
+                "useExhaustiveDependencies": "warn",
+                "noUnusedVariables": "warn"
+            },
+            "a11y": {
+                "useAltText": "warn",
+                "useValidAriaProps": "warn",
+                "useValidAriaValues": "warn",
+                "useAriaPropsForRole": "warn",
+                "noAriaUnsupportedElements": "warn"
+            },
+            "suspicious": {
+                "noCommentText": "error",
+                "noDuplicateJsxProps": "error"
+            }
+        }
+    },
+    "files": {
+        "includes": [
+            "**",
+            "!.next",
+            "!out",
+            "!build",
+            "!storybook-static",
+            "!coverage",
+            "!.nais",
+            "!playwright-report",
+            "!test-results",
+            "!next-env.d.ts"
+        ]
+    }
+}

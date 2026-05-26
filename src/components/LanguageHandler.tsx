@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { onLanguageSelect, setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler/csr';
-import { type Language } from '@/lib/language';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import type { Language } from '@/lib/language';
 
 const LANGUAGE_URLS: Record<Language, string> = {
     nb: '/',

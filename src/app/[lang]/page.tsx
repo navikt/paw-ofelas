@@ -1,7 +1,7 @@
-import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
-import { isValidLanguage, type Language } from '@/lib/language';
+import { redirect } from 'next/navigation';
 import { VeiviserPage } from '@/components/veiviser/VeiviserPage';
+import { isValidLanguage, type Language } from '@/lib/language';
 
 type Props = {
     params: Promise<{ lang: string }>;

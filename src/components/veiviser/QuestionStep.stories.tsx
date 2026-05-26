@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { QuestionStep } from '@/components/veiviser/QuestionStep';
 import { useState } from 'react';
+import { QuestionStep } from '@/components/veiviser/QuestionStep';
 
 const meta: Meta<typeof QuestionStep> = {
     title: 'Veiviser/QuestionStep',

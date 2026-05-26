@@ -7,7 +7,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![Tailwind_CSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?logo=tailwind-css)
 ![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?logo=storybook&logoColor=white)
-![Lint](https://img.shields.io/badge/lint-eslint%20%2B%20prettier-4B32C3)
+![Lint](https://img.shields.io/badge/lint-biome-60A5FA?logo=biome&logoColor=white)
 ![pnpm](https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white)
 
 Veiviser som hjelper innbyggere avgjøre om de bør registrere seg som arbeidssøker eller melde seg til arbeidsrettet oppfølging.
@@ -79,7 +79,7 @@ git checkout -b dev/<navn-på-branch>
 - [Vitest](https://vitest.dev/)
 - [Playwright](https://playwright.dev/)
 - [Storybook](https://storybook.js.org/)
-- [ESLint](https://eslint.org/) / [Prettier](https://prettier.io/)
+- [Biome](https://biomejs.dev/)
 
 ---
 
