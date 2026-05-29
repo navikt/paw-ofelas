@@ -38,6 +38,10 @@ pnpm dev
 
 Åpne [http://localhost:3000](http://localhost:3000).
 
+### Utvikling med KI
+
+For å utvikle med KI lokalt anbefaler vi at du bruker [nav-pilot](https://min-copilot.ansatt.nav.no/nav-pilot) og [cplt](https://min-copilot.ansatt.nav.no/cplt).
+
 ## Testing
 
 Kjør enhetstester med [Vitest](https://vitest.dev/):
