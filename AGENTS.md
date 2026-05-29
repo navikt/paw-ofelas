@@ -42,9 +42,9 @@ pnpm test                   # Vitest enhetstester
 pnpm test:watch             # Vitest i watch-modus
 pnpm e2e                    # Playwright E2E-tester
 pnpm storybook              # Start Storybook
-pnpm lint                   # ESLint
+pnpm lint                   # Biome
 pnpm typecheck              # TypeScript type-sjekk
-pnpm format                 # Prettier
+pnpm format                 # Biome
 ```
 
 ## Arkitektur
@@ -77,6 +77,10 @@ Standard utfall når ingen circuit-breaker treffer: **oppfølging**.
 - `gap` krever alltid `space-`-prefiks: `gap="space-16"`, aldri `gap="4"` eller `gap={4}`
 - `VStack`/`HStack` har **ikke** `padding`-prop — wrap i `Box`
 - Ikke overstyr `--ax-*`-tokens eller `.aksel-*`-klasser
+
+## Beslutningstreet
+
+Veiviseren bruker akkumulerte svar (ikke bare siste svar) for å bestemme utfall. Circuit-breaker-spørsmål kortslutter direkte til en anbefaling. Se `spørsmål.md` for full spørsmålsliste organisert etter kategori (Pengestøtte, Forhold til jobb, Kurs/utdanning/tiltak, Hindringer).
 
 ## Spesialistagenter
 

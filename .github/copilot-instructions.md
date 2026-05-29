@@ -34,9 +34,9 @@ pnpm test                   # Vitest enhetstester
 pnpm test:watch             # Vitest i watch-modus
 pnpm e2e                    # Playwright E2E-tester
 pnpm storybook              # Start Storybook
-pnpm lint                   # ESLint
+pnpm lint                   # Biome
 pnpm typecheck              # TypeScript type-sjekk
-pnpm format                 # Prettier
+pnpm format                 # Biome
 ```
 
 ## Arkitektur
