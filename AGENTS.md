@@ -33,6 +33,16 @@ Spørsmålene er definert i `spørsmål.md`. Planleggingsdetaljer i `veiviser-pl
 Ingen backend — all tilstand er lokal React (`useState`/`useReducer`), ingen persistering.
 Deployeres til Nais (dev + prod) via `nais.yaml`.
 
+## Shellmiljø
+
+Bruk alltid `nvm use` for å aktivere riktig Node-versjon (definert i `.nvmrc`).
+pnpm-versjonen er definert i `packageManager`-feltet i `package.json` og aktiveres via corepack.
+
+```bash
+# Før alle kommandoer i bash-verktøy:
+export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use
+```
+
 ## Kommandoer
 
 ```bash
