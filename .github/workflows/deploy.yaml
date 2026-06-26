@@ -33,7 +33,7 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
 
             - name: Install
-              run: pnpm install --no-frozen-lockfile --ignore-scripts
+              run: pnpm ci
               env:
                   NODE_AUTH_TOKEN: ${{secrets.READER_TOKEN}}
                   HUSKY: 0
@@ -69,7 +69,7 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
 
             - name: Install
-              run: pnpm install --no-frozen-lockfile --ignore-scripts
+              run: pnpm ci
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
                   HUSKY: 0
@@ -114,7 +114,7 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
 
             - name: Install
-              run: pnpm install --no-frozen-lockfile --ignore-scripts
+              run: pnpm ci
               env:
                   NODE_AUTH_TOKEN: ${{secrets.READER_TOKEN}}
                   HUSKY: 0
@@ -153,7 +153,7 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
 
             - name: Install
-              run: pnpm install --no-frozen-lockfile --ignore-scripts
+              run: pnpm ci
               env:
                   NODE_AUTH_TOKEN: ${{secrets.READER_TOKEN}}
                   HUSKY: 0
