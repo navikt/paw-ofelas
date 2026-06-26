@@ -78,7 +78,7 @@ Pre-push-hook kjører `pnpm test` (enhetstester).
 
 **Forbedringer:**
 
-1. **Testdekning måles ikke.** `@vitest/coverage-v8` er installert som devDependency, men brukes ikke. Ingen coverage-terskel er definert. Det er vanskelig å vite hvilken logikk som ikke er testet.
+1. **Ingen coverage-terskel i CI.** `@vitest/coverage-v8` er installert og `pnpm coverage` er satt opp lokalt. Den faktiske testdekningen for ren logikk er god (48 tester dekker `engine.ts`, `language.ts` og `WizardStateContext`-reducer grundig). Det mangler imidlertid en terskelverdi i `vitest.config.ts` og i CI-pipelinen som bryter bygget dersom dekningen faller under et minimum.
 2. **Knip blokkerer ikke.** `--no-exit-code` betyr at dead code rapporteres til GitHub Step Summary, men hindrer ikke merge. Vurder å gjøre dette til en blokkerende feil.
 3. **Ingen smoke-test etter deploy til prod.** Pipelinen slutter etter `nais deploy` uten å verifisere at applikasjonen faktisk svarer.
 
@@ -168,7 +168,7 @@ push til dev/* → test + build + storybook + e2e → deploy-dev (kun)
 
 | Prioritet | Forbedring | Innsats | Verdi |
 |---|---|---|---|
-| 🔴 Høy | Aktiver testdekning med terskelverdi | Lav | Synliggjør blindflekker i testdekning |
+| 🔴 Høy | Legg til coverage-terskel i `vitest.config.ts` og CI | Lav | Bryter bygget om dekning faller under minimum |
 | 🔴 Høy | Frontend-feillogging (Sentry eller Faro) | Medium | Synlighet på produksjonsfeil |
 | 🟡 Medium | `pnpm ci` i stedet for `pnpm install --no-frozen-lockfile` | Svært lav | Deterministiske bygg |
 | 🟡 Medium | Gjør Knip til blokkerende feil | Svært lav | Hindrer dead code fra å akkumulere |

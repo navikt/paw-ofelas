@@ -9,6 +9,17 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
     test: {
+        coverage: {
+            provider: 'v8',
+            include: ['src/lib/**/*.ts'],
+            exclude: ['src/lib/veiviser/tekster.ts', 'src/lib/veiviser/questions.ts', 'src/lib/veiviser/types.ts', 'src/components/**/*.ts', 'src/components/**/*.tsx'],
+            thresholds: {
+                lines: 90,
+                functions: 90,
+                branches: 85,
+                statements: 90,
+            },
+        },
         projects: [
             {
                 test: {
