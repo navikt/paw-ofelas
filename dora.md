@@ -48,7 +48,7 @@ CI-pipelinen i `.github/workflows/deploy.yaml` er velutviklet:
 - Alle fire jobber må passere før deploy til dev
 - `concurrency: cancel-in-progress` hindrer parallelle deploy av samme branch
 
-**Forbedring:** `pnpm install --no-frozen-lockfile` i CI betyr at lockfilen kan avvike fra det som faktisk installeres. Bruk `--frozen-lockfile` for deterministiske bygg.
+**Forbedring:** `pnpm install --no-frozen-lockfile` i CI betyr at lockfilen kan avvike fra det som faktisk installeres. Bruk `pnpm ci` (alias for `pnpm clean && pnpm install --frozen-lockfile`, tilgjengelig fra pnpm 9+) for deterministiske bygg.
 
 ---
 
@@ -170,7 +170,7 @@ push til dev/* → test + build + storybook + e2e → deploy-dev (kun)
 |---|---|---|---|
 | 🔴 Høy | Aktiver testdekning med terskelverdi | Lav | Synliggjør blindflekker i testdekning |
 | 🔴 Høy | Frontend-feillogging (Sentry eller Faro) | Medium | Synlighet på produksjonsfeil |
-| 🟡 Medium | `--frozen-lockfile` i CI | Svært lav | Deterministiske bygg |
+| 🟡 Medium | `pnpm ci` i stedet for `pnpm install --no-frozen-lockfile` | Svært lav | Deterministiske bygg |
 | 🟡 Medium | Gjør Knip til blokkerende feil | Svært lav | Hindrer dead code fra å akkumulere |
 | 🟡 Medium | Smoke-test etter prod-deploy | Lav | Raskere deteksjon av deploy-feil |
 | 🟢 Lav | PR-mal med sjekkliste | Svært lav | Mer konsistent code review |
