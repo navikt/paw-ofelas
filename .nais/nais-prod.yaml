@@ -26,8 +26,12 @@ spec:
     env:
         - name: DECORATOR_ENV
           value: prod
+        - name: FARO_URL
+          value: https://telemetry.nav.no/collect
     accessPolicy:
         outbound:
             rules:
                 - application: nav-dekoratoren
                   namespace: personbruker
+            external:
+                - host: telemetry.nav.no

@@ -22,6 +22,7 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@grafana/faro-web-sdk": "2.7.1",
         "@navikt/aksel-icons": "8.13.0",
         "@navikt/arbeidssokerregisteret-utils": "2.1.0",
         "@navikt/ds-css": "8.13.0",

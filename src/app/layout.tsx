@@ -4,6 +4,7 @@ import Script from 'next/script';
 import '@navikt/ds-css';
 import './globals.css';
 import { fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { FaroProvider } from '@/components/FaroProvider';
 import { LanguageHandler } from '@/components/LanguageHandler';
 import { WizardStateProvider } from '@/components/veiviser/WizardStateContext';
 import { LANGUAGE_HEADER, type Language } from '@/lib/language';
@@ -47,6 +48,10 @@ export default async function RootLayout({
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
                 <LanguageHandler />
+                <FaroProvider
+                    url={process.env.FARO_URL ?? ''}
+                    environment={process.env.NAIS_CLUSTER_NAME ?? 'local'}
+                />
             </body>
         </html>
     );
