@@ -1,182 +1,202 @@
 # DORA Capabilities — paw-ofelas
 
-> Analyse basert på [DORA capabilities](https://dora.dev/capabilities/). Fokus: tekniske og prosess-relaterte capabilities som er relevante for kode og utvikling. Gjennomgått juni 2026.
+Rapport basert på analyse av kildekode, pipeline-konfigurasjon og Nais-manifester.
+Scope: tekniske capabilities relevante for kode og utvikling.
+
+Referanse: [dora.dev/capabilities](https://dora.dev/capabilities/)
 
 ---
 
-## Sammendrag
+## Oppsummering
 
-paw-ofelas er en moden, frontend-only Next.js-applikasjon med solid CI/CD-pipeline og god testdekning. Kodebasen scorer sterkt på automatisering, testpraksis og sikkerhet i leveransekjeden. De viktigste forbedringsområdene er observabilitet, testdekningsmåling og manglende blokkering på noen kvalitetssignaler.
-
-| Capability | Score | Kommentar |
-|---|---|---|
-| Version control | ✅ | Git + GitHub, CODEOWNERS |
-| Continuous integration | ✅ | Solid pipeline med flere testtyper |
-| Trunk-based development | ✅ | `main` som trunk, `dev/*`-konvensjon |
-| Continuous testing | ✅ | Unit, E2E, Storybook, a11y i CI |
-| Continuous delivery | ✅ | Automatisk til dev og prod |
-| Deployment automation | ✅ | Nais + Docker, ingen manuelle steg |
-| Code maintainability | ✅ | Strict TS, Biome, Knip |
-| Shifting left on security | ⚠️ | SHA-pins ✅, SAST mangler |
-| Observability | ⚠️ | Health check ✅, metrics/logging mangler |
-| Documentation | ✅ | README, Storybook, AGENTS.md |
-| Working in small batches | ✅ | `dev/*`-branches, Dependabot-grupper |
-| Flexible infrastructure | ✅ | Nais + autoscaling i prod |
+| Capability | Score |
+|---|---|
+| Continuous Integration | ✅ Sterk |
+| Deployment Automation | ✅ Sterk |
+| Test Automation | ✅ Sterk |
+| Trunk-Based Development | ✅ God |
+| Shifting Left on Security | ⚠️ God med gap |
+| Continuous Delivery | ✅ Sterk |
+| Code Maintainability | ⚠️ God med gap |
+| Observability | ⚠️ God med gap |
+| Documentation Quality | ⚠️ God med gap |
 
 ---
 
-## Detaljert vurdering
+## Continuous Integration
 
-### ✅ Version control
+**Score: ✅ Sterk**
 
-- Git med GitHub, tydelig branch-navnekonvensjon (`dev/<navn>`)
-- `CODEOWNERS` konfigurert (`@navikt/paw` for hele repoet)
-- `.gitignore` er komplett
+Pipelines kjører automatisk på push til `main` og `dev/*`-branches. Fem parallelle jobber (test, build, storybook, e2e, deploy) gir rask tilbakemelding. `cancel-in-progress: true` hindrer kø-opphoping ved hyppige commits.
 
-**Forbedring:** Ingen PR-mal (`.github/PULL_REQUEST_TEMPLATE.md`). En enkel sjekkliste kan gjøre code review mer konsistent.
-
----
-
-### ✅ Continuous integration
-
-CI-pipelinen i `.github/workflows/deploy.yaml` er velutviklet:
-
-- **Test-jobb:** Vitest enhetstester + Knip dead code-sjekk
-- **Storybook-jobb:** Komponenttester kjørt i Chromium via Playwright
-- **E2E-jobb:** Playwright mot fullstack-app
-- **Build-jobb:** Next.js produksjonsbygg + Docker-image
-- Alle fire jobber må passere før deploy til dev
-- `concurrency: cancel-in-progress` hindrer parallelle deploy av samme branch
-
-**Forbedring:** `pnpm install --no-frozen-lockfile` i CI betyr at lockfilen kan avvike fra det som faktisk installeres. Bruk `pnpm ci` (alias for `pnpm clean && pnpm install --frozen-lockfile`, tilgjengelig fra pnpm 9+) for deterministiske bygg.
-
----
-
-### ✅ Trunk-based development
-
-- `main` er trunk og deploymentsbranch for prod
-- `dev/*`-branches gir enkelt preview-deploy til dev uten å merge til main
-- Git-loggen viser hyppige, fokuserte commits (dependabot-oppdateringer merges individuelt)
-
----
-
-### ✅ Continuous testing
-
-Teststrategien er bred og godt integrert:
-
-| Testnivå | Verktøy | Kjøres |
-|---|---|---|
-| Enhet (logic) | Vitest | pre-push + CI |
-| Komponent (UI) | Storybook + Vitest | CI |
-| E2E (brukerflyt) | Playwright | CI |
-| Tilgjengelighet | axe-core/playwright | CI (eget spec) |
-| Type-sjekk | TypeScript strict | pre-commit |
-| Lint | Biome | pre-commit (staged) |
-
-Pre-commit-hook kjører `tsc --noEmit` og `biome check --staged`.
-Pre-push-hook kjører `pnpm test` (enhetstester).
-
-**Forbedringer:**
-
-1. **Ingen coverage-terskel i CI.** `@vitest/coverage-v8` er installert og `pnpm coverage` er satt opp lokalt. Den faktiske testdekningen for ren logikk er god (48 tester dekker `engine.ts`, `language.ts` og `WizardStateContext`-reducer grundig). Det mangler imidlertid en terskelverdi i `vitest.config.ts` og i CI-pipelinen som bryter bygget dersom dekningen faller under et minimum.
-2. **Knip blokkerer ikke.** `--no-exit-code` betyr at dead code rapporteres til GitHub Step Summary, men hindrer ikke merge. Vurder å gjøre dette til en blokkerende feil.
-3. **Ingen smoke-test etter deploy til prod.** Pipelinen slutter etter `nais deploy` uten å verifisere at applikasjonen faktisk svarer.
-
----
-
-### ✅ Continuous delivery & Deployment automation
-
-```
-push til main → test + build + storybook + e2e → deploy-dev → deploy-prod
-push til dev/* → test + build + storybook + e2e → deploy-dev (kun)
+Alle GitHub Actions er SHA-pinnet, noe som beskytter mot supply chain-angrep:
+```yaml
+uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 ```
 
-- Ingen manuelle godkjenninger — full automatikk fra commit til prod
-- Docker-image bygges med `nais/docker-build-push` og SHA-pinnet versjon
-- `nais/deploy` håndterer Kubernetes-manifest
-- Prod: 2–4 replicas med autoscaling
-- Dev: 1 replica (tilstrekkelig for preview)
+Pre-commit hook kjører `pnpm typecheck` + `biome check --staged` og gir rask lokal feedback før push.
 
-**Forbedring:** Det er ingen feature-flags eller canary-mekanisme. Alle endringer rulles ut til 100 % av trafikken umiddelbart. Nais støtter gradual rollout via `strategy: RollingUpdate` med lavere `maxSurge`/`maxUnavailable` — kan vurderes for risikoreduksjon.
+**Forbedringspotensial:**
+- `pnpm ci` kjøres separat i fire jobber (test, build, storybook, e2e) uten deling av installert node_modules. Bruk av Next.js build-cache er allerede på plass, men en felles install-jobb med artefaktuploading eller reusable workflow kan redusere total pipeline-tid.
+- `pnpm typecheck` kjøres kun i pre-commit hook, ikke som eksplisitt CI-steg. TypeScript-feil fanges indirekte via `pnpm build` (Next.js kompilerer TS), men et eksplisitt `typecheck`-steg ville gjøre intentet tydeliggere.
 
 ---
 
-### ✅ Code maintainability
+## Deployment Automation
 
-- **TypeScript** med `"strict": true` — alle vanlige feil fanges på kompileringstidspunkt
-- **Biome** erstatter ESLint + Prettier med én rask konfig, inkludert a11y-regler
-- **Knip** oppdager ubrukte eksporter, dependencies og filer
-- **Klar arkitektur:** `src/lib/` (ren logikk) → `src/components/` (UI) → `src/app/` (Next.js routing) — ingen blanding av ansvarsområder
-- **Eksakte versjoner** i `package.json` (ingen `^` eller `~`) — reproduserbare installasjoner
-- `engines.node` satt til eksakt versjon i `package.json` og `.nvmrc`
+**Score: ✅ Sterk**
 
----
+Full GitOps-pipeline fra commit til produksjon uten manuelle steg:
 
-### ⚠️ Shifting left on security
+```
+push → test/build/storybook/e2e → deploy-dev → deploy-prod (main only)
+```
 
-**Styrker:**
+`dev/*`-branches deployes kun til dev-miljøet. Docker-image bygges med immutable tags via GAR, og Nais-manifester refererer alltid til konkret image-SHA. Prod-konfigurasjon har 2–4 replicas med auto-scaling.
 
-- Alle GitHub Actions er SHA-pinnet (f.eks. `actions/checkout@df4cb1c069...`) — excellent supply chain security
-- Dependabot konfigurert for både npm og GitHub Actions, med ukentlig frekvens og grupperte PRs
-- Ingen hardkodede hemmeligheter (frontend-only, ingen backend-integrasjoner utover Nav Dekoratøren)
-- `accessPolicy` i Nais-manifest er eksplisitt og minimal (kun outbound til dekoratøren)
+Liveness- og readiness-probes er konfigurert:
+```yaml
+liveness:
+    path: /arbeid/veiviser/api/health
+readiness:
+    path: /arbeid/veiviser/api/health
+```
 
-**Mangler:**
-
-- **Ingen SAST-skanning** (f.eks. CodeQL via `github/codeql-action`). For en Next.js-app er risikoen lav, men XSS og avhengighetssårbarheter kan fanges tidlig.
-- **Ingen `npm audit` / `pnpm audit` i CI.** Dependabot dekker kjente CVE-er, men med en ukes forsinkelse.
-
----
-
-### ⚠️ Observability
-
-**Styrker:**
-
-- Liveness og readiness probes peker på `/arbeid/veiviser/api/health` — returnerer `{ status: "ok" }` 
-- Nais-plattformen gir grunnleggende metrics (CPU, minne, request rate) automatisk
-
-**Mangler:**
-
-- **Ingen frontend-feillogging** (f.eks. Sentry, Faro). Dersom JavaScript-feil oppstår i produksjon for brukere, er disse usynlige.
-- **Ingen Core Web Vitals-måling.** For en brukervendt tjeneste på nav.no er LCP, CLS og INP viktige kvalitetsindikatorer.
-- **Ingen hendelseslogging/analytics utover standard Umami/Amplitude.** `src/lib/analytics.ts` eksisterer, men det er uklart hva som spores og om det er aktivt.
-- **Health-endepunktet er statisk** — returnerer alltid `ok` uavhengig av faktisk tilstand.
+**Forbedringspotensial:**
+- Ingen dokumentert rollback-prosedyre. Nais støtter `kubectl rollout undo`, men dette er ikke nevnt i README eller AGENTS.md. Bør dokumenteres.
+- Produksjon deployes umiddelbart etter dev uten ventetid eller manuell godkjenning. For en borgervendt tjeneste kan et valgfritt «approval gate» eller en kort bake-time i dev vurderes for risikofylte endringer.
 
 ---
 
-### ✅ Documentation
+## Test Automation
 
-- **README** er tydelig: formål, kom-i-gang, alle kommandoer, lenker til dev/prod, Slack-kanal
-- **Storybook** dokumenterer komponenter visuelt
-- **`spørsmål.md`** dokumenterer forretningslogikken (beslutningstret)
-- **`AGENTS.md`** og `.github/copilot-instructions.md` dokumenterer konvensjoner for AI-assistert utvikling
-- **`veiviser-planning-prompt.md`** gir arkitekturkontekst
+**Score: ✅ Sterk**
 
-**Forbedring:** Ingen `CHANGELOG.md` eller automatisert release notes. Conventional commits brukes ikke konsekvent (se git-loggen: `c oppdaterer pnpm...`). Med conventional commits og f.eks. `release-please` kan endringslogg genereres automatisk.
+Tre komplementære testnivåer:
 
----
+| Nivå | Verktøy | Kjøres i CI |
+|---|---|---|
+| Enhetstester | Vitest (jsdom) | ✅ |
+| Komponenttester | Storybook + Vitest browser | ✅ |
+| E2E + tilgjengelighet | Playwright + axe-core | ✅ |
 
-### ✅ Working in small batches
+Coverage-terskler er konfigurert og håndhevet:
+```
+lines: 90%, functions: 90%, branches: 85%, statements: 90%
+```
 
-- Dependabot lager én PR per dependency-gruppe — enkle, målrettede endringer
-- `dev/*`-konvensjon gjør det trygt å deploye til dev uten full merge
-- Ingen feature-branches med lang levetid synlig i git-loggen
+`forbidOnly: !!process.env.CI` i Playwright hindrer at `.only`-tester ved uhell blokkerer CI.
 
----
-
-## Prioriterte forbedringer
-
-| Prioritet | Forbedring | Innsats | Verdi |
-|---|---|---|---|
-| 🔴 Høy | Legg til coverage-terskel i `vitest.config.ts` og CI | Lav | Bryter bygget om dekning faller under minimum |
-| 🔴 Høy | Frontend-feillogging (Sentry eller Faro) | Medium | Synlighet på produksjonsfeil |
-| 🟡 Medium | `pnpm ci` i stedet for `pnpm install --no-frozen-lockfile` | Svært lav | Deterministiske bygg |
-| 🟡 Medium | Gjør Knip til blokkerende feil | Svært lav | Hindrer dead code fra å akkumulere |
-| 🟡 Medium | Smoke-test etter prod-deploy | Lav | Raskere deteksjon av deploy-feil |
-| 🟢 Lav | PR-mal med sjekkliste | Svært lav | Mer konsistent code review |
-| 🟢 Lav | Conventional commits + CHANGELOG | Lav | Sporbarhet mellom commits og funksjonalitet |
-| 🟢 Lav | CodeQL SAST-skanning | Lav | Ekstra sikkerhetsnett |
+**Forbedringspotensial:**
+- Coverage er begrenset til `src/lib/**` — komponenter og app-lag er ikke inkludert. WizardShell, VeiviserPage og ResultStep mangler dekning.
+- E2E-testing kjøres kun mot Chromium. For en offentlig tjeneste kan Firefox og WebKit vurderes, særlig for tilgjengelighetsvalidering.
+- Ingen visuell regresjonstesting (screenshot-diff). Storybook-addon finnes for dette.
 
 ---
 
-*Generert av nav-pilot · paw-ofelas · juni 2026*
+## Trunk-Based Development
+
+**Score: ✅ God**
+
+`main` fungerer som trunk. `dev/*`-branches er korte og deployes rett til dev, noe som oppfordrer til hyppige integrasjoner. Commit-historikken viser jevnlige, småe commits med conventional commit-format.
+
+**Forbedringspotensial:**
+- Ingen dokumenterte retningslinjer for PR-størrelse. Store PR-er øker risiko og reviewkostnad.
+- Ingen feature flags for gradvis utrulling. For en tjeneste i videreutvikling kan dette være nyttig for å skille deploy fra release.
+
+---
+
+## Shifting Left on Security
+
+**Score: ⚠️ God med gap**
+
+Gode tiltak på plass:
+- Alle GitHub Actions SHA-pinnet.
+- Sikkerhetshoder satt i `next.config.ts` (`X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`, `Referrer-Policy`, `Permissions-Policy`).
+- Dependabot kjører ukentlig for npm og GitHub Actions, med grupperte oppdateringer og cooldown.
+- Biome inkluderer a11y- og sikkerhetslinting.
+- Ingen hemmeligheter i kode — alt via GitHub Secrets.
+
+**Gap:**
+- Ingen container image-scanning (Trivy, Grype el.) i CI-pipeline. Et sårbart baseimage eller avhengighet ville ikke bli fanget automatisk.
+- Ingen SBOM-generering (Software Bill of Materials).
+- `knip` kjøres med `--no-exit-code`, så ubrukt kode blokkerer ikke pipeline — kun rapporteres i job summary. Kan vurderes som en myk feil ved gradvis innstramming.
+- Ingen CSP-header (`Content-Security-Policy`). Bør vurderes, spesielt med Faro-telemetri-URL-er som ekstern resource.
+
+---
+
+## Continuous Delivery
+
+**Score: ✅ Sterk**
+
+Alle endringer til `main` deployes automatisk til dev og deretter prod uten manuelle steg. Deploy-jobber har eksplisitt `needs`-avhengighet som sikrer at alle tester er grønne før deploy.
+
+Timeout er satt på alle jobber (10–20 min), noe som hindrer hengende pipelines.
+
+Pipelines trigges kun ved push (ikke schedule), noe som gir direkte sammenheng mellom endring og deploy.
+
+---
+
+## Code Maintainability
+
+**Score: ⚠️ God med gap**
+
+Sterk arkitekturell separasjon:
+- `src/lib/` — ren TypeScript-logikk uten React
+- `src/components/` — rene UI-komponenter (props inn, UI ut)
+- `src/app/` — Next.js App Router-sider
+
+Biome håndhever konsekvent kodeformatering og linting. Eksakte avhengighetsversjoner (ingen `^` eller `~`) gir reproduserbare bygg. Husky pre-commit gir tidlig tilbakemelding.
+
+**Gap:**
+- Ingen ADR (Architecture Decision Records) for dokumentasjon av arkitektoniske valg.
+- `--no-exit-code` på knip betyr at dead code akkumuleres over tid uten blokkering.
+- Storybook er delvis — tre komponenter har stories, men WizardShell, VeiviserPage og WizardStateContext mangler.
+
+---
+
+## Observability
+
+**Score: ⚠️ God med gap**
+
+Grafana Faro nylig innført for frontend-telemetri med separate endepunkter for dev og prod. `isolate: true` er satt korrekt på Faro-instansen for å unngå interferens mellom miljøer.
+
+Liveness og readiness probes er konfigurert og skiller mellom «er appen i live» og «er appen klar til å ta trafikk».
+
+**Gap:**
+- Ingen eksplisitte SLO-er (Service Level Objectives) eller error budgets definert.
+- Ingen alerting-konfigurasjon dokumentert (Prometheus/Alertmanager).
+- Faro gir frontend-telemetri, men det er ukjent om det finnes Grafana-dashboards tilknyttet tjenesten.
+- Ingen strukturert logging utover det Next.js gir som standard.
+
+---
+
+## Documentation Quality
+
+**Score: ⚠️ God med gap**
+
+README dekker oppsett, utvikling, testing og deploy-strategi. AGENTS.md og `.github/copilot-instructions.md` dokumenterer AI-assistert utviklingsflyt. CODEOWNERS er satt. Storybook fungerer som levende komponentdokumentasjon.
+
+**Gap:**
+- Ingen driftsrunbook. Hva gjøres om tjenesten er nede? Hvem varsles? Hvordan rulles tilbake?
+- Ingen incident response-dokumentasjon.
+- Ingen ADRs — viktige beslutninger (Next.js App Router, Biome over ESLint, ingen backend) er ikke nedtegnet med begrunnelse.
+- Storybook er ikke publisert / tilgjengelig for ikke-utviklere (f.eks. designere).
+
+---
+
+## Sammendrag av forbedringsforslag
+
+Prioritert etter estimert verdi vs. innsats:
+
+| Forslag | Verdi | Innsats |
+|---|---|---|
+| Legg til container image-scanning (Trivy) i CI | Høy | Lav |
+| Dokumenter rollback-prosedyre i README | Høy | Lav |
+| Legg til CSP-header i `next.config.ts` | Høy | Middels |
+| Utvid coverage til komponenter | Middels | Middels |
+| Gjør `knip` til en blokkerende feil (fjern `--no-exit-code`) | Middels | Lav |
+| Skriv ADR for sentrale arkitektoniske valg | Middels | Middels |
+| Del install-steg mellom CI-jobber (speed) | Lav | Middels |
+| Legg til SLO-definisjon og alerting | Middels | Høy |
+| Legg til stories for WizardShell og VeiviserPage | Lav | Lav |
