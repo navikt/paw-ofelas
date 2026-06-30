@@ -1,4 +1,4 @@
-import { vi, expect, describe, it, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockCustom = vi.fn();
 

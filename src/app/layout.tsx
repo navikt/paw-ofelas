@@ -48,10 +48,7 @@ export default async function RootLayout({
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
                 <LanguageHandler />
-                <FaroProvider
-                    url={process.env.FARO_URL ?? ''}
-                    environment={process.env.NAIS_CLUSTER_NAME ?? 'local'}
-                />
+                <FaroProvider url={process.env.FARO_URL ?? ''} environment={process.env.NAIS_CLUSTER_NAME ?? 'local'} />
             </body>
         </html>
     );
