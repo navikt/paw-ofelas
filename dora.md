@@ -116,10 +116,9 @@ Gode tiltak på plass:
 - Dependabot kjører ukentlig for npm og GitHub Actions, med grupperte oppdateringer og cooldown.
 - Biome inkluderer a11y- og sikkerhetslinting.
 - Ingen hemmeligheter i kode — alt via GitHub Secrets.
+- SBOM-generering og container image-scanning håndteres automatisk av `nais/docker-build-push`-action, som produserer og attesterer SBOM som standard.
 
 **Gap:**
-- Ingen container image-scanning (Trivy, Grype el.) i CI-pipeline. Et sårbart baseimage eller avhengighet ville ikke bli fanget automatisk.
-- Ingen SBOM-generering (Software Bill of Materials).
 - `knip` kjøres med `--no-exit-code`, så ubrukt kode blokkerer ikke pipeline — kun rapporteres i job summary. Kan vurderes som en myk feil ved gradvis innstramming.
 - Ingen CSP-header (`Content-Security-Policy`). Bør vurderes, spesielt med Faro-telemetri-URL-er som ekstern resource.
 
@@ -191,7 +190,6 @@ Prioritert etter estimert verdi vs. innsats:
 
 | Forslag | Verdi | Innsats |
 |---|---|---|
-| Legg til container image-scanning (Trivy) i CI | Høy | Lav |
 | Dokumenter rollback-prosedyre i README | Høy | Lav |
 | Legg til CSP-header i `next.config.ts` | Høy | Middels |
 | Utvid coverage til komponenter | Middels | Middels |
