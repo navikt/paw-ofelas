@@ -13,6 +13,7 @@ export function FaroProvider({ url, environment }: Props) {
         if (!url) return;
 
         initializeFaro({
+            isolate: true,
             url,
             app: {
                 name: 'paw-ofelas',
