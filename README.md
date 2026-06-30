@@ -68,6 +68,18 @@ Start [Storybook](https://storybook.js.org/) for komponentutvikling:
 pnpm storybook
 ```
 
+Kjør Storybook-tester i CI-modus:
+
+```sh
+pnpm test-storybook
+```
+
+Generer komponent-coverage (rapporterende) for veiviseren:
+
+```sh
+pnpm coverage:components
+```
+
 ## Deploye kun til dev
 
 Ved å prefikse branch-navnet med `dev/` vil branchen kun deployes til dev-miljøet:

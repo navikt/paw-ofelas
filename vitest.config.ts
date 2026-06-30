@@ -12,7 +12,13 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             include: ['src/lib/**/*.ts'],
-            exclude: ['src/lib/veiviser/tekster.ts', 'src/lib/veiviser/questions.ts', 'src/lib/veiviser/types.ts', 'src/components/**/*.ts', 'src/components/**/*.tsx'],
+            exclude: [
+                'src/lib/veiviser/tekster.ts',
+                'src/lib/veiviser/questions.ts',
+                'src/lib/veiviser/types.ts',
+                'src/components/**/*.ts',
+                'src/components/**/*.tsx',
+            ],
             thresholds: {
                 lines: 90,
                 functions: 90,

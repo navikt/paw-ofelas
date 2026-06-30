@@ -18,6 +18,7 @@
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "test-storybook": "vitest --project storybook --run",
+        "coverage:components": "vitest --config vitest.components.config.ts --run --coverage",
         "coverage": "vitest --project unit run --coverage",
         "prepare": "husky"
     },
