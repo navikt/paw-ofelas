@@ -4,6 +4,10 @@ allowBuilds:
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+minimumReleaseAgeExclude:
+  - postcss@8.5.10
 onlyBuiltDependencies:
   - core-js-pure
   - esbuild
+overrides:
+  postcss@<8.5.10: ^8.5.10
