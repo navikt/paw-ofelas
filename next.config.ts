@@ -11,6 +11,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
     output: 'standalone',
     basePath: '/arbeid/veiviser',
+    turbopack: {
+        root: __dirname,
+    },
     async headers() {
         return [
             {

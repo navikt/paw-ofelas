@@ -6,7 +6,7 @@
 # Suggested by: (root)
 # allow_docker = true
 # Suggested by: (root)
-# allow_localhost_any = true
+allow_localhost_any = true
 
 # The following are machine-specific — add to ~/.config/cplt/config.toml:
 # sandbox.allow_cache_exec += ["ms-playwright"]  # in personal config
