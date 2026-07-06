@@ -4,12 +4,12 @@
 [propose]
 # ⚠️  grants access to Docker socket — effectively root on the host
 # Suggested by: (root)
-allow_docker = true
+# allow_docker = true
 # Suggested by: (root)
-allow_localhost_any = true
+# allow_localhost_any = true
 
 # The following are machine-specific — add to ~/.config/cplt/config.toml:
 # sandbox.allow_cache_exec += ["ms-playwright"]  # in personal config
 [propose.allow]
-ports = [6006]
+ports = [6006, 63315]
 localhost = [3000]
