@@ -75,7 +75,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Next.js build
-              uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+              uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
               with:
                   path: .next/cache
                   key: nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('src/**/*.{ts,tsx}') }}
@@ -88,7 +88,7 @@ jobs:
                   HUSKY: 0
 
             - name: Push docker image to GAR
-              uses: nais/docker-build-push@05dbb6091b30bd84279c6d64a45ef8782fd410a5 # v0
+              uses: nais/docker-build-push@31c3a7321909bcb20799fdf46153fec721fd9512 # v0
               id: docker-build-push
               with:
                   team: paw
@@ -120,7 +120,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Playwright browsers
-              uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+              uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
               with:
                   path: ~/.cache/ms-playwright
                   key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
@@ -172,7 +172,7 @@ jobs:
                   HUSKY: 0
 
             - name: Cache Playwright browsers
-              uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+              uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
               with:
                   path: ~/.cache/ms-playwright
                   key: playwright-chromium-${{ hashFiles('pnpm-lock.yaml') }}
@@ -204,7 +204,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
             - name: Deploy
-              uses: nais/deploy/actions/deploy@5fdd91aaf69bb0d6dd5e5118cdacb639f487b93b # v2
+              uses: nais/deploy/actions/deploy@2d18f050f07b6a007864c6a57070ed915d571beb # v2
               env:
                   CLUSTER: dev-gcp
                   RESOURCE: .nais/nais-dev.yaml
@@ -224,7 +224,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
             - name: Deploy
-              uses: nais/deploy/actions/deploy@5fdd91aaf69bb0d6dd5e5118cdacb639f487b93b # v2
+              uses: nais/deploy/actions/deploy@2d18f050f07b6a007864c6a57070ed915d571beb # v2
               env:
                   CLUSTER: prod-gcp
                   RESOURCE: .nais/nais-prod.yaml
