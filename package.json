@@ -30,8 +30,8 @@
         "@navikt/ds-react": "8.14.0",
         "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "next": "16.2.9",
-        "react": "19.2.7",
-        "react-dom": "19.2.7"
+        "react": "19.2.8",
+        "react-dom": "19.2.8"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.12.1",
