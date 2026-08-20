@@ -10,6 +10,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
     output: 'standalone',
+    productionBrowserSourceMaps: true,
     basePath: '/arbeid/veiviser',
     turbopack: {
         root: __dirname,
