@@ -1,15 +1,5 @@
 # paw-ofelas
 
-[![Build](https://github.com/navikt/paw-ofelas/actions/workflows/deploy.yaml/badge.svg)](https://github.com/navikt/paw-ofelas/actions/workflows/deploy.yaml)
-![Node](https://img.shields.io/badge/node-24-339933?logo=node.js&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
-![Tailwind_CSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?logo=tailwind-css)
-![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?logo=storybook&logoColor=white)
-![Lint](https://img.shields.io/badge/lint-biome-60A5FA?logo=biome&logoColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white)
-
 Veiviser som hjelper innbyggere avgjøre om de bør registrere seg som arbeidssøker eller melde seg til arbeidsrettet oppfølging.
 
 ## Lenker
