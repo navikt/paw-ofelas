@@ -1,4 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
+import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import { answerNQuestions } from './helpers';
 
@@ -11,12 +12,16 @@ const AXE_TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa'];
 
 const BASE = '/arbeid/veiviser';
 
+async function analyzeApp(page: Page) {
+    return new AxeBuilder({ page }).include('main').withTags(AXE_TAGS).analyze();
+}
+
 test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
     test('startside har ingen a11y-brudd', async ({ page }) => {
         await page.goto(BASE);
         await page.waitForSelector('[role="progressbar"]');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -24,7 +29,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await page.goto(`${BASE}/en`);
         await page.waitForSelector('[role="progressbar"]');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -32,7 +37,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await page.goto(`${BASE}/nn`);
         await page.waitForSelector('[role="progressbar"]');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -45,7 +50,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await page.getByRole('button', { name: 'Neste' }).click();
         await page.waitForSelector('[role="status"]');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -59,7 +64,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
 
         await page.waitForSelector('[role="status"]');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -71,7 +76,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await answerNQuestions(page, 'Nei', 1);
         await page.waitForSelector('text=Spørsmål 2 av 10');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -83,7 +88,7 @@ test.describe('Tilgjengelighet (WCAG 2.1 AA)', () => {
         await answerNQuestions(page, 'Nei', 2);
         await page.waitForSelector('text=Spørsmål 3 av 10');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 });
@@ -135,7 +140,7 @@ test.describe('Axe-scan midtveis i flyten', () => {
         await answerNQuestions(page, 'Nei', 5);
         await page.waitForSelector('text=Spørsmål 6 av 10');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 
@@ -147,7 +152,7 @@ test.describe('Axe-scan midtveis i flyten', () => {
         await answerNQuestions(page, 'Nei', 8);
         await page.waitForSelector('text=Spørsmål 9 av 10');
 
-        const results = await new AxeBuilder({ page }).withTags(AXE_TAGS).analyze();
+        const results = await analyzeApp(page);
         expect(results.violations).toEqual([]);
     });
 });

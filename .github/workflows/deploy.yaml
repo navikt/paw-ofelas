@@ -183,6 +183,10 @@ jobs:
             - name: Run E2E tests
               run: pnpm e2e
 
+            - name: Run decorator smoke tests (non-blocking)
+              continue-on-error: true
+              run: pnpm e2e:decorator-smoke
+
             - name: Upload Playwright report
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
               if: failure()

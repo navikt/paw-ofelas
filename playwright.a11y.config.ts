@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
     testDir: './e2e',
+    testMatch: '**/accessibility.spec.ts',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
@@ -11,10 +12,9 @@ export default defineConfig({
         baseURL: 'http://localhost:3000/arbeid/veiviser',
         trace: 'on-first-retry',
     },
-    testIgnore: ['**/accessibility.spec.ts', '**/decorator-smoke.spec.ts'],
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: {
-        command: 'pnpm dev',
+        command: 'APP_ONLY_E2E=true pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
         reuseExistingServer: !process.env.CI,
         stdout: 'ignore',

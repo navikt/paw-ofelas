@@ -28,26 +28,26 @@ export default async function RootLayout({
 }>) {
     const headersList = await headers();
     const language = (headersList.get(LANGUAGE_HEADER) ?? 'nb') as Language;
-
-    const Decorator = await fetchDecoratorReact({
-        env: getDecoratorEnv(),
-        params: {
-            context: 'privatperson',
-            language,
-        },
-    });
+    const appOnlyE2E = process.env.APP_ONLY_E2E === 'true';
+    const Decorator = appOnlyE2E
+        ? null
+        : await fetchDecoratorReact({
+              env: getDecoratorEnv(),
+              params: {
+                  context: 'privatperson',
+                  language,
+              },
+          });
 
     return (
         <html lang={language}>
-            <head>
-                <Decorator.HeadAssets />
-            </head>
+            <head>{Decorator ? <Decorator.HeadAssets /> : null}</head>
             <body>
-                <Decorator.Header />
+                {Decorator ? <Decorator.Header /> : null}
                 <WizardStateProvider>{children}</WizardStateProvider>
-                <Decorator.Footer />
-                <Decorator.Scripts loader={Script} />
-                <LanguageHandler />
+                {Decorator ? <Decorator.Footer /> : null}
+                {Decorator ? <Decorator.Scripts loader={Script} /> : null}
+                {Decorator ? <LanguageHandler /> : null}
                 <FaroProvider url={process.env.FARO_URL ?? ''} environment={process.env.NAIS_CLUSTER_NAME ?? 'local'} />
             </body>
         </html>

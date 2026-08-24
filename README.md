@@ -46,10 +46,21 @@ For watch-modus under utvikling:
 pnpm test:watch
 ```
 
-Kjør E2E-tester med [Playwright](https://playwright.dev/):
+Kjør blokkerende E2E-tester med [Playwright](https://playwright.dev/):
 
 ```sh
 pnpm e2e
+```
+
+`pnpm e2e` kjører:
+
+- veiviser-flytstester mot vanlig layout
+- a11y-tester i app-only modus (`APP_ONLY_E2E=true`) slik at tilgjengelighetsmålingene gjelder appen og ikke Nav-dekoratøren
+
+Kjør dekoratør-integrasjon som separat, ikke-blokkerende smoke:
+
+```sh
+pnpm e2e:decorator-smoke
 ```
 
 Start [Storybook](https://storybook.js.org/) for komponentutvikling:
