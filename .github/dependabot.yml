@@ -11,7 +11,7 @@ updates:
     cooldown:
       default-days: 7
       semver-major-days: 14
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     ignore:
       - dependency-name: typescript
         update-types: ["version-update:semver-major"]
