@@ -88,7 +88,7 @@ jobs:
                   HUSKY: 0
 
             - name: Push docker image to GAR
-              uses: nais/docker-build-push@423a915c9b72edf2ba848b88171ccb0489e2a40a # v0
+              uses: nais/docker-build-push@bfe52e3ad6d0e96fd1056a03acb7b619aaffb39d # v0
               id: docker-build-push
               with:
                   team: paw
@@ -208,7 +208,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - name: Deploy
-              uses: nais/deploy/actions/deploy@7ad7c2b833e1db74a80954e3ee6bb6ac060a8ae7 # v2
+              uses: nais/deploy/actions/deploy@9850be311389ca754d9a9f2280615419d738c891 # v3
               env:
                   CLUSTER: dev-gcp
                   RESOURCE: .nais/nais-dev.yaml
@@ -228,7 +228,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - name: Deploy
-              uses: nais/deploy/actions/deploy@7ad7c2b833e1db74a80954e3ee6bb6ac060a8ae7 # v2
+              uses: nais/deploy/actions/deploy@9850be311389ca754d9a9f2280615419d738c891 # v3
               env:
                   CLUSTER: prod-gcp
                   RESOURCE: .nais/nais-prod.yaml
