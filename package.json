@@ -4,6 +4,8 @@
     "private": true,
     "packageManager": "pnpm@11.22.0",
     "scripts": {
+        "biome:migrate": "biome migrate --write",
+        "biome:format": "biome format --write ./src",
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
@@ -19,7 +21,7 @@
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "test-storybook": "vitest --project storybook --run",
-        "coverage:components": "vitest --config vitest.components.config.ts --run --coverage",
+        "coverage:components": "vitest --config vitest.components.config.mts --run --coverage",
         "coverage": "vitest --project unit run --coverage",
         "prepare": "husky"
     },

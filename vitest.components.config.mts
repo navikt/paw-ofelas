@@ -1,8 +1,7 @@
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const dirname = import.meta.dirname;
 
 // Run Storybook stories as jsdom tests to collect component coverage.
 // The browser-based storybookTest plugin (Playwright) is intentionally not used here
