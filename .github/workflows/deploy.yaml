@@ -28,7 +28,7 @@ jobs:
             - name: Set up node
               uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
               with:
-                  node-version: '24.21.0'
+                  node-version: '24.22.0'
                   cache: 'pnpm'
                   registry-url: 'https://npm.pkg.github.com'
 
@@ -64,7 +64,7 @@ jobs:
             - name: Set up node
               uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
               with:
-                  node-version: '24.21.0'
+                  node-version: '24.22.0'
                   cache: 'pnpm'
                   registry-url: 'https://npm.pkg.github.com'
 
@@ -109,7 +109,7 @@ jobs:
             - name: Set up node
               uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
               with:
-                  node-version: '24.21.0'
+                  node-version: '24.22.0'
                   cache: 'pnpm'
                   registry-url: 'https://npm.pkg.github.com'
 
@@ -161,7 +161,7 @@ jobs:
             - name: Set up node
               uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
               with:
-                  node-version: '24.21.0'
+                  node-version: '24.22.0'
                   cache: 'pnpm'
                   registry-url: 'https://npm.pkg.github.com'
 
