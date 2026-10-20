@@ -87,6 +87,14 @@ jobs:
               env:
                   HUSKY: 0
 
+            - name: Upload static assets to CDN
+              uses: nais/deploy/actions/cdn-upload/v2@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v2
+              with:
+                  team: paw
+                  source: .next/static
+                  destination: paw-ofelas/_next/static
+                  source_keep_parent_name: false
+
             - name: Push docker image to GAR
               uses: nais/docker-build-push@dd7421d5068057a020ca46ead966c26190c516b1 # v0
               id: docker-build-push

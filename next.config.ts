@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 
 const securityHeaders = [
     { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -8,10 +9,12 @@ const securityHeaders = [
     { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
 ];
 
-const nextConfig: NextConfig = {
+export default (phase: string): NextConfig => ({
     output: 'standalone',
     productionBrowserSourceMaps: true,
     basePath: '/arbeid/veiviser',
+    // Use one shared CDN prefix across deployment branches; public source maps are intentional.
+    assetPrefix: phase === PHASE_DEVELOPMENT_SERVER ? undefined : 'https://cdn.nav.no/paw/paw-ofelas',
     turbopack: {
         root: __dirname,
     },
@@ -23,6 +26,4 @@ const nextConfig: NextConfig = {
             },
         ];
     },
-};
-
-export default nextConfig;
+});
