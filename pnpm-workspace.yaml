@@ -6,6 +6,7 @@ ignoredBuiltDependencies:
   - unrs-resolver
 minimumReleaseAgeExclude:
   - postcss@8.5.10
+  - '@navikt/arbeidssokerregisteret-utils@3.0.0 || 3.0.1'
 onlyBuiltDependencies:
   - core-js-pure
   - esbuild
