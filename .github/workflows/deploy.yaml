@@ -88,7 +88,7 @@ jobs:
                   HUSKY: 0
 
             - name: Upload static assets to CDN
-              uses: nais/deploy/actions/cdn-upload/v2@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v2
+              uses: nais/deploy/actions/cdn-upload/v2@6a9dcd6df697ec2d38edc78cadb0b9acd1232f50 # v2
               with:
                   team: paw
                   source: .next/static
@@ -216,7 +216,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - name: Deploy
-              uses: nais/deploy/actions/deploy@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v3
+              uses: nais/deploy/actions/deploy@6a9dcd6df697ec2d38edc78cadb0b9acd1232f50 # v3
               env:
                   CLUSTER: dev-gcp
                   RESOURCE: .nais/nais-dev.yaml
@@ -236,7 +236,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - name: Deploy
-              uses: nais/deploy/actions/deploy@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v3
+              uses: nais/deploy/actions/deploy@6a9dcd6df697ec2d38edc78cadb0b9acd1232f50 # v3
               env:
                   CLUSTER: prod-gcp
                   RESOURCE: .nais/nais-prod.yaml
