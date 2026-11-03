@@ -23,7 +23,7 @@ export function WizardShell({ sprak }: Props) {
 
     const questionTekst = lagHentTekstForSprak(SPØRSMÅL_TEKSTER, sprak)(currentQuestion.id) as QuestionTekst;
 
-    const focusTargetRef = useRef<HTMLDivElement>(null);
+    const focusTargetRef = useRef<HTMLHeadingElement>(null);
     const isFirstRender = useRef(true);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: deps er bevisste triggere for fokushåndtering
@@ -64,7 +64,6 @@ export function WizardShell({ sprak }: Props) {
             }}
         >
             <VStack gap="space-24">
-                <div ref={focusTargetRef} tabIndex={-1} className="navds-sr-only" />
                 {!isComplete(state) && (
                     <ProgressIndicator
                         currentStep={state.currentIndex + 1}
@@ -77,6 +76,7 @@ export function WizardShell({ sprak }: Props) {
                     <ResultStep
                         sprak={sprak}
                         outcome={state.result}
+                        headingRef={focusTargetRef}
                         onBack={() => dispatch({ type: 'BACK' })}
                         onRestart={() => {
                             logEvent('paw-ofelas.aktivitet', { aktivitet: 'startet på nytt' });
@@ -90,6 +90,7 @@ export function WizardShell({ sprak }: Props) {
                         category={questionTekst.category}
                         question={questionTekst.question}
                         helpText={questionTekst.helpText}
+                        headingRef={focusTargetRef}
                         selectedAnswer={selectedAnswer}
                         onSelect={(answer) => dispatch({ type: 'SELECT', answer })}
                         onNext={handleNext}

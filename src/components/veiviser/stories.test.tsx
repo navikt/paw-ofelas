@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { WizardStateProvider } from '@/components/veiviser/WizardStateContext';
 import { ProgressIndicator } from './ProgressIndicator';
@@ -61,11 +62,20 @@ describe('QuestionStep', () => {
     it('viser hjelpetekst når helpText er satt', () => {
         render(<QuestionStep {...defaultQuestionProps} helpText="Dagpenger krever registrering." />);
         expect(screen.getByText('Dagpenger krever registrering.')).toBeInTheDocument();
+        const group = screen.getByRole('radiogroup', {
+            name: 'Mottar du dagpenger?',
+            description: 'Dagpenger krever registrering.',
+        });
+        expect(group).toHaveAccessibleName('Mottar du dagpenger?');
+        expect(group).toHaveAccessibleDescription('Dagpenger krever registrering.');
     });
 
     it('skjuler hjelpetekst når helpText ikke er satt', () => {
         render(<QuestionStep {...defaultQuestionProps} />);
         expect(screen.queryByText('Dagpenger krever registrering.')).not.toBeInTheDocument();
+        const group = screen.getByRole('radiogroup', { name: 'Mottar du dagpenger?' });
+        expect(group).toHaveAccessibleName('Mottar du dagpenger?');
+        expect(group).not.toHaveAccessibleDescription();
     });
 
     it('viser forhåndsvalgt svar', () => {
@@ -164,38 +174,63 @@ describe('WizardShell', () => {
         expect(screen.getByRole('radiogroup')).toBeInTheDocument();
     });
 
-    it('navigerer til resultat etter ja på Q1 (circuit-breaker)', () => {
+    it('navigerer til resultat etter ja på Q1 (circuit-breaker) og flytter fokus til overskriften', () => {
         renderShell();
         fireEvent.click(screen.getByRole('radio', { name: 'Ja' }));
         fireEvent.click(screen.getByRole('button', { name: 'Neste' }));
-        expect(screen.getByText('Du bør registrere deg som arbeidssøker')).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toHaveFocus();
         expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
     });
 
-    it('navigerer tilbake fra resultat og gjenoppretter svaret', () => {
+    it('navigerer tilbake fra resultat, gjenoppretter svaret og flytter fokus til spørsmålet', () => {
         renderShell();
         fireEvent.click(screen.getByRole('radio', { name: 'Ja' }));
         fireEvent.click(screen.getByRole('button', { name: 'Neste' }));
         fireEvent.click(screen.getByRole('button', { name: 'Tilbake' }));
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
         expect(screen.getByRole('radio', { name: 'Ja' })).toBeChecked();
+        expect(
+            screen.getByRole('heading', {
+                name: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
+            }),
+        ).toHaveFocus();
     });
 
-    it('starter på nytt fra resultat', () => {
+    it('starter på nytt fra resultat og flytter fokus til første spørsmål', () => {
         renderShell();
         fireEvent.click(screen.getByRole('radio', { name: 'Ja' }));
         fireEvent.click(screen.getByRole('button', { name: 'Neste' }));
         fireEvent.click(screen.getByRole('button', { name: 'Start på nytt' }));
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
         expect(screen.getByRole('radio', { name: 'Ja' })).not.toBeChecked();
+        expect(
+            screen.getByRole('heading', {
+                name: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
+            }),
+        ).toHaveFocus();
     });
 
-    it('navigerer til Q2 etter nei på Q1, og kan gå tilbake til Q1', () => {
+    it('navigerer til Q2 etter nei på Q1, og kan gå tilbake til Q1 med fokus på spørsmålet', () => {
         renderShell();
         fireEvent.click(screen.getByRole('radio', { name: 'Nei' }));
         fireEvent.click(screen.getByRole('button', { name: 'Neste' }));
         expect(screen.getByRole('button', { name: 'Tilbake' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Er du permittert?' })).toHaveFocus();
         fireEvent.click(screen.getByRole('button', { name: 'Tilbake' }));
         expect(screen.getByRole('radio', { name: 'Nei' })).toBeChecked();
+        expect(
+            screen.getByRole('heading', {
+                name: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
+            }),
+        ).toHaveFocus();
+    });
+
+    it('lar fokus bli på valgt svar når et svar velges', async () => {
+        renderShell();
+        const jaRadio = screen.getByRole('radio', { name: 'Ja' });
+
+        await userEvent.click(jaRadio);
+
+        expect(jaRadio).toHaveFocus();
     });
 });
