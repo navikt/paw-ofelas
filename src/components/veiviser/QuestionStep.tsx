@@ -2,6 +2,7 @@
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, BodyShort, Box, Button, Heading, HStack, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { type Ref, useId } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -29,14 +30,26 @@ type Props = {
     category: string;
     question: string;
     helpText?: string;
+    headingRef?: Ref<HTMLHeadingElement>;
     selectedAnswer: 'ja' | 'nei' | undefined;
     onSelect: (answer: 'ja' | 'nei') => void;
     onNext: () => void;
     onBack?: () => void;
 };
 
-export function QuestionStep({ sprak, category, question, helpText, selectedAnswer, onSelect, onNext, onBack }: Props) {
+export function QuestionStep({
+    sprak,
+    category,
+    question,
+    helpText,
+    headingRef,
+    selectedAnswer,
+    onSelect,
+    onNext,
+    onBack,
+}: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const helpTextId = useId();
 
     return (
         <VStack gap="space-8">
@@ -44,12 +57,14 @@ export function QuestionStep({ sprak, category, question, helpText, selectedAnsw
                 <BodyLong size="small" style={{ color: 'var(--a-text-subtle)' }}>
                     {category}
                 </BodyLong>
-                <Heading size="medium" level="2">
+                <Heading ref={headingRef} tabIndex={-1} size="medium" level="2">
                     {question}
                 </Heading>
                 {helpText && (
                     <Box background="info-soft" borderRadius="8" padding="space-12">
-                        <BodyShort size="small">{helpText}</BodyShort>
+                        <BodyShort id={helpTextId} size="small">
+                            {helpText}
+                        </BodyShort>
                     </Box>
                 )}
             </VStack>
@@ -57,6 +72,7 @@ export function QuestionStep({ sprak, category, question, helpText, selectedAnsw
             <RadioGroup
                 legend={question}
                 hideLegend
+                aria-describedby={helpText ? helpTextId : undefined}
                 value={selectedAnswer ?? null}
                 onChange={(val) => onSelect(val as 'ja' | 'nei')}
             >

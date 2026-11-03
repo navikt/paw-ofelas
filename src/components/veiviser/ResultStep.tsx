@@ -3,6 +3,7 @@
 import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import type { Ref } from 'react';
 import { logEvent } from '@/lib/analytics';
 import type { Outcome } from '@/lib/veiviser/types';
 
@@ -53,11 +54,12 @@ const CTA_HREF: Record<Outcome, string> = {
 type Props = {
     sprak: Sprak;
     outcome: Outcome;
+    headingRef?: Ref<HTMLHeadingElement>;
     onRestart: () => void;
     onBack?: () => void;
 };
 
-export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
+export function ResultStep({ sprak, outcome, headingRef, onRestart, onBack }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const heading = tekst(`${outcome}Heading`);
     const description = tekst(`${outcome}Description`);
@@ -73,7 +75,7 @@ export function ResultStep({ sprak, outcome, onRestart, onBack }: Props) {
                         style={{ color: 'var(--a-icon-success)', flexShrink: 0, marginTop: '0.125rem' }}
                     />
                     <VStack>
-                        <Heading size="medium" level="2" spacing>
+                        <Heading ref={headingRef} tabIndex={-1} size="medium" level="2" spacing>
                             {heading}
                         </Heading>
                         <BodyLong>{description}</BodyLong>

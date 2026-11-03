@@ -39,7 +39,7 @@ export const ArbeidssøkerViaCircuitBreaker: Story = {
         const canvas = within(canvasElement);
 
         await answerAndContinue(canvasElement, 'Ja');
-        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toBeVisible();
+        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toHaveFocus();
     },
 };
 
@@ -54,7 +54,7 @@ export const OppfølgingViaAccumulerteSvar: Story = {
 
         await expect(
             within(canvasElement).getByRole('heading', { name: 'Du bør be om arbeidsrettet oppfølging' }),
-        ).toBeVisible();
+        ).toHaveFocus();
     },
 };
 
@@ -64,21 +64,17 @@ export const TilbakeOgEndreSvar: Story = {
         const canvas = within(canvasElement);
 
         await answerAndContinue(canvasElement, 'Nei');
-        await expect(
-            canvas.getByRole('heading', {
-                name: 'Er du permittert?',
-            }),
-        ).toBeVisible();
+        await expect(canvas.getByRole('heading', { name: 'Er du permittert?' })).toHaveFocus();
         await userEvent.click(canvas.getByRole('button', { name: 'Tilbake' }));
         await expect(
             canvas.getByRole('heading', {
                 name: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
             }),
-        ).toBeVisible();
+        ).toHaveFocus();
         await expect(canvas.getByRole('radio', { name: 'Nei' })).toBeChecked();
         await userEvent.click(canvas.getByRole('radio', { name: 'Ja' }));
         await userEvent.click(canvas.getByRole('button', { name: 'Neste' }));
-        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toBeVisible();
+        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toHaveFocus();
     },
 };
 
@@ -88,13 +84,13 @@ export const StartPåNyttFjernerSvar: Story = {
         const canvas = within(canvasElement);
 
         await answerAndContinue(canvasElement, 'Ja');
-        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toBeVisible();
+        await expect(canvas.getByRole('heading', { name: 'Du bør registrere deg som arbeidssøker' })).toHaveFocus();
         await userEvent.click(canvas.getByRole('button', { name: 'Start på nytt' }));
         await expect(
             canvas.getByRole('heading', {
                 name: 'Mottar du eller skal du søke om pengestøtte som krever at du er registrert som arbeidssøker?',
             }),
-        ).toBeVisible();
+        ).toHaveFocus();
         await expect(canvas.getByRole('radio', { name: 'Ja' })).not.toBeChecked();
         await expect(canvas.getByRole('radio', { name: 'Nei' })).not.toBeChecked();
         await expect(canvas.getByRole('button', { name: 'Neste' })).toBeDisabled();
@@ -105,15 +101,9 @@ export const FokusFlyttesVedStegbytte: Story = {
     args: { sprak: 'nb' },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
-        const focusTarget = canvasElement.querySelector<HTMLElement>('[tabindex="-1"]');
-
-        if (!focusTarget) {
-            throw new Error('Fant ikke veiviserens fokusmål');
-        }
 
         await answerAndContinue(canvasElement, 'Nei');
-        await expect(canvas.getByRole('heading', { name: 'Er du permittert?' })).toBeVisible();
-        await expect(focusTarget).toHaveFocus();
+        await expect(canvas.getByRole('heading', { name: 'Er du permittert?' })).toHaveFocus();
 
         const noRadio = canvas.getByRole('radio', { name: 'Nei' });
         await userEvent.click(noRadio);
@@ -121,7 +111,6 @@ export const FokusFlyttesVedStegbytte: Story = {
         await userEvent.click(canvas.getByRole('button', { name: 'Neste' }));
         await expect(
             canvas.getByRole('heading', { name: 'Har du fått beskjed om å registrere deg som arbeidssøker?' }),
-        ).toBeVisible();
-        await expect(focusTarget).toHaveFocus();
+        ).toHaveFocus();
     },
 };

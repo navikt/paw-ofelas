@@ -102,8 +102,9 @@ test.describe('Fokus og tastaturnavigasjon', () => {
         await page.getByRole('button', { name: 'Neste' }).click();
         await page.waitForSelector('text=Spørsmål 2 av 10');
 
-        const focusedClass = await page.evaluate(() => document.activeElement?.className ?? '');
-        expect(focusedClass).toContain('navds-sr-only');
+        const heading = page.getByRole('heading', { level: 2, name: 'Er du permittert?' });
+        await expect(heading).toBeVisible();
+        await expect(heading).toBeFocused();
     });
 
     test('hele flyten kan gjennomføres med kun tastatur', async ({ page }) => {
