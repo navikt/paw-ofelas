@@ -43,10 +43,6 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
-      tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
       testing-library:
         patterns:
           - "@testing-library/*"
