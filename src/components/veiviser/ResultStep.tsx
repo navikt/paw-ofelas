@@ -69,11 +69,13 @@ export function ResultStep({ sprak, outcome, headingRef, onRestart, onBack }: Pr
         <VStack gap="space-24" role="status">
             <Box background="success-soft" borderRadius="12" padding="space-16">
                 <HStack gap="space-8" wrap={false}>
-                    <CheckmarkCircleFillIcon
-                        aria-hidden
-                        fontSize="1.5rem"
-                        style={{ color: 'var(--a-icon-success)', flexShrink: 0, marginTop: '0.125rem' }}
-                    />
+                    <Box asChild flexShrink="0" marginBlock="space-2 space-0">
+                        <CheckmarkCircleFillIcon
+                            aria-hidden
+                            fontSize="1.5rem"
+                            color="var(--ax-text-success-decoration)"
+                        />
+                    </Box>
                     <VStack>
                         <Heading ref={headingRef} tabIndex={-1} size="medium" level="2" spacing>
                             {heading}
