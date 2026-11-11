@@ -1,7 +1,8 @@
 'use client';
 
 import { lagHentTekstForSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { Label } from '@navikt/ds-react';
+import { Label, ProgressBar, VStack } from '@navikt/ds-react';
+import { useId } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -22,39 +23,25 @@ type Props = {
 };
 
 export function ProgressIndicator({ currentStep, totalSteps, sprak }: Props) {
+    const labelId = useId();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const label = tekst('sporsmalAvTotal')(currentStep, totalSteps);
 
     return (
-        <div>
-            <Label size="small" as="span">
+        <VStack gap="space-8">
+            <Label size="small" as="span" id={labelId}>
                 {label}
             </Label>
-            <div
-                role="progressbar"
+            <ProgressBar
+                size="small"
+                value={currentStep}
+                valueMax={totalSteps}
+                aria-labelledby={labelId}
+                aria-valuetext={label}
+                aria-valuemin={1}
                 aria-live="polite"
                 aria-atomic="true"
-                aria-label={label}
-                aria-valuenow={currentStep}
-                aria-valuemin={1}
-                aria-valuemax={totalSteps}
-                style={{
-                    height: '6px',
-                    background: 'var(--a-gray-400)',
-                    borderRadius: '3px',
-                    marginTop: 'var(--a-spacing-2)',
-                }}
-            >
-                <div
-                    style={{
-                        height: '100%',
-                        width: `${(currentStep / totalSteps) * 100}%`,
-                        background: 'var(--a-blue-700)',
-                        borderRadius: '3px',
-                        transition: 'width 0.2s ease',
-                    }}
-                />
-            </div>
-        </div>
+            />
+        </VStack>
     );
 }

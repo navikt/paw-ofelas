@@ -39,6 +39,35 @@ describe('ProgressIndicator', () => {
         render(<ProgressIndicator currentStep={3} totalSteps={10} sprak="en" />);
         expect(screen.getByText('Question 3 of 10')).toBeInTheDocument();
     });
+
+    it.each([
+        { sprak: 'nb' as const, label: 'Spørsmål 1 av 10' },
+        { sprak: 'nn' as const, label: 'Spørsmål 1 av 10' },
+        { sprak: 'en' as const, label: 'Question 1 of 10' },
+    ])('har tilgjengelig navn, verdier og tekst for sprak=$sprak', ({ sprak, label }) => {
+        render(<ProgressIndicator currentStep={1} totalSteps={10} sprak={sprak} />);
+
+        const progress = screen.getByRole('progressbar', { name: label });
+        expect(progress).toHaveAccessibleName(label);
+        expect(progress).toHaveAttribute('aria-valuenow', '1');
+        expect(progress).toHaveAttribute('aria-valuemin', '1');
+        expect(progress).toHaveAttribute('aria-valuemax', '10');
+        expect(progress).toHaveAttribute('aria-valuetext', label);
+    });
+
+    it('oppdaterer verdier ved rerender uten å duplisere indikatoren', () => {
+        const { rerender } = render(<ProgressIndicator currentStep={1} totalSteps={10} sprak="nb" />);
+
+        rerender(<ProgressIndicator currentStep={2} totalSteps={8} sprak="nb" />);
+
+        const progressIndicators = screen.getAllByRole('progressbar');
+        expect(progressIndicators).toHaveLength(1);
+        expect(progressIndicators[0]).toHaveAccessibleName('Spørsmål 2 av 8');
+        expect(progressIndicators[0]).toHaveAttribute('aria-valuenow', '2');
+        expect(progressIndicators[0]).toHaveAttribute('aria-valuemin', '1');
+        expect(progressIndicators[0]).toHaveAttribute('aria-valuemax', '8');
+        expect(progressIndicators[0]).toHaveAttribute('aria-valuetext', 'Spørsmål 2 av 8');
+    });
 });
 
 // QuestionStep

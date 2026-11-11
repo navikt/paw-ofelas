@@ -118,16 +118,22 @@ test.describe('Språkstøtte', () => {
     test('norsk bokmål er standard på /', async ({ page }) => {
         await page.goto('');
         await expect(page.getByRole('heading', { name: /hva bør du velge/i })).toBeVisible();
+        const progress = page.getByRole('progressbar', { name: 'Spørsmål 1 av 10' });
+        await expect(progress).toHaveAttribute('aria-valuetext', 'Spørsmål 1 av 10');
     });
 
     test('/en viser engelsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/en');
         await expect(page.getByRole('heading', { name: /what should you choose/i })).toBeVisible();
+        const progress = page.getByRole('progressbar', { name: 'Question 1 of 10' });
+        await expect(progress).toHaveAttribute('aria-valuetext', 'Question 1 of 10');
     });
 
     test('/nn viser nynorsk overskrift', async ({ page }) => {
         await page.goto('/arbeid/veiviser/nn');
         await expect(page.getByRole('heading', { name: /kva bør du velje/i })).toBeVisible();
+        const progress = page.getByRole('progressbar', { name: 'Spørsmål 1 av 10' });
+        await expect(progress).toHaveAttribute('aria-valuetext', 'Spørsmål 1 av 10');
     });
 
     test('ugyldig språkkode redirecter til /', async ({ page }) => {

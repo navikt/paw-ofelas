@@ -27,6 +27,9 @@ const verifyProgress = async (canvasElement: HTMLElement, currentStep: number) =
     await expect(progress).toHaveAttribute('aria-valuemin', '1');
     await expect(progress).toHaveAttribute('aria-valuemax', '10');
     await expect(progress).toHaveAttribute('aria-valuenow', String(currentStep));
+    await expect(progress).toHaveAttribute('aria-valuetext', label);
+    await expect(progress).toHaveAttribute('aria-live', 'polite');
+    await expect(progress).toHaveAttribute('aria-atomic', 'true');
     await expect(canvas.getByText(label)).toBeVisible();
 };
 
