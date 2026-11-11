@@ -54,7 +54,7 @@ export function QuestionStep({
     return (
         <VStack gap="space-8">
             <VStack gap="space-2">
-                <BodyLong size="small" style={{ color: 'var(--a-text-subtle)' }}>
+                <BodyLong size="small" textColor="subtle">
                     {category}
                 </BodyLong>
                 <Heading ref={headingRef} tabIndex={-1} size="medium" level="2">

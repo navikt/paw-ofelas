@@ -14,9 +14,9 @@ export default defineConfig({
     testIgnore: ['**/accessibility.spec.ts', '**/decorator-smoke.spec.ts'],
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: {
-        command: 'pnpm dev',
+        command: 'APP_ONLY_E2E=true pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         stdout: 'ignore',
     },
 });

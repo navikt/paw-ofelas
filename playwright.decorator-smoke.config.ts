@@ -14,9 +14,9 @@ export default defineConfig({
     },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: {
-        command: 'pnpm dev',
+        command: 'APP_ONLY_E2E=false pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         stdout: 'ignore',
     },
 });

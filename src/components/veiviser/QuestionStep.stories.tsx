@@ -1,3 +1,4 @@
+import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
@@ -9,9 +10,9 @@ const meta: Meta<typeof QuestionStep> = {
     tags: ['autodocs'],
     decorators: [
         (Story) => (
-            <div style={{ maxWidth: 640, padding: 24 }}>
+            <Box maxWidth="640px" padding="space-24">
                 <Story />
-            </div>
+            </Box>
         ),
     ],
 };

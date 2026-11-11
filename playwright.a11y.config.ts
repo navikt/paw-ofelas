@@ -16,7 +16,7 @@ export default defineConfig({
     webServer: {
         command: 'APP_ONLY_E2E=true pnpm dev',
         url: 'http://localhost:3000/arbeid/veiviser',
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         stdout: 'ignore',
     },
 });

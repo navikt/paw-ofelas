@@ -1,3 +1,4 @@
+import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { WizardShell } from '@/components/veiviser/WizardShell';
@@ -10,9 +11,9 @@ const meta: Meta<typeof WizardShell> = {
     decorators: [
         (Story) => (
             <WizardStateProvider>
-                <div style={{ maxWidth: 640, padding: 24 }}>
+                <Box maxWidth="640px" padding="space-24">
                     <Story />
-                </div>
+                </Box>
             </WizardStateProvider>
         ),
     ],
