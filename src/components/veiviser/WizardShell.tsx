@@ -55,7 +55,7 @@ export function WizardShell({ sprak }: Props) {
     }, [selectedAnswer, dispatch, state.currentIndex]);
 
     return (
-        <Box padding={{ xs: 'space-16', md: 'space-24' }} background="default" borderRadius="12" shadow="dialog">
+        <Box padding={{ xs: 'space-16', md: 'space-24' }} background="default">
             <VStack gap="space-24">
                 {!isComplete(state) && (
                     <ProgressIndicator
