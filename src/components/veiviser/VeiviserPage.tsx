@@ -25,7 +25,7 @@ export function VeiviserPage({ sprak }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <main id="main-content">
+        <main id="maincontent" tabIndex={-1}>
             <Box paddingBlock={{ xs: 'space-16', md: 'space-24' }} paddingInline={{ xs: 'space-16', md: 'space-40' }}>
                 <VStack gap="space-12" maxWidth="640px" marginInline="auto">
                     <Heading size="xlarge" level="1">
