@@ -9,7 +9,7 @@ export const initialState: WizardState = {
 /**
  * Process a user's answer to the current question.
  * - Circuit-breaker + "ja" → sets result immediately.
- * - Circuit-breaker + "nei" → advances to next question, answer not stored.
+ * - Circuit-breaker + "nei" → stores the answer and advances to next question (no score).
  * - Accumulated question → stores answer, advances; if last question, calculates result.
  */
 export function processAnswer(questions: Question[], state: WizardState, answer: Answer): WizardState {

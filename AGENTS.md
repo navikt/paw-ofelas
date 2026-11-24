@@ -30,7 +30,7 @@ Spørsmålsrekkefølge og utfallsregler er definert i `src/lib/veiviser/question
 | Vitest                   | 5.x (unit + Storybook) |
 | Playwright               | 1.x (e2e)              |
 | Storybook                | 10.x                   |
-| Node.js                  | 24.22.1                |
+| Node.js                  | 26.13.1                |
 | pnpm                     | 11.28.6                |
 
 Eksakte pakkeversjoner står i `package.json`. Node-versjonen står også i `.nvmrc`.
@@ -80,16 +80,17 @@ Beslutningslogikken er skilt fra React-komponentene:
 - `src/lib/veiviser/` inneholder spørsmålsdefinisjoner, oversatte tekster, typer og beslutningsmotoren i ren TypeScript.
 - `src/lib/language.ts` håndterer språkverdier og URL-tolkning. `src/lib/analytics.ts` definerer analysehendelser.
 - `src/components/veiviser/WizardStateContext.tsx` eier veivisertilstanden og reduceren for svar, tilbake og omstart.
+- `src/components/veiviser/VeiviserPage.tsx` lager `<main>`, sideoverskrift og ingress med egne tekster per språk, og rendrer `WizardShell`.
 - `src/components/veiviser/WizardShell.tsx` kobler tilstand til UI og håndterer fokus, navigasjon og analysehendelser.
 - `QuestionStep`, `ResultStep` og `ProgressIndicator` mottar data og callbacks via props.
 - `src/components/LanguageHandler.tsx` kobler dekoratørens språkvelger til Next.js-ruteren. `FaroProvider.tsx` initialiserer Faro i nettleseren.
-- `src/app/` inneholder sider, rotlayout og `api/health/route.ts`. Health-endpointet ligger under appens basePath.
+- `src/app/` inneholder rotlayout, `page.tsx` (bokmål), `[lang]/page.tsx` (nynorsk og engelsk) og `api/health/route.ts`. Health-endpointet ligger under appens basePath.
 
 ### Språk og tilstand
 
 Appen støtter bokmål (`nb`), nynorsk (`nn`) og engelsk (`en`). Bokmål bruker `/`, nynorsk `/nn` og engelsk `/en`, alle under basePath. `src/proxy.ts` setter den interne `x-language`-headeren som rotlayouten bruker for HTML-språk og dekoratøren.
 
-`WizardStateProvider` ligger i rotlayouten. Tilstanden beholdes ved språkbytte gjennom klientnavigasjon, men nullstilles ved full sideinnlasting. Tekster velges med `lagHentTekstForSprak` fra `@navikt/arbeidssokerregisteret-utils`. UI-tekster finnes både i `tekster.ts` og i komponentene.
+`WizardStateProvider` ligger i rotlayouten. Tilstanden beholdes ved språkbytte gjennom klientnavigasjon, men nullstilles ved full sideinnlasting. Tekster velges med `lagHentTekstForSprak` fra `@navikt/arbeidssokerregisteret-utils`. UI-tekster finnes både i `tekster.ts` og i komponentene, for eksempel `VeiviserPage.tsx`.
 
 ### Dekoratør og observability
 
