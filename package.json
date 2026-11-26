@@ -2,7 +2,7 @@
     "name": "paw-ofelas",
     "version": "0.1.0",
     "private": true,
-    "packageManager": "pnpm@11.28.6",
+    "packageManager": "pnpm@11.29.0",
     "scripts": {
         "biome:migrate": "biome migrate --write",
         "biome:format": "biome format --write ./src",
